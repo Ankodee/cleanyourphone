@@ -53,10 +53,13 @@ public class CategoryFolderAdapter extends RecyclerView.Adapter<CategoryFolderAd
     public void onBindViewHolder(@NonNull FolderViewHolder holder, int position) {
         CategoryGroup group = groups.get(position);
         holder.title.setText(group.title);
+        boolean isDark = ThemeManager.isDarkTheme(context);
+        holder.title.setTextColor(ThemeManager.getTextSecondary(isDark));
         holder.grid.removeAllViews();
 
         int maxApps = Math.min(4, group.apps.size());
-        int iconPx = (int) (48 * context.getResources().getDisplayMetrics().density);
+        int iconPx = (int) (34 * context.getResources().getDisplayMetrics().density);
+        int margin = (int) (4 * context.getResources().getDisplayMetrics().density);
 
         for (int i = 0; i < maxApps; i++) {
             AppModel app = group.apps.get(i);
@@ -64,7 +67,7 @@ public class CategoryFolderAdapter extends RecyclerView.Adapter<CategoryFolderAd
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();
             params.width = iconPx;
             params.height = iconPx;
-            params.setMargins(8, 8, 8, 8);
+            params.setMargins(margin, margin, margin, margin);
             iv.setLayoutParams(params);
             iv.setImageDrawable(app.getIcon());
             iv.setScaleType(ImageView.ScaleType.FIT_CENTER);

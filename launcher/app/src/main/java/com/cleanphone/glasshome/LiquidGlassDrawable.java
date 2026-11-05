@@ -37,7 +37,7 @@ public class LiquidGlassDrawable extends Drawable {
         this.cornerRadius = cornerRadius;
 
         strokePaint.setStyle(Paint.Style.STROKE);
-        strokePaint.setStrokeWidth(1.2f);
+        strokePaint.setStrokeWidth(0.75f);
         updateColors();
     }
 

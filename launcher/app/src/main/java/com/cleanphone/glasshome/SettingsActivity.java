@@ -77,7 +77,14 @@ public class SettingsActivity extends AppCompatActivity {
         layout.addView(btnSystem);
 
         // Section: Wallpapers
-        addSectionHeader(layout, "MINIMALIST WALLPAPERS", isDark);
+        addSectionHeader(layout, "CURATED WALLPAPERS", isDark);
+
+        Button btnWpBlue = createStyledButton("Apply Abstract Blue (Flagship)", isDark);
+        btnWpBlue.setOnClickListener(v -> {
+            WallpaperHelper.applyPreset(this, WallpaperHelper.PRESET_PREMIUM_BLUE);
+            Toast.makeText(this, "Abstract Blue wallpaper applied", Toast.LENGTH_SHORT).show();
+        });
+        layout.addView(btnWpBlue);
 
         Button btnWpNavy = createStyledButton("Apply Obsidian Navy (Dark)", isDark);
         btnWpNavy.setOnClickListener(v -> {

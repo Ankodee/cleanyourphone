@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements
             mainHandler.postDelayed(this::setupWallpaperGlassBlur, 300);
         } else if ("dark".equalsIgnoreCase(themeExtra)) {
             ThemeManager.setThemeMode(this, ThemeManager.MODE_DARK);
-            WallpaperHelper.applyPreset(this, WallpaperHelper.PRESET_DARK_NAVY);
+            WallpaperHelper.applyPreset(this, WallpaperHelper.PRESET_PREMIUM_BLUE);
             applyTheme(true);
             mainHandler.postDelayed(this::setupWallpaperGlassBlur, 300);
         }
@@ -227,13 +227,17 @@ public class MainActivity extends AppCompatActivity implements
         String action = intent.getStringExtra("action");
         if ("set_wallpaper".equals(action)) {
             String presetStr = intent.getStringExtra("preset");
-            int preset = WallpaperHelper.PRESET_DARK_NAVY;
+            int preset = WallpaperHelper.PRESET_PREMIUM_BLUE;
             if ("charcoal".equalsIgnoreCase(presetStr)) {
                 preset = WallpaperHelper.PRESET_CHARCOAL;
             } else if ("warm_linen".equalsIgnoreCase(presetStr) || "light".equalsIgnoreCase(presetStr)) {
                 preset = WallpaperHelper.PRESET_WARM_LINEN;
             } else if ("slate".equalsIgnoreCase(presetStr)) {
                 preset = WallpaperHelper.PRESET_MINIMAL_SLATE;
+            } else if ("navy".equalsIgnoreCase(presetStr) || "dark_navy".equalsIgnoreCase(presetStr)) {
+                preset = WallpaperHelper.PRESET_DARK_NAVY;
+            } else if ("blue".equalsIgnoreCase(presetStr) || "premium".equalsIgnoreCase(presetStr)) {
+                preset = WallpaperHelper.PRESET_PREMIUM_BLUE;
             }
             WallpaperHelper.applyPreset(this, preset);
             mainHandler.postDelayed(this::setupWallpaperGlassBlur, 300);
@@ -605,12 +609,12 @@ public class MainActivity extends AppCompatActivity implements
             Toast.makeText(this, newDark ? "Dark theme activated" : "Light theme activated", Toast.LENGTH_SHORT).show();
         });
 
-        btnWallpaper.setText("Apply Minimalist Wallpaper");
+        btnWallpaper.setText("Apply Abstract Blue Wallpaper");
         btnWallpaper.setOnClickListener(v -> {
             boolean currentDark = ThemeManager.isDarkTheme(this);
-            WallpaperHelper.applyPreset(this, currentDark ? WallpaperHelper.PRESET_DARK_NAVY : WallpaperHelper.PRESET_WARM_LINEN);
+            WallpaperHelper.applyPreset(this, currentDark ? WallpaperHelper.PRESET_PREMIUM_BLUE : WallpaperHelper.PRESET_WARM_LINEN);
             mainHandler.postDelayed(this::setupWallpaperGlassBlur, 300);
-            Toast.makeText(this, "Minimalist Wallpaper Applied", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Abstract Blue Wallpaper Applied", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
