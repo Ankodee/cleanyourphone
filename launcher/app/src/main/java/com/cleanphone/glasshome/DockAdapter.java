@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DockAdapter extends RecyclerView.Adapter<DockAdapter.ViewHolder> {
+public class DockAdapter extends RecyclerView.Adapter<DockAdapter.DockViewHolder> {
 
     public interface OnDockClickListener {
         void onDockAppClick(AppModel app);
@@ -29,45 +29,33 @@ public class DockAdapter extends RecyclerView.Adapter<DockAdapter.ViewHolder> {
 
     public void setDockApps(List<AppModel> apps) {
         dockApps.clear();
-        dockApps.addAll(apps);
+        if (apps != null) {
+            dockApps.addAll(apps);
+        }
         notifyDataSetChanged();
-    }
-
-    public List<AppModel> getDockApps() {
-        return dockApps;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_dock_app, parent, false);
-        return new ViewHolder(view);
+    public DockViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.item_dock_app, parent, false);
+        return new DockViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DockViewHolder holder, int position) {
         AppModel app = dockApps.get(position);
         holder.icon.setImageDrawable(app.getIcon());
 
-        // 0.5x Ultra-snappy dock touch response (50ms down, 80ms rebound)
+        // Snappy iOS press touch effect
         holder.itemView.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    v.animate()
-                            .scaleX(0.88f)
-                            .scaleY(0.88f)
-                            .setDuration(50)
-                            .setInterpolator(new android.view.animation.DecelerateInterpolator(2.0f))
-                            .start();
+                    v.animate().scaleX(0.90f).scaleY(0.90f).setDuration(80).start();
                     break;
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL:
-                    v.animate()
-                            .scaleX(1.0f)
-                            .scaleY(1.0f)
-                            .setDuration(80)
-                            .setInterpolator(new android.view.animation.OvershootInterpolator(1.2f))
-                            .start();
+                    v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(120).start();
                     break;
             }
             return false;
@@ -93,10 +81,10 @@ public class DockAdapter extends RecyclerView.Adapter<DockAdapter.ViewHolder> {
         return dockApps.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class DockViewHolder extends RecyclerView.ViewHolder {
         ImageView icon;
 
-        public ViewHolder(@NonNull View itemView) {
+        DockViewHolder(@NonNull View itemView) {
             super(itemView);
             icon = itemView.findViewById(R.id.dock_app_icon);
         }

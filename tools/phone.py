@@ -93,10 +93,6 @@ def get_device_info():
         "os_flavor": os_flavor if os_flavor else "Generic/AOSP",
         "battery_level": battery_level
     }
-        "security_patch": security_patch,
-        "os_flavor": os_flavor if os_flavor else "Stock/Generic",
-        "battery_level": battery_level
-    }
 
 def print_device_banner(info):
     """Print a clean summary banner of the connected device."""

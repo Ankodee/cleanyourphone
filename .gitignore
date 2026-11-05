@@ -48,3 +48,11 @@ desktop.ini
 *.log
 phone_dumpsys.txt
 device_info.json
+
+# Android Gradle
+.gradle/
+launcher/.gradle/
+**/build/
+local.properties
+launcher/local.properties
+*.apk

@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Liquid Glass Palette -->
-    <color name="glass_dock_bg">#33FFFFFF</color>
-    <color name="glass_dock_border">#55FFFFFF</color>
-    <color name="glass_dock_dark_bg">#4418181A</color>
-    <color name="glass_dock_dark_border">#33FFFFFF</color>
+    <!-- iOS 17/18 Liquid Glass Palette -->
+    <color name="ios_glass_dock_bg">#30FFFFFF</color>
+    <color name="ios_glass_dock_stroke">#66FFFFFF</color>
 
-    <color name="glass_card_bg">#2AFFFFFF</color>
-    <color name="glass_card_border">#40FFFFFF</color>
+    <color name="ios_glass_card_bg">#28FFFFFF</color>
+    <color name="ios_glass_card_stroke">#55FFFFFF</color>
 
+    <color name="ios_glass_pill_bg">#38FFFFFF</color>
+    <color name="ios_glass_pill_stroke">#70FFFFFF</color>
+
+    <color name="ios_search_overlay_bg">#B30A0E14</color>
+    <color name="ios_search_card_bg">#351A222E</color>
+
+    <!-- iOS Typography (White with shadow for universal wallpaper legibility) -->
     <color name="text_primary">#FFFFFFFF</color>
-    <color name="text_secondary">#CCFFFFFF</color>
-    <color name="text_muted">#88FFFFFF</color>
+    <color name="text_secondary">#D6FFFFFF</color>
+    <color name="text_muted">#8AFFFFFF</color>
+    <color name="shadow_color">#66000000</color>
 
-    <color name="accent_blue">#007AFF</color>
-    <color name="accent_pill">#33FFFFFF</color>
-    <color name="pill_border">#66FFFFFF</color>
+    <!-- iOS Accents -->
+    <color name="ios_blue">#007AFF</color>
+    <color name="ios_green">#34C759</color>
+    <color name="ios_orange">#FF9500</color>
+    <color name="ios_red">#FF3B30</color>
+
+    <!-- Page Indicator Dots -->
+    <color name="dot_active">#FFFFFFFF</color>
+    <color name="dot_inactive">#4DFFFFFF</color>
 
     <color name="transparent">#00000000</color>
-    <color name="shadow_color">#40000000</color>
 </resources>

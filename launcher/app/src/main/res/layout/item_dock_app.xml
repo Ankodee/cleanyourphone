@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dock_item_root"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:paddingStart="8dp"
-    android:paddingEnd="8dp"
+    android:orientation="vertical"
     android:gravity="center"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:background="@android:color/transparent">
 
     <ImageView
         android:id="@+id/dock_app_icon"
         android:layout_width="@dimen/dock_icon_size"
         android:layout_height="@dimen/dock_icon_size"
-        android:layout_gravity="center"
-        android:contentDescription="Dock Icon"
+        android:contentDescription="Dock App Icon"
         android:scaleType="fitCenter" />
 
-</FrameLayout>
+</LinearLayout>

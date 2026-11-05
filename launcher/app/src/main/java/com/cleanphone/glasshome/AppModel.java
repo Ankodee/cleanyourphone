@@ -30,4 +30,30 @@ public class AppModel {
     public Drawable getIcon() {
         return icon;
     }
+
+    public String getCategory() {
+        String p = packageName.toLowerCase();
+        String l = label.toLowerCase();
+
+        if (p.contains("dialer") || p.contains("phone") || p.contains("contact") ||
+            p.contains("message") || p.contains("mms") || p.contains("mail") ||
+            p.contains("whatsapp") || p.contains("telegram") || p.contains("chat")) {
+            return "Communication";
+        }
+        if (p.contains("camera") || p.contains("photo") || p.contains("gallery") ||
+            p.contains("music") || p.contains("audio") || p.contains("video") ||
+            p.contains("recorder") || p.contains("media")) {
+            return "Creativity & Media";
+        }
+        if (p.contains("settings") || p.contains("clock") || p.contains("calculator") ||
+            p.contains("calendar") || p.contains("file") || p.contains("tool") ||
+            p.contains("download") || p.contains("manager")) {
+            return "Utilities";
+        }
+        if (p.contains("chrome") || p.contains("browser") || p.contains("search") ||
+            p.contains("map") || p.contains("weather") || p.contains("note")) {
+            return "Information";
+        }
+        return "Other";
+    }
 }

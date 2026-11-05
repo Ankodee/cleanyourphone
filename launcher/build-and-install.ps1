@@ -43,7 +43,7 @@ $apkPath = "app\build\outputs\apk\release\app-release.apk"
 
 # Check if Gradle / Java can build
 $javaCmd = Get-Command "java" -ErrorAction SilentlyContinue
-if (Test-Path ".\gradlew.bat" -and $javaCmd) {
+if ((Test-Path ".\gradlew.bat") -and $javaCmd) {
     Write-Host "[*] Compiling APK using Gradle..." -ForegroundColor White
     .\gradlew.bat assembleRelease -q --console=plain
 } elseif (-not (Test-Path $apkPath)) {
@@ -63,8 +63,12 @@ if (Test-Path $apkPath) {
 
 # Set as default home activity (supports Android 5 through Android 15)
 Write-Host "[*] Setting Liquid Glass Launcher as default home..." -ForegroundColor Cyan
-adb shell cmd package set-home-activity --user 0 com.cleanphone.glasshome/.MainActivity 2>$null | Out-Null
-adb shell pm set-home-activity com.cleanphone.glasshome/.MainActivity 2>$null | Out-Null
+try {
+    adb shell cmd package set-home-activity --user 0 com.cleanphone.glasshome/.MainActivity 2>&1 | Out-Null
+} catch {}
+try {
+    adb shell pm set-home-activity com.cleanphone.glasshome/.MainActivity 2>&1 | Out-Null
+} catch {}
 
 # Start the home screen
 Write-Host "[*] Starting Liquid Glass Home..." -ForegroundColor Cyan

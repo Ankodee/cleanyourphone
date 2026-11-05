@@ -1,12 +1,11 @@
-# Liquid Glass Home (Minimalist Android Launcher)
+# Liquid Glass Home (iOS-Style Minimalist Launcher)
 
 <p align="center">
   <img src="../docs/liquid-glass-home.jpg" alt="Liquid Glass Home UI" width="450">
 </p>
 
-A super-clean, lightweight Android home screen with an ethereal liquid glass aesthetic.
-Engineered with an Android-first philosophy (distinct from iOS clones) and tuned to 0.5x transition speed for a lag-free, ultra-responsive experience.
-Built as the second stage of **CleanYourPhone** to replace ad-bloated OEM home screens.
+An ultra-clean, minimal, lag-free **iOS-style home screen launcher** featuring true liquid glass effects over your live background wallpaper.
+Engineered with horizontal left-to-right SpringBoard paging, an iOS Smart Stack widget, a floating liquid glass dock, Spotlight search, and an iOS App Library—all running in under 15 MB of RAM with 0.5x snappy responsiveness.
 
 <p align="center">
   <img src="../docs/glass-dock-detail.jpg" alt="Liquid Glass Dock Detail" width="650">
@@ -16,21 +15,22 @@ Built as the second stage of **CleanYourPhone** to replace ad-bloated OEM home s
 
 ## Key Features
 
-- **Android-First Liquid Glass Design:** Distinctly tailored for Android smartphones with centered punch-holes and curved edges. Features layered glass refraction, specular highlight edges, and dynamic live wallpaper pass-through.
-- **0.5x Snappy Lag-Free Speed:** Transitions and touch responses tuned to 0.5x speed (50ms down, 80ms rebound) with hardware acceleration enabled for smooth 90Hz/120Hz scrolling.
-- **Liquid Glass Glance Card:** Minimalist frosted glass card at the top displaying time, date, and clean status chips.
-- **Frosted Search Capsule:** Fast real-time app search with zero online network requests or telemetry.
+- **iOS 17/18 SpringBoard Left-to-Right Paging:** Horizontal paginated app pages that swipe smoothly left to right with silky 120Hz snap physics and animated iOS page indicator dots (`• • •`).
+- **Live Wallpaper Liquid Glass Effect:** Real optical frosted glass refraction over your live system wallpaper with specular edge highlights, light dispersion, and real-time wallpaper blur pass-through.
+- **iOS Smart Widget (Home Page):** Authentic frosted glass card on Page 1 displaying Apple-style live clock, day, date, and live battery level.
+- **Floating Liquid Glass Dock:** Floating translucent glass island at the bottom housing your 4 primary apps (Phone, Messages, Browser, Camera) that stays anchored while pages swipe above.
+- **iOS Spotlight "Search" Pill:** Floating glass pill (`🔍 Search`) right above the dock that smoothly opens the Spotlight search overlay for instant, real-time app filtering.
 
 <p align="center">
   <img src="../docs/feature-search-library.jpg" alt="Liquid Glass 0.5x Search in Action" width="550">
 </p>
 
-- **Floating Liquid Glass Dock:** Translucent glass island at the bottom housing your top 4–5 favorite apps.
-- **Contextual Glass Dialog:** Long-press any app to pin/unpin from the dock, view system app info, or uninstall.
-- **Extreme Battery & Memory Efficiency:**
-  - Written in clean Java & AndroidX (no heavy web runtimes or Kotlin bloat).
-  - Uses less than 15 MB of RAM (compared to OEM launchers taking 250 MB–500 MB).
-  - 100% offline, zero ads, zero tracking permissions.
+- **iOS App Library (Last Page):** Swiping to the rightmost page reveals the iOS App Library with 2x2 frosted glass category folders (Suggestions, Utilities, Communication, Media) and quick search.
+- **Haptic Context Menu:** Long-press any app icon to pin/unpin from the dock, view system app permissions, or uninstall.
+- **Extreme Speed & Efficiency:**
+  - 0.5x duration animations (instant launch, zero lag).
+  - Uses less than 15 MB of RAM (compared to OEM launchers taking 350 MB–600 MB).
+  - 100% offline, zero ads, zero telemetry, no tracking.
 
 ---
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="6dp">
+
+    <!-- Frosted Glass Folder Card -->
+    <LinearLayout
+        android:id="@+id/folder_card"
+        android:layout_width="match_parent"
+        android:layout_height="145dp"
+        android:background="@drawable/glass_folder_bg"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- 2x2 Mini Apps Container -->
+        <GridLayout
+            android:id="@+id/folder_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:alignmentMode="alignMargins" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/folder_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/text_primary"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif-medium"
+        android:shadowColor="@color/shadow_color"
+        android:shadowDx="0"
+        android:shadowDy="1"
+        android:shadowRadius="2" />
+
+</LinearLayout>

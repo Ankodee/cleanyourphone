@@ -153,7 +153,7 @@ foreach ($pkg in $pkgs) {
     }
 
     if ($DryRun) {
-        Write-Host "[$current/$total] [DRY RUN] Would $Mode: $pkg" -ForegroundColor Yellow
+        Write-Host "[$current/$total] [DRY RUN] Would ${Mode}: $pkg" -ForegroundColor Yellow
         continue
     }
 

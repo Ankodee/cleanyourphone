@@ -4,143 +4,69 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:background="@android:color/transparent"
     tools:context=".MainActivity">
 
-    <!-- Top Container: Liquid Glass Glance Header Card & Search Pill -->
-    <LinearLayout
-        android:id="@+id/header_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="8dp">
-
-        <!-- Modern Android Liquid Glass Glance Card -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/glass_header_bg"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextClock
-                    android:id="@+id/clock_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:format12Hour="h:mm"
-                    android:format24Hour="HH:mm"
-                    android:textColor="@color/text_primary"
-                    android:textSize="36sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:includeFontPadding="false"
-                    android:shadowColor="@color/shadow_color"
-                    android:shadowDx="0"
-                    android:shadowDy="2"
-                    android:shadowRadius="4" />
-
-                <TextClock
-                    android:id="@+id/date_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:format12Hour="EEEE, MMM d"
-                    android:format24Hour="EEEE, d MMM"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="14sp"
-                    android:fontFamily="sans-serif"
-                    android:layout_marginTop="2dp"
-                    android:shadowColor="@color/shadow_color"
-                    android:shadowDx="0"
-                    android:shadowDy="1"
-                    android:shadowRadius="2" />
-            </LinearLayout>
-
-            <!-- Minimalist Status Chip -->
-            <TextView
-                android:id="@+id/status_chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/glass_chip_bg"
-                android:text="Clean • Fast"
-                android:textColor="@color/text_primary"
-                android:textSize="12sp"
-                android:fontFamily="sans-serif-medium"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp" />
-        </LinearLayout>
-
-        <!-- Frosted Glass Search Capsule -->
-        <LinearLayout
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/search_height"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/glass_search_bg"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
-
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:src="@drawable/ic_search"
-                android:contentDescription="Search Icon" />
-
-            <EditText
-                android:id="@+id/search_input"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginStart="10dp"
-                android:background="@null"
-                android:hint="@string/search_hint"
-                android:textColorHint="@color/text_muted"
-                android:textColor="@color/text_primary"
-                android:textSize="14sp"
-                android:inputType="text"
-                android:maxLines="1"
-                android:imeOptions="actionSearch" />
-
-            <ImageView
-                android:id="@+id/btn_settings"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_settings"
-                android:contentDescription="Settings"
-                android:background="?android:attr/selectableItemBackgroundBorderless" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- App Library Grid (Hardware accelerated & optimized cache for 120Hz smooth scrolling) -->
+    <!-- 1. Horizontal SpringBoard Pager (Swipes left-to-right across pages) -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_apps"
+        android:id="@+id/horizontal_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/header_container"
-        android:layout_above="@id/dock_container"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:paddingTop="6dp"
-        android:paddingBottom="10dp"
+        android:paddingBottom="125dp"
         android:clipToPadding="false"
         android:overScrollMode="never" />
 
-    <!-- Bottom Liquid Glass Island (Floating dock with rounded specular refraction) -->
+    <!-- 2. iOS Floating Page Indicator & Search Pill (Positioned right above the dock) -->
+    <LinearLayout
+        android:id="@+id/indicator_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/dock_container"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Page Indicator Dots -->
+        <LinearLayout
+            android:id="@+id/dots_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="4dp" />
+
+        <!-- Floating iOS Spotlight 'Search' Capsule -->
+        <LinearLayout
+            android:id="@+id/btn_search_pill"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/search_pill_height"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/glass_pill_search"
+            android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:src="@drawable/ic_search"
+                android:contentDescription="Search Icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Search"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 3. Bottom Floating Liquid Glass Dock -->
     <FrameLayout
         android:id="@+id/dock_container"
         android:layout_width="match_parent"
@@ -148,7 +74,7 @@
         android:layout_alignParentBottom="true"
         android:paddingStart="@dimen/dock_margin"
         android:paddingEnd="@dimen/dock_margin"
-        android:paddingBottom="16dp">
+        android:paddingBottom="@dimen/dock_bottom_margin">
 
         <LinearLayout
             android:id="@+id/glass_dock"
@@ -168,5 +94,86 @@
                 android:overScrollMode="never" />
         </LinearLayout>
     </FrameLayout>
+
+    <!-- 4. iOS Spotlight Search Overlay (Opens when tapping Search pill or App Library search) -->
+    <RelativeLayout
+        android:id="@+id/spotlight_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ios_search_overlay_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <!-- Top Search Bar Container -->
+        <LinearLayout
+            android:id="@+id/spotlight_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="36dp"
+            android:paddingBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spotlight_input_height"
+                android:layout_weight="1"
+                android:background="@drawable/glass_search_input_bg"
+                android:gravity="center_vertical"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_search"
+                    android:contentDescription="Search Icon" />
+
+                <EditText
+                    android:id="@+id/spotlight_search_input"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@null"
+                    android:hint="Search apps..."
+                    android:textColorHint="@color/text_muted"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:imeOptions="actionSearch" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btn_cancel_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:text="Cancel"
+                android:textColor="@color/ios_blue"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackgroundBorderless" />
+        </LinearLayout>
+
+        <!-- Live Instant Search Results -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_search_results"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/spotlight_header"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="24dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
