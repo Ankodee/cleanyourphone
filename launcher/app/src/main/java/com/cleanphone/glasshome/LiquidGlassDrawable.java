@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
@@ -16,15 +15,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * Custom Liquid Glass Drawable that emulates Apple iOS 17/18 frosted glass
- * with wallpaper light dispersion, specular edge highlights, and subtle chromatic sheen.
+ * Premium Minimalist Translucent Dock Drawable.
+ * Emulates soft optical wallpaper pass-through with subtle hairline stroke,
+ * eliminating harsh specular reflections and heavy outlines.
  */
 public class LiquidGlassDrawable extends Drawable {
 
     private final Paint blurPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint frostPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint strokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final Paint specularPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     private final RectF boundsF = new RectF();
     private final Matrix shaderMatrix = new Matrix();
@@ -32,21 +31,27 @@ public class LiquidGlassDrawable extends Drawable {
     private float cornerRadius;
     private Bitmap blurredWallpaperBitmap;
     private BitmapShader wallpaperShader;
+    private boolean isDark = true;
 
     public LiquidGlassDrawable(float cornerRadius) {
         this.cornerRadius = cornerRadius;
 
         strokePaint.setStyle(Paint.Style.STROKE);
-        strokePaint.setStrokeWidth(1.6f);
-
-        specularPaint.setStyle(Paint.Style.STROKE);
-        specularPaint.setStrokeWidth(0.9f);
-        specularPaint.setColor(0x60FFFFFF);
+        strokePaint.setStrokeWidth(1.2f);
+        updateColors();
     }
 
-    /**
-     * Pass the blurred system wallpaper to enable true optical frosted glass refraction!
-     */
+    public void setTheme(boolean isDark) {
+        this.isDark = isDark;
+        updateColors();
+        invalidateSelf();
+    }
+
+    private void updateColors() {
+        frostPaint.setColor(ThemeManager.getDockFill(isDark));
+        strokePaint.setColor(ThemeManager.getDockStroke(isDark));
+    }
+
     public void setBlurredWallpaper(Bitmap bitmap) {
         this.blurredWallpaperBitmap = bitmap;
         if (bitmap != null) {
@@ -70,25 +75,6 @@ public class LiquidGlassDrawable extends Drawable {
         boundsF.set(bounds);
 
         if (bounds.width() > 0 && bounds.height() > 0) {
-            // iOS Liquid Glass Refraction Gradient (frosted milky-translucent layer)
-            Shader frostShader = new LinearGradient(
-                    0, bounds.top, 0, bounds.bottom,
-                    new int[]{0x40FFFFFF, 0x1EFFFFFF, 0x2AFFFFFF},
-                    new float[]{0f, 0.5f, 1f},
-                    Shader.TileMode.CLAMP
-            );
-            frostPaint.setShader(frostShader);
-
-            // Specular border reflection (gleaming top edge highlight down to subtle refraction)
-            Shader strokeShader = new LinearGradient(
-                    0, bounds.top, bounds.width() * 0.25f, bounds.bottom,
-                    new int[]{0xAAFFFFFF, 0x30FFFFFF, 0x48FFFFFF},
-                    new float[]{0f, 0.65f, 1f},
-                    Shader.TileMode.CLAMP
-            );
-            strokePaint.setShader(strokeShader);
-
-            // Scale wallpaper shader to screen coordinates
             if (wallpaperShader != null && blurredWallpaperBitmap != null) {
                 shaderMatrix.reset();
                 float scaleX = (float) bounds.width() / (float) blurredWallpaperBitmap.getWidth();
@@ -106,17 +92,11 @@ public class LiquidGlassDrawable extends Drawable {
             canvas.drawRoundRect(boundsF, cornerRadius, cornerRadius, blurPaint);
         }
 
-        // 2. Draw frosted translucent glass fill
+        // 2. Draw frosted translucent surface
         canvas.drawRoundRect(boundsF, cornerRadius, cornerRadius, frostPaint);
 
-        // 3. Draw specular outer stroke (Apple frosted edge)
+        // 3. Draw minimal hairline stroke
         canvas.drawRoundRect(boundsF, cornerRadius, cornerRadius, strokePaint);
-
-        // 4. Subtle inset highlight arc on top border
-        if (boundsF.height() > 20) {
-            RectF inset = new RectF(boundsF.left + 1f, boundsF.top + 1f, boundsF.right - 1f, boundsF.top + 3f);
-            canvas.drawRoundRect(inset, cornerRadius, cornerRadius, specularPaint);
-        }
     }
 
     @Override

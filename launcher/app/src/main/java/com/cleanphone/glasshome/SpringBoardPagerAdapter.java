@@ -4,24 +4,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextClock;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
- * Horizontal SpringBoard Pager Adapter.
- * Enables authentic left-to-right paginated app browsing like iOS 17/18.
- * Page 0: iOS Frosted Glass Widget + Home App Grid (16 apps)
- * Pages 1 .. N-1: Standard 4x5 App Pages (20 apps per page)
- * Page N: iOS App Library with 2x2 Frosted Category Folders
+ * Minimalist Horizontal SpringBoard Pager Adapter.
+ * Clean, balanced hierarchy:
+ * Page 0: Minimal Clock & Date + Battery header + Curated App Grid (Zero dock duplicates)
+ * Pages 1 .. N-1: Remaining installed applications (16 apps per page)
+ * Page N: Organized App Library with categories
  */
 public class SpringBoardPagerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -33,11 +38,12 @@ public class SpringBoardPagerAdapter extends RecyclerView.Adapter<RecyclerView.V
     private static final int VIEW_TYPE_APPS = 1;
     private static final int VIEW_TYPE_LIBRARY = 2;
 
-    private static final int HOME_APPS_COUNT = 16;
-    private static final int SUBSEQUENT_APPS_COUNT = 20;
+    private static final int HOME_APPS_COUNT = 8;
+    private static final int SUBSEQUENT_APPS_COUNT = 16;
 
     private final Context context;
     private final List<AppModel> allApps = new ArrayList<>();
+    private final Set<String> dockPackages = new HashSet<>();
     private final AppGridAdapter.OnAppClickListener appClickListener;
     private final OnSearchTriggerListener searchTriggerListener;
 
@@ -54,28 +60,51 @@ public class SpringBoardPagerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     public void setApps(List<AppModel> apps) {
         allApps.clear();
+        if (apps != null) {
+            allApps.addAll(apps);
+        }
+        rebuildPages();
+    }
+
+    public void setDockPackages(Set<String> packages) {
+        dockPackages.clear();
+        if (packages != null) {
+            dockPackages.addAll(packages);
+        }
+        rebuildPages();
+    }
+
+    private void rebuildPages() {
         pagedApps.clear();
         libraryCategories.clear();
 
-        if (apps != null && !apps.isEmpty()) {
-            allApps.addAll(apps);
-
-            // Slicing for Page 0 (Home Page: max 16 apps)
-            int firstPageEnd = Math.min(HOME_APPS_COUNT, allApps.size());
-            pagedApps.add(new ArrayList<>(allApps.subList(0, firstPageEnd)));
-
-            // Slicing for subsequent pages (20 apps per page)
-            int cursor = firstPageEnd;
-            while (cursor < allApps.size()) {
-                int nextEnd = Math.min(cursor + SUBSEQUENT_APPS_COUNT, allApps.size());
-                pagedApps.add(new ArrayList<>(allApps.subList(cursor, nextEnd)));
-                cursor = nextEnd;
-            }
-
-            // Build App Library categories
-            buildLibraryCategories();
+        if (allApps.isEmpty()) {
+            notifyDataSetChanged();
+            return;
         }
 
+        // De-duplicate: Never duplicate apps between the main grid and the bottom dock
+        List<AppModel> nonDockApps = new ArrayList<>();
+        for (AppModel app : allApps) {
+            if (!dockPackages.contains(app.getPackageName())) {
+                nonDockApps.add(app);
+            }
+        }
+
+        // Slicing for Page 0 (Home Page: clean minimalist top 8 apps)
+        int homeCount = Math.min(HOME_APPS_COUNT, nonDockApps.size());
+        pagedApps.add(new ArrayList<>(nonDockApps.subList(0, homeCount)));
+
+        // Slicing for subsequent pages (16 apps per page)
+        int cursor = homeCount;
+        while (cursor < nonDockApps.size()) {
+            int nextEnd = Math.min(cursor + SUBSEQUENT_APPS_COUNT, nonDockApps.size());
+            pagedApps.add(new ArrayList<>(nonDockApps.subList(cursor, nextEnd)));
+            cursor = nextEnd;
+        }
+
+        // Build App Library categories
+        buildLibraryCategories();
         notifyDataSetChanged();
     }
 
@@ -129,13 +158,42 @@ public class SpringBoardPagerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        boolean isDark = ThemeManager.isDarkTheme(context);
+
         if (holder instanceof HomeViewHolder) {
             HomeViewHolder h = (HomeViewHolder) holder;
-            // Update live battery level in iOS widget
+
+            // Update live battery level in widget
             int battery = getBatteryLevel();
             h.batteryText.setText(battery > 0 ? battery + "%" : "100%");
 
-            // Bind Page 0 App Grid
+            // Apply dynamic theme colors to widget
+            h.clockWidget.setTextColor(ThemeManager.getTextPrimary(isDark));
+            h.dateWidget.setTextColor(ThemeManager.getTextSecondary(isDark));
+            h.batteryText.setTextColor(ThemeManager.getTextSecondary(isDark));
+            h.dividerDot.setTextColor(ThemeManager.getTextMuted(isDark));
+            h.batteryIcon.setColorFilter(ThemeManager.getTextSecondary(isDark));
+
+            // Tap Clock to open Alarms/Clock
+            h.clockWidget.setOnClickListener(v -> {
+                try {
+                    Intent intent = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                } catch (Exception ignored) {}
+            });
+
+            // Tap Date to open Calendar
+            h.dateWidget.setOnClickListener(v -> {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_APP_CALENDAR);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                } catch (Exception ignored) {}
+            });
+
+            // Bind Page 0 App Grid (Max 8 apps, plenty of breathing space)
             List<AppModel> pageApps = !pagedApps.isEmpty() ? pagedApps.get(0) : new ArrayList<>();
             AppGridAdapter adapter = new AppGridAdapter(context, appClickListener);
             h.appGrid.setLayoutManager(new GridLayoutManager(context, 4));
@@ -170,7 +228,6 @@ public class SpringBoardPagerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemCount() {
-        // Number of app pages + 1 App Library page
         int count = pagedApps.size();
         return count > 0 ? count + 1 : 1;
     }
@@ -190,11 +247,19 @@ public class SpringBoardPagerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     static class HomeViewHolder extends RecyclerView.ViewHolder {
+        TextClock clockWidget;
+        TextClock dateWidget;
+        TextView dividerDot;
+        ImageView batteryIcon;
         TextView batteryText;
         RecyclerView appGrid;
 
         HomeViewHolder(@NonNull View itemView) {
             super(itemView);
+            clockWidget = itemView.findViewById(R.id.widget_clock);
+            dateWidget = itemView.findViewById(R.id.widget_date);
+            dividerDot = itemView.findViewById(R.id.widget_divider_dot);
+            batteryIcon = itemView.findViewById(R.id.widget_battery_icon);
             batteryText = itemView.findViewById(R.id.text_battery_level);
             appGrid = itemView.findViewById(R.id.page_app_grid);
         }

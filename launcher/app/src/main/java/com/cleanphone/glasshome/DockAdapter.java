@@ -47,15 +47,31 @@ public class DockAdapter extends RecyclerView.Adapter<DockAdapter.DockViewHolder
         AppModel app = dockApps.get(position);
         holder.icon.setImageDrawable(app.getIcon());
 
-        // Snappy iOS press touch effect
+        // Equidistant distribution: 4 columns across dock width
+        int count = Math.max(1, dockApps.size());
+        holder.itemView.post(() -> {
+            if (holder.itemView.getParent() instanceof ViewGroup) {
+                int parentW = ((ViewGroup) holder.itemView.getParent()).getWidth();
+                if (parentW > 0) {
+                    ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+                    int targetW = parentW / count;
+                    if (lp.width != targetW) {
+                        lp.width = targetW;
+                        holder.itemView.setLayoutParams(lp);
+                    }
+                }
+            }
+        });
+
+        // Snappy, subtle press touch effect
         holder.itemView.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    v.animate().scaleX(0.90f).scaleY(0.90f).setDuration(80).start();
+                    v.animate().scaleX(0.94f).scaleY(0.94f).setDuration(70).start();
                     break;
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL:
-                    v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(120).start();
+                    v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(100).start();
                     break;
             }
             return false;

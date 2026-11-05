@@ -49,15 +49,23 @@ public class AppGridAdapter extends RecyclerView.Adapter<AppGridAdapter.AppViewH
         holder.icon.setImageDrawable(app.getIcon());
         holder.label.setText(app.getLabel());
 
-        // Snappy iOS press touch effect (scale down slightly on touch)
+        boolean isDark = ThemeManager.isDarkTheme(context);
+        holder.label.setTextColor(ThemeManager.getTextPrimary(isDark));
+        if (isDark) {
+            holder.label.setShadowLayer(3f, 0f, 1f, 0x40000000);
+        } else {
+            holder.label.setShadowLayer(0f, 0f, 0f, 0);
+        }
+
+        // Snappy, subtle press touch effect (scale down slightly on touch)
         holder.itemView.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    v.animate().scaleX(0.92f).scaleY(0.92f).setDuration(80).start();
+                    v.animate().scaleX(0.94f).scaleY(0.94f).setDuration(70).start();
                     break;
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL:
-                    v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(120).start();
+                    v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(100).start();
                     break;
             }
             return false;

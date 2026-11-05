@@ -14,8 +14,6 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.RenderEffect;
-import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -55,15 +53,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * CleanYourPhone Liquid Glass Home - Authentic iOS 17/18 Launcher Clone.
- * Features:
- * - Left-to-right horizontal paginated SpringBoard with smooth snapping.
- * - Real optical liquid glass blur effect over the live background wallpaper.
- * - iOS Smart Stack widget (Clock, Date, Battery status).
- * - Floating frosted glass dock with dynamic wallpaper pass-through.
- * - Floating iOS Spotlight search pill and live search overlay.
- * - iOS App Library on the final page with 2x2 frosted category folders.
- * - 0.5x lag-free snappy touch response with hardware acceleration.
+ * CleanPhone Premium Minimalist Home Screen.
+ * Design Philosophy:
+ * - Extremely clean, uncluttered, balanced hierarchy with generous breathing room.
+ * - Minimal architectural digital clock, date and battery header.
+ * - Zero duplicate apps between the main home grid and the dock.
+ * - Subtle translucent dock with soft wallpaper pass-through and minimal hairline stroke.
+ * - Minimalist compact search interface with instant Spotlight search overlay.
+ * - Full Dark Mode and Light Mode support with curated muted gradient wallpapers.
+ * - Respects system status bar and navigation bar insets.
  */
 public class MainActivity extends AppCompatActivity implements
         AppGridAdapter.OnAppClickListener,
@@ -73,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements
     private static final String PREFS_NAME = "glass_home_prefs";
     private static final String KEY_DOCK = "dock_packages";
 
+    private View rootLayout;
     private RecyclerView horizontalPager;
     private LinearLayoutManager pagerLayoutManager;
     private PagerSnapHelper snapHelper;
@@ -80,11 +79,14 @@ public class MainActivity extends AppCompatActivity implements
 
     private LinearLayout dotsContainer;
     private View btnSearchPill;
+    private ImageView searchIconView;
+    private TextView searchHintText;
 
     private FrameLayout dockContainer;
     private View glassDock;
     private RecyclerView recyclerDock;
     private DockAdapter dockAdapter;
+    private LiquidGlassDrawable dockGlassDrawable;
 
     private RelativeLayout spotlightOverlay;
     private EditText spotlightSearchInput;
@@ -107,40 +109,40 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Enable edge-to-edge system wallpaper rendering
+        // Edge-to-edge transparent system wallpaper rendering
         Window window = getWindow();
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER,
                 WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER
         );
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            );
-            window.setStatusBarColor(Color.TRANSPARENT);
-            window.setNavigationBarColor(Color.TRANSPARENT);
-        }
+        boolean isDark = ThemeManager.isDarkTheme(this);
+        ThemeManager.applySystemBars(this, isDark);
 
         setContentView(R.layout.activity_main);
 
         initViews();
+        setupWindowInsets();
         setupSpringBoardPager();
         setupSpotlightSearch();
         setupWallpaperGlassBlur();
         setupPackageReceiver();
         setupScreenStateReceiver();
+        handleIntent(getIntent());
         loadInstalledApps();
     }
 
     private void initViews() {
+        rootLayout = findViewById(R.id.root_layout);
         unlockBlurOverlay = findViewById(R.id.unlock_blur_overlay);
         horizontalPager = findViewById(R.id.horizontal_pager);
         dotsContainer = findViewById(R.id.dots_container);
-        btnSearchPill = findViewById(R.id.btn_search_pill);
 
+        btnSearchPill = findViewById(R.id.btn_search_pill);
+        searchIconView = findViewById(R.id.search_icon_view);
+        searchHintText = findViewById(R.id.search_hint_text);
+
+        dockContainer = findViewById(R.id.dock_container);
         glassDock = findViewById(R.id.glass_dock);
         recyclerDock = findViewById(R.id.recycler_dock);
 
@@ -149,15 +151,93 @@ public class MainActivity extends AppCompatActivity implements
         btnCancelSearch = findViewById(R.id.btn_cancel_search);
         recyclerSearchResults = findViewById(R.id.recycler_search_results);
 
-        // Bottom Liquid Glass Dock
+        // Bottom Minimal Floating Dock
         LinearLayoutManager dockLayout = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerDock.setLayoutManager(dockLayout);
         recyclerDock.setHasFixedSize(true);
         dockAdapter = new DockAdapter(this, this);
         recyclerDock.setAdapter(dockAdapter);
 
-        // Spotlight trigger button
+        // Spotlight search trigger
         btnSearchPill.setOnClickListener(v -> openSpotlightSearch());
+
+        // Long-press search bar to open Home Screen Theme & Wallpaper Menu
+        btnSearchPill.setOnLongClickListener(v -> {
+            showHomeScreenMenu();
+            return true;
+        });
+    }
+
+    /**
+     * Dynamically adjusts status bar and navigation bar insets
+     * so widgets and the dock never collide with 3-button or gesture bars.
+     */
+    private void setupWindowInsets() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH && rootLayout != null) {
+            rootLayout.setOnApplyWindowInsetsListener((v, insets) -> {
+                int topInset = insets.getSystemWindowInsetTop();
+                int bottomInset = insets.getSystemWindowInsetBottom();
+                float density = getResources().getDisplayMetrics().density;
+
+                if (horizontalPager != null) {
+                    horizontalPager.setPadding(
+                            horizontalPager.getPaddingLeft(),
+                            topInset,
+                            horizontalPager.getPaddingRight(),
+                            (int) (130 * density) + bottomInset
+                    );
+                }
+
+                if (dockContainer != null) {
+                    dockContainer.setPadding(
+                            dockContainer.getPaddingLeft(),
+                            dockContainer.getPaddingTop(),
+                            dockContainer.getPaddingRight(),
+                            (int) (10 * density) + bottomInset
+                    );
+                }
+
+                return insets;
+            });
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        if (intent == null) return;
+        String themeExtra = intent.getStringExtra("theme");
+        if ("light".equalsIgnoreCase(themeExtra)) {
+            ThemeManager.setThemeMode(this, ThemeManager.MODE_LIGHT);
+            WallpaperHelper.applyPreset(this, WallpaperHelper.PRESET_WARM_LINEN);
+            applyTheme(false);
+            mainHandler.postDelayed(this::setupWallpaperGlassBlur, 300);
+        } else if ("dark".equalsIgnoreCase(themeExtra)) {
+            ThemeManager.setThemeMode(this, ThemeManager.MODE_DARK);
+            WallpaperHelper.applyPreset(this, WallpaperHelper.PRESET_DARK_NAVY);
+            applyTheme(true);
+            mainHandler.postDelayed(this::setupWallpaperGlassBlur, 300);
+        }
+
+        String action = intent.getStringExtra("action");
+        if ("set_wallpaper".equals(action)) {
+            String presetStr = intent.getStringExtra("preset");
+            int preset = WallpaperHelper.PRESET_DARK_NAVY;
+            if ("charcoal".equalsIgnoreCase(presetStr)) {
+                preset = WallpaperHelper.PRESET_CHARCOAL;
+            } else if ("warm_linen".equalsIgnoreCase(presetStr) || "light".equalsIgnoreCase(presetStr)) {
+                preset = WallpaperHelper.PRESET_WARM_LINEN;
+            } else if ("slate".equalsIgnoreCase(presetStr)) {
+                preset = WallpaperHelper.PRESET_MINIMAL_SLATE;
+            }
+            WallpaperHelper.applyPreset(this, preset);
+            mainHandler.postDelayed(this::setupWallpaperGlassBlur, 300);
+        }
     }
 
     private void setupSpringBoardPager() {
@@ -208,11 +288,7 @@ public class MainActivity extends AppCompatActivity implements
         });
 
         btnCancelSearch.setOnClickListener(v -> closeSpotlightSearch());
-
-        spotlightOverlay.setOnClickListener(v -> {
-            // Tapping empty region closes spotlight
-            closeSpotlightSearch();
-        });
+        spotlightOverlay.setOnClickListener(v -> closeSpotlightSearch());
     }
 
     private void filterSearchResults(String query) {
@@ -234,6 +310,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void openSpotlightSearch() {
+        boolean isDark = ThemeManager.isDarkTheme(this);
+        spotlightOverlay.setBackgroundColor(ThemeManager.getOverlayBg(isDark));
         spotlightOverlay.setVisibility(View.VISIBLE);
         spotlightOverlay.setAlpha(0f);
         spotlightOverlay.animate().alpha(1f).setDuration(120).start();
@@ -260,19 +338,9 @@ public class MainActivity extends AppCompatActivity implements
         }).start();
     }
 
-    /**
-     * Samples the system wallpaper and applies high-speed stack blur
-     * to provide the true optical Liquid Glass effect on the dock and cards!
-     */
     private void setupWallpaperGlassBlur() {
-        // Modern Android 12+ (API 31+) native hardware blur effect
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            try {
-                glassDock.setRenderEffect(RenderEffect.createBlurEffect(28f, 28f, Shader.TileMode.CLAMP));
-            } catch (Exception ignored) {}
-        }
+        boolean isDark = ThemeManager.isDarkTheme(this);
 
-        // Fast StackBlur wallpaper sampler for universal glass refraction (API 21+)
         executor.execute(() -> {
             try {
                 WallpaperManager wm = WallpaperManager.getInstance(MainActivity.this);
@@ -293,7 +361,6 @@ public class MainActivity extends AppCompatActivity implements
                     }
 
                     if (srcBitmap != null && srcBitmap.getWidth() > 0 && srcBitmap.getHeight() > 0) {
-                        // Downsample 5x for instant zero-lag blur computation
                         int scaledW = Math.max(16, srcBitmap.getWidth() / 5);
                         int scaledH = Math.max(16, srcBitmap.getHeight() / 5);
                         Bitmap downscaled = Bitmap.createScaledBitmap(srcBitmap, scaledW, scaledH, true);
@@ -303,11 +370,14 @@ public class MainActivity extends AppCompatActivity implements
 
                         mainHandler.post(() -> {
                             if (blurred != null) {
-                                LiquidGlassDrawable glassDrawable = new LiquidGlassDrawable(
-                                        getResources().getDimension(R.dimen.dock_radius)
-                                );
-                                glassDrawable.setBlurredWallpaper(blurred);
-                                glassDock.setBackground(glassDrawable);
+                                if (dockGlassDrawable == null) {
+                                    dockGlassDrawable = new LiquidGlassDrawable(
+                                            getResources().getDimension(R.dimen.dock_radius)
+                                    );
+                                }
+                                dockGlassDrawable.setTheme(isDark);
+                                dockGlassDrawable.setBlurredWallpaper(blurred);
+                                glassDock.setBackground(dockGlassDrawable);
 
                                 if (isLockScreenActive && unlockBlurOverlay != null) {
                                     unlockBlurOverlay.setImageBitmap(blurred);
@@ -324,15 +394,15 @@ public class MainActivity extends AppCompatActivity implements
         int totalPages = pagerAdapter.getItemCount();
         dotsContainer.removeAllViews();
 
-        int dotSize = (int) (6 * getResources().getDisplayMetrics().density);
-        int dotActiveW = (int) (16 * getResources().getDisplayMetrics().density);
-        int margin = (int) (4 * getResources().getDisplayMetrics().density);
+        int dotH = (int) (4 * getResources().getDisplayMetrics().density);
+        int dotActiveW = (int) (12 * getResources().getDisplayMetrics().density);
+        int margin = (int) (3 * getResources().getDisplayMetrics().density);
 
         for (int i = 0; i < totalPages; i++) {
             View dot = new View(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    i == currentPageIndex ? dotActiveW : dotSize,
-                    dotSize
+                    i == currentPageIndex ? dotActiveW : dotH,
+                    dotH
             );
             params.setMargins(margin, 0, margin, 0);
             dot.setLayoutParams(params);
@@ -442,9 +512,8 @@ public class MainActivity extends AppCompatActivity implements
             mainHandler.post(() -> {
                 allInstalledApps.clear();
                 allInstalledApps.addAll(apps);
-                pagerAdapter.setApps(apps);
-                updatePageDots();
                 updateDockApps();
+                updatePageDots();
             });
         });
     }
@@ -453,34 +522,134 @@ public class MainActivity extends AppCompatActivity implements
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         Set<String> dockSet = prefs.getStringSet(KEY_DOCK, null);
         List<AppModel> dockList = new ArrayList<>();
+        Set<String> dockPackages = new HashSet<>();
 
         if (dockSet == null || dockSet.isEmpty()) {
-            // Default 4 iconic iOS dock apps: Phone, Messages, Browser, Camera
+            AppModel phoneApp = null;
+            AppModel msgApp = null;
+            AppModel browserApp = null;
+            AppModel cameraApp = null;
+
             for (AppModel app : allInstalledApps) {
                 String pkg = app.getPackageName().toLowerCase();
-                if (dockList.size() < 4) {
-                    if (pkg.contains("dialer") || pkg.contains("phone") ||
-                        pkg.contains("mms") || pkg.contains("message") ||
-                        pkg.contains("chrome") || pkg.contains("browser") ||
-                        pkg.contains("camera")) {
-                        dockList.add(app);
-                    }
+                String label = app.getLabel().toLowerCase();
+                if (phoneApp == null && (pkg.contains("dialer") || pkg.contains("phone") || pkg.contains("contact") || label.contains("phone") || label.contains("dialer"))) {
+                    phoneApp = app;
+                } else if (msgApp == null && (pkg.contains("mms") || pkg.contains("message") || label.contains("message"))) {
+                    msgApp = app;
+                } else if (browserApp == null && (pkg.contains("chrome") || pkg.contains("browser") || label.contains("chrome") || label.contains("browser"))) {
+                    browserApp = app;
+                } else if (cameraApp == null && (pkg.contains("camera") || label.contains("camera"))) {
+                    cameraApp = app;
                 }
             }
-            if (dockList.isEmpty() && !allInstalledApps.isEmpty()) {
-                int count = Math.min(4, allInstalledApps.size());
-                dockList.addAll(allInstalledApps.subList(0, count));
+
+            if (phoneApp != null) { dockList.add(phoneApp); dockPackages.add(phoneApp.getPackageName()); }
+            if (msgApp != null) { dockList.add(msgApp); dockPackages.add(msgApp.getPackageName()); }
+            if (browserApp != null) { dockList.add(browserApp); dockPackages.add(browserApp.getPackageName()); }
+            if (cameraApp != null) { dockList.add(cameraApp); dockPackages.add(cameraApp.getPackageName()); }
+
+            if (dockList.size() < 4) {
+                for (AppModel app : allInstalledApps) {
+                    if (!dockPackages.contains(app.getPackageName())) {
+                        dockList.add(app);
+                        dockPackages.add(app.getPackageName());
+                        if (dockList.size() >= 4) break;
+                    }
+                }
             }
         } else {
             for (AppModel app : allInstalledApps) {
                 if (dockSet.contains(app.getPackageName())) {
                     dockList.add(app);
+                    dockPackages.add(app.getPackageName());
                     if (dockList.size() >= 4) break;
                 }
             }
         }
 
         dockAdapter.setDockApps(dockList);
+
+        // De-duplicate: Exclude dock apps from home page grid!
+        pagerAdapter.setDockPackages(dockPackages);
+        pagerAdapter.setApps(allInstalledApps);
+    }
+
+    private void showHomeScreenMenu() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_app_options);
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        ImageView icon = dialog.findViewById(R.id.dialog_app_icon);
+        TextView title = dialog.findViewById(R.id.dialog_app_title);
+        TextView pkgText = dialog.findViewById(R.id.dialog_app_package);
+        Button btnTheme = dialog.findViewById(R.id.btn_toggle_dock);
+        Button btnWallpaper = dialog.findViewById(R.id.btn_app_info);
+        Button btnSettings = dialog.findViewById(R.id.btn_uninstall);
+
+        icon.setImageResource(R.drawable.ic_settings);
+        title.setText("Home Screen Design");
+        pkgText.setText("Minimalist Visual System");
+
+        boolean isDark = ThemeManager.isDarkTheme(this);
+        btnTheme.setText(isDark ? "Switch to Light Theme" : "Switch to Dark Theme");
+        btnTheme.setOnClickListener(v -> {
+            boolean newDark = !isDark;
+            ThemeManager.setThemeMode(this, newDark ? ThemeManager.MODE_DARK : ThemeManager.MODE_LIGHT);
+            applyTheme(newDark);
+            dialog.dismiss();
+            Toast.makeText(this, newDark ? "Dark theme activated" : "Light theme activated", Toast.LENGTH_SHORT).show();
+        });
+
+        btnWallpaper.setText("Apply Minimalist Wallpaper");
+        btnWallpaper.setOnClickListener(v -> {
+            boolean currentDark = ThemeManager.isDarkTheme(this);
+            WallpaperHelper.applyPreset(this, currentDark ? WallpaperHelper.PRESET_DARK_NAVY : WallpaperHelper.PRESET_WARM_LINEN);
+            mainHandler.postDelayed(this::setupWallpaperGlassBlur, 300);
+            Toast.makeText(this, "Minimalist Wallpaper Applied", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });
+
+        btnSettings.setText("Launcher Settings");
+        btnSettings.setOnClickListener(v -> {
+            startActivity(new Intent(this, SettingsActivity.class));
+            dialog.dismiss();
+        });
+
+        dialog.show();
+    }
+
+    private void applyTheme(boolean isDark) {
+        ThemeManager.applySystemBars(this, isDark);
+
+        if (dockGlassDrawable != null) {
+            dockGlassDrawable.setTheme(isDark);
+        }
+        if (searchIconView != null) {
+            searchIconView.setColorFilter(ThemeManager.getTextMuted(isDark));
+        }
+        if (searchHintText != null) {
+            searchHintText.setTextColor(ThemeManager.getTextMuted(isDark));
+        }
+        if (btnSearchPill != null) {
+            android.graphics.drawable.GradientDrawable pillBg = new android.graphics.drawable.GradientDrawable();
+            pillBg.setShape(android.graphics.drawable.GradientDrawable.RECTANGLE);
+            pillBg.setCornerRadius(getResources().getDimension(R.dimen.search_pill_radius));
+            pillBg.setColor(ThemeManager.getSearchPillBg(isDark));
+            pillBg.setStroke((int)(0.75f * getResources().getDisplayMetrics().density), ThemeManager.getSearchPillStroke(isDark));
+            btnSearchPill.setBackground(pillBg);
+        }
+        if (spotlightOverlay != null) {
+            spotlightOverlay.setBackgroundColor(ThemeManager.getOverlayBg(isDark));
+        }
+        if (pagerAdapter != null) {
+            pagerAdapter.notifyDataSetChanged();
+        }
+        updatePageDots();
     }
 
     @Override
@@ -518,7 +687,6 @@ public class MainActivity extends AppCompatActivity implements
             intent.setComponent(new ComponentName(app.getPackageName(), app.getActivityName()));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
             startActivity(intent);
-            // 0.5x Snappy iOS Launch Transition (150ms half-duration zoom & fade)
             overridePendingTransition(R.anim.app_launch_enter, R.anim.app_launch_exit);
         } catch (Exception e) {
             Toast.makeText(this, "Could not launch " + app.getLabel(), Toast.LENGTH_SHORT).show();
@@ -596,7 +764,6 @@ public class MainActivity extends AppCompatActivity implements
             horizontalPager.smoothScrollToPosition(0);
             return;
         }
-        // Keep user on Home Screen
     }
 
     @Override
@@ -608,6 +775,9 @@ public class MainActivity extends AppCompatActivity implements
                 triggerGlassUnlockTransition();
             }
         }
+        // Sync system bars and theme on resume
+        boolean isDark = ThemeManager.isDarkTheme(this);
+        ThemeManager.applySystemBars(this, isDark);
     }
 
     @Override

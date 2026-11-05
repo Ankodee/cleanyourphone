@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- iOS Dock Metrics -->
-    <dimen name="dock_height">88dp</dimen>
-    <dimen name="dock_radius">34dp</dimen>
-    <dimen name="dock_margin">16dp</dimen>
-    <dimen name="dock_bottom_margin">18dp</dimen>
-    <dimen name="dock_padding">10dp</dimen>
-    <dimen name="dock_icon_size">56dp</dimen>
+    <!-- Minimalist Dock Metrics -->
+    <dimen name="dock_height">72dp</dimen>
+    <dimen name="dock_radius">24dp</dimen>
+    <dimen name="dock_margin">20dp</dimen>
+    <dimen name="dock_bottom_margin">10dp</dimen>
+    <dimen name="dock_padding">6dp</dimen>
+    <dimen name="dock_icon_size">48dp</dimen>
 
-    <!-- iOS Spotlight Search Pill -->
-    <dimen name="search_pill_height">30dp</dimen>
-    <dimen name="search_pill_radius">15dp</dimen>
-    <dimen name="search_pill_bottom_margin">10dp</dimen>
+    <!-- Minimalist Search Pill -->
+    <dimen name="search_pill_height">38dp</dimen>
+    <dimen name="search_pill_radius">19dp</dimen>
+    <dimen name="search_pill_margin_horiz">36dp</dimen>
+    <dimen name="search_pill_bottom_margin">8dp</dimen>
 
     <!-- Spotlight Search Overlay -->
-    <dimen name="spotlight_input_height">46dp</dimen>
-    <dimen name="spotlight_input_radius">23dp</dimen>
+    <dimen name="spotlight_input_height">44dp</dimen>
+    <dimen name="spotlight_input_radius">22dp</dimen>
 
-    <!-- iOS Home Screen App Grid -->
-    <dimen name="app_icon_size">58dp</dimen>
-    <dimen name="app_icon_radius">14dp</dimen>
-    <dimen name="app_label_size">11sp</dimen>
+    <!-- Home Screen App Grid -->
+    <dimen name="app_icon_size">52dp</dimen>
+    <dimen name="app_icon_radius">13dp</dimen>
+    <dimen name="app_label_size">11.5sp</dimen>
 
-    <!-- iOS Frosted Smart Widget -->
-    <dimen name="widget_card_height">135dp</dimen>
-    <dimen name="widget_card_radius">24dp</dimen>
+    <!-- Minimal Clock & Date Header -->
+    <dimen name="clock_text_size">52sp</dimen>
+    <dimen name="date_text_size">13.5sp</dimen>
     <dimen name="widget_margin_horiz">16dp</dimen>
     <dimen name="widget_margin_top">12dp</dimen>
-    <dimen name="widget_margin_bottom">12dp</dimen>
+    <dimen name="widget_margin_bottom">16dp</dimen>
+    <dimen name="widget_card_height">100dp</dimen>
+    <dimen name="widget_card_radius">20dp</dimen>
 
-    <dimen name="clock_text_size">44sp</dimen>
-    <dimen name="date_text_size">14sp</dimen>
-
-    <!-- iOS Page Dots Indicator -->
-    <dimen name="dot_size">6dp</dimen>
-    <dimen name="dot_margin">4dp</dimen>
+    <!-- Page Dots Indicator -->
+    <dimen name="dot_size">4dp</dimen>
+    <dimen name="dot_margin">3dp</dimen>
 </resources>

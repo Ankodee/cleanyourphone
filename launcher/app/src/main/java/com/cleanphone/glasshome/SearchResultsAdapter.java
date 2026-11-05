@@ -44,6 +44,10 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         holder.title.setText(app.getLabel());
         holder.subtitle.setText(app.getPackageName() + " • " + app.getCategory());
 
+        boolean isDark = ThemeManager.isDarkTheme(context);
+        holder.title.setTextColor(ThemeManager.getTextPrimary(isDark));
+        holder.subtitle.setTextColor(ThemeManager.getTextMuted(isDark));
+
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) listener.onAppClick(app);
         });
