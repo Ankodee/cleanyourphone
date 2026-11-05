@@ -1,7 +1,15 @@
 # Liquid Glass Home (Minimalist Apple-style Android Launcher)
 
+<p align="center">
+  <img src="../docs/liquid-glass-home.jpg" alt="Liquid Glass Home UI" width="450">
+</p>
+
 A super-clean, lightweight Android home screen inspired by Apple's minimalist frosted glass design.
 Built as the second stage of **CleanYourPhone** to replace ad-bloated OEM home screens.
+
+<p align="center">
+  <img src="../docs/glass-dock-detail.jpg" alt="Liquid Glass Dock Detail" width="650">
+</p>
 
 ---
 

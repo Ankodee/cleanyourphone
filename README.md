@@ -14,6 +14,10 @@
   <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey?style=flat-square" alt="Platform Support">
 </p>
 
+<p align="center">
+  <img src="docs/before-and-after.jpg" alt="CleanYourPhone - Before and After Debloating Comparison" width="850">
+</p>
+
 ---
 
 ## Start Here
@@ -200,11 +204,19 @@ Would you like to install the Liquid Glass Launcher? [y/N]:
 ```
 
 ### What You Get:
+<p align="center">
+  <img src="docs/liquid-glass-home.jpg" alt="Liquid Glass Home Screen UI" width="450">
+</p>
+
 * **Floating Frosted Glass Dock:** Rounded Apple-style translucent pill at the bottom holding your 4–5 favorite apps.
 * **Minimalist Clock & Date:** Thin typography with dynamic system wallpaper pass-through.
 * **Instant Frosted Search:** Fast, offline, real-time app search with zero analytics or internet permissions.
 * **Fluid Spring Animations:** Scale-bounce touch feedback and fluid launch transitions.
 * **Extreme Resource Efficiency:** Runs on under 15 MB of RAM (compared to 300MB–600MB on ColorOS/Funtouch launchers).
+
+<p align="center">
+  <img src="docs/glass-dock-detail.jpg" alt="Liquid Glass Dock & Menu Detail" width="650">
+</p>
 
 To build and install the launcher directly at any time:
 ```bash

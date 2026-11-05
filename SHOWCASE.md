@@ -1,7 +1,15 @@
 # Showcase & Benchmarks
 
+<p align="center">
+  <img src="docs/before-and-after.jpg" alt="CleanYourPhone Showcase - Before and After" width="850">
+</p>
+
 What happens when you strip the background analytics, preloaded bloatware, and ad daemons
 from your Oppo, vivo, OnePlus, Realme, or iQOO smartphone?
+
+<p align="center">
+  <img src="docs/liquid-glass-home.jpg" alt="Liquid Glass Home Minimalist Screen" width="450">
+</p>
 
 Here are real-world benchmark comparisons measured before and after applying CleanYourPhone.
 
