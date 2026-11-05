@@ -17,6 +17,10 @@ Here are real-world benchmark comparisons measured before and after applying Cle
 
 ## 1. Battery Life & Overnight Standby Drain
 
+<p align="center">
+  <img src="docs/feature-battery-ram.jpg" alt="Battery & RAM Performance Benchmark Infographic" width="800">
+</p>
+
 OEM background services (HeyTap push, Vivo daemon, location tracking, lock screen content fetchers)
 frequently wake the CPU (wake-locks), preventing your phone from entering Android's deepest Doze state.
 
@@ -43,6 +47,10 @@ Proprietary stores, game boosters, and telemetry daemons sit resident in system 
 ---
 
 ## 3. Telemetry & Tracker DNS Requests Blocked
+
+<p align="center">
+  <img src="docs/feature-privacy-telemetry.jpg" alt="Telemetry & Tracker Blocking Infographic" width="800">
+</p>
 
 Using network capture and DNS logging (NextDNS / Pi-hole) over a 24-hour baseline period:
 

@@ -1,5 +1,9 @@
 # Telemetry & Privacy Analysis
 
+<p align="center">
+  <img src="feature-privacy-telemetry.jpg" alt="Privacy Shield & Telemetry Blocker" width="750">
+</p>
+
 Why debloat your Android smartphone?
 Modern OEM firmware (ColorOS, OxygenOS, Realme UI, Funtouch OS, OriginOS) includes complex
 telemetry frameworks that continuously collect user telemetry and push advertisements.

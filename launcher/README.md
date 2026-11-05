@@ -20,12 +20,16 @@ Built as the second stage of **CleanYourPhone** to replace ad-bloated OEM home s
 - **0.5x Snappy Lag-Free Speed:** Transitions and touch responses tuned to 0.5x speed (50ms down, 80ms rebound) with hardware acceleration enabled for smooth 90Hz/120Hz scrolling.
 - **Liquid Glass Glance Card:** Minimalist frosted glass card at the top displaying time, date, and clean status chips.
 - **Frosted Search Capsule:** Fast real-time app search with zero online network requests or telemetry.
+
+<p align="center">
+  <img src="../docs/feature-search-library.jpg" alt="Liquid Glass 0.5x Search in Action" width="550">
+</p>
+
 - **Floating Liquid Glass Dock:** Translucent glass island at the bottom housing your top 4–5 favorite apps.
 - **Contextual Glass Dialog:** Long-press any app to pin/unpin from the dock, view system app info, or uninstall.
 - **Extreme Battery & Memory Efficiency:**
   - Written in clean Java & AndroidX (no heavy web runtimes or Kotlin bloat).
   - Uses less than 15 MB of RAM (compared to OEM launchers taking 250 MB–500 MB).
-  - 100% offline, zero ads, zero tracking permissions.
   - 100% offline, zero ads, zero tracking permissions.
 
 ---

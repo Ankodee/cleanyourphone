@@ -49,9 +49,17 @@ Only packages that both safety authorities rate as **100% Safe** are removed:
 
 > *Note: The exact list of packages on your phone will differ by brand, model, and software version.*
 
+<p align="center">
+  <img src="docs/feature-privacy-telemetry.jpg" alt="CleanYourPhone Telemetry & Tracker Blocking Shield" width="750">
+</p>
+
 ---
 
 ## What You'll Learn
+
+<p align="center">
+  <img src="docs/feature-battery-ram.jpg" alt="Battery Life & RAM Reclaim Benchmark" width="750">
+</p>
 
 * **How to remove bloatware from Android without root:** Keep your bootloader locked and preserve Google Play Integrity / SafetyNet.
 * **How to uninstall system apps using ADB:** Use Android Debug Bridge commands (`pm disable-user --user 0` and `pm uninstall -k --user 0`).
@@ -92,6 +100,10 @@ Every package undergoes the **Dual-List Consensus Matrix**:
 ---
 
 ## Supported Brands & Operating Systems
+
+<p align="center">
+  <img src="docs/brands-lineup.jpg" alt="Supported Android Brands Running Liquid Glass UI" width="850">
+</p>
 
 | Brand | Operating System | Shared Base Architecture | Safe Profile |
 |---|---|---|---|
@@ -212,6 +224,11 @@ Would you like to install the Liquid Glass Launcher? [y/N]:
 * **0.5x Snappy Lag-Free Speed:** Animations and touch responses tuned to 0.5x duration (50ms touch, 80ms rebound) with hardware acceleration for instantaneous 120Hz scrolling.
 * **Liquid Glass Glance Card:** Frosted translucent card at the top displaying time, date, and clean status chips without intrusive widgets.
 * **Frosted Search Capsule:** Real-time offline app search with zero analytics or internet permissions.
+
+<p align="center">
+  <img src="docs/feature-search-library.jpg" alt="Liquid Glass App Library & Real-time Search" width="550">
+</p>
+
 * **Floating Liquid Glass Dock:** Translucent glass island holding your 4–5 favorite apps with dynamic wallpaper pass-through.
 * **Extreme Resource Efficiency:** Runs on under 15 MB of RAM (compared to 300MB–600MB on ColorOS/Funtouch launchers).
 
