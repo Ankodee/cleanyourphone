@@ -9,6 +9,9 @@
 net.oneplus.forums
 net.oneplus.membership
 com.oneplus.membership
+# Legacy OxygenOS 5, 9, 10 quick services & cards
+net.oneplus.commonbubble
+com.oneplus.card
 # OnePlus Account / HeyTap Account
 com.heytap.usercenter
 com.oplus.usercenter

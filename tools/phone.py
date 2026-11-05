@@ -55,10 +55,25 @@ def get_device_info():
     model = run_adb(["shell", "getprop", "ro.product.model"]).strip()
     manufacturer = run_adb(["shell", "getprop", "ro.product.manufacturer"]).strip().capitalize()
     android_ver = run_adb(["shell", "getprop", "ro.build.version.release"]).strip()
+    sdk_ver = run_adb(["shell", "getprop", "ro.build.version.sdk"]).strip()
     security_patch = run_adb(["shell", "getprop", "ro.build.version.security_patch"]).strip()
+    
+    # Universal multi-OS detection (ColorOS 5+, Funtouch 3+, OxygenOS 5+, Realme UI 1+)
     os_flavor = run_adb(["shell", "getprop", "ro.build.version.opporom"]).strip()
+    if os_flavor:
+        os_flavor = f"ColorOS {os_flavor}"
     if not os_flavor:
-        os_flavor = run_adb(["shell", "getprop", "ro.vivo.os.version"]).strip()
+        v_ver = run_adb(["shell", "getprop", "ro.vivo.os.version"]).strip()
+        if v_ver:
+            os_flavor = f"Funtouch/OriginOS {v_ver}"
+    if not os_flavor:
+        o_ver = run_adb(["shell", "getprop", "ro.oxygen.version"]).strip()
+        if o_ver:
+            os_flavor = f"OxygenOS {o_ver}"
+    if not os_flavor:
+        r_ver = run_adb(["shell", "getprop", "ro.build.version.realmeui"]).strip()
+        if r_ver:
+            os_flavor = f"Realme UI {r_ver}"
     if not os_flavor:
         os_flavor = run_adb(["shell", "getprop", "ro.rom.version"]).strip()
 
@@ -73,6 +88,11 @@ def get_device_info():
         "manufacturer": manufacturer,
         "model": model,
         "android_version": android_ver,
+        "sdk_version": sdk_ver,
+        "security_patch": security_patch,
+        "os_flavor": os_flavor if os_flavor else "Generic/AOSP",
+        "battery_level": battery_level
+    }
         "security_patch": security_patch,
         "os_flavor": os_flavor if os_flavor else "Stock/Generic",
         "battery_level": battery_level
@@ -123,7 +143,7 @@ def backup_device(backup_dir="backup"):
         for line in pkgs.splitlines():
             if "=" in line:
                 pkg_name = line.split("=")[-1].strip()
-                f.write(f"adb shell cmd package install-existing {pkg_name} 2>/dev/null || adb shell pm enable {pkg_name} 2>/dev/null\n")
+                f.write(f"adb shell cmd package install-existing {pkg_name} 2>/dev/null || adb shell pm install-existing {pkg_name} 2>/dev/null || adb shell pm enable {pkg_name} 2>/dev/null || adb shell pm unhide {pkg_name} 2>/dev/null || true\n")
         f.write('echo "Restore complete."\n')
 
     restore_ps1 = os.path.join(target_dir, "restore_all.ps1")
@@ -133,7 +153,7 @@ def backup_device(backup_dir="backup"):
         for line in pkgs.splitlines():
             if "=" in line:
                 pkg_name = line.split("=")[-1].strip()
-                f.write(f"adb shell cmd package install-existing {pkg_name} | Out-Null; adb shell pm enable {pkg_name} | Out-Null\n")
+                f.write(f"adb shell cmd package install-existing {pkg_name} 2>`$null | Out-Null; adb shell pm install-existing {pkg_name} 2>`$null | Out-Null; adb shell pm enable {pkg_name} 2>`$null | Out-Null; adb shell pm unhide {pkg_name} 2>`$null | Out-Null\n")
         f.write('Write-Host "Restore complete." -ForegroundColor Green\n')
 
     print(f"[+] Backup completed successfully. {len(pkgs.splitlines())} packages recorded.")

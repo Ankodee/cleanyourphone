@@ -62,11 +62,12 @@ else
   echo "Note: If compiling standalone, install the APK with: adb install app-release.apk"
 fi
 
-# Set default home activity
+# Set default home activity (supports Android 5 through Android 15)
 echo "[*] Setting Liquid Glass Launcher as default home screen..."
-adb shell cmd package set-home-activity --user 0 com.cleanphone.glasshome/.MainActivity || true
+adb shell cmd package set-home-activity --user 0 com.cleanphone.glasshome/.MainActivity 2>/dev/null || \
+adb shell pm set-home-activity com.cleanphone.glasshome/.MainActivity 2>/dev/null || true
 
-# Launch the new homescreen
+# Start the new homescreen
 echo "[*] Starting Liquid Glass Home..."
 adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.HOME -n com.cleanphone.glasshome/.MainActivity
 

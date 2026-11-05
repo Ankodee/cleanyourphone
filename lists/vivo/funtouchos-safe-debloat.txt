@@ -69,3 +69,9 @@ com.vivo.videoeditor
 com.vivo.vtouch
 # EasyShare (vivo file transfer stub; replace with LocalSend)
 com.vivo.easyshare
+
+# --- LEGACY FUNTOUCH OS (Funtouch 3, 4, 9) ---
+# Legacy promotional stubs & update pushers
+com.vivo.FuntouchOS
+com.bbk.updater
+com.bbk.photovideo

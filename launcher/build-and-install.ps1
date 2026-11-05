@@ -61,9 +61,10 @@ if (Test-Path $apkPath) {
     Write-Host "If building in Android Studio, install using: adb install <path-to-apk>" -ForegroundColor Yellow
 }
 
-# Set as default home activity
+# Set as default home activity (supports Android 5 through Android 15)
 Write-Host "[*] Setting Liquid Glass Launcher as default home..." -ForegroundColor Cyan
-adb shell cmd package set-home-activity --user 0 com.cleanphone.glasshome/.MainActivity | Out-Null
+adb shell cmd package set-home-activity --user 0 com.cleanphone.glasshome/.MainActivity 2>$null | Out-Null
+adb shell pm set-home-activity com.cleanphone.glasshome/.MainActivity 2>$null | Out-Null
 
 # Start the home screen
 Write-Host "[*] Starting Liquid Glass Home..." -ForegroundColor Cyan

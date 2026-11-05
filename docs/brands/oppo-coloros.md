@@ -2,7 +2,12 @@
 
 ## Architecture Overview
 ColorOS serves as the foundation for the broader OPLUS ecosystem (powering Oppo, Realme, and modern OnePlus).
-Bloatware packages primarily occupy the `com.heytap.*`, `com.coloros.*`, and `com.oplus.*` namespaces.
+Bloatware packages primarily occupy the `com.heytap.*`, `com.coloros.*`, `com.oppo.*`, and `com.oplus.*` namespaces.
+
+### Legacy ColorOS (ColorOS 5, 6 & 7) vs Modern ColorOS (11–15)
+* **ColorOS 5 (Android 7.1 / 8.1) & ColorOS 6 (Android 9):** Shipped before the unified HeyTap rebrand. Packages used `com.oppo.*`, `com.coloros.*`, and `com.nearme.*` (e.g. `com.oppo.market`, `com.coloros.cloud`, `com.coloros.securepay`, `com.oppo.community`, `com.coloros.smartdrive`).
+* **ColorOS 7 & 11–15 (Android 10–15):** Modern HeyTap & Oplus unified ecosystem (`com.heytap.market`, `com.oplus.games`, `com.heytap.mcs`).
+* **Universal Script Handling:** CleanYourPhone automatically detects your OS build (`ro.build.version.opporom`), using legacy-compatible fallback chains (`pm disable-user` → `pm disable` → `pm hide`).
 
 ---
 

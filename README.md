@@ -107,11 +107,15 @@ Every package undergoes the **Dual-List Consensus Matrix**:
 
 | Brand | Operating System | Shared Base Architecture | Safe Profile |
 |---|---|---|---|
-| **Oppo** | ColorOS (11, 12, 13, 14, 15) | OPLUS / HeyTap | [`lists/oppo/coloros-safe-debloat.txt`](lists/oppo/coloros-safe-debloat.txt) |
-| **vivo** | Funtouch OS / OriginOS (11–15) | BBK Vivo | [`lists/vivo/funtouchos-safe-debloat.txt`](lists/vivo/funtouchos-safe-debloat.txt) |
-| **OnePlus** | OxygenOS (11, 12, 13, 14, 15) | Unified ColorOS | [`lists/oneplus/oxygenos-safe-debloat.txt`](lists/oneplus/oxygenos-safe-debloat.txt) |
-| **Realme** | Realme UI (2.0 through 6.0) | Unified ColorOS | [`lists/realme/realmeui-safe-debloat.txt`](lists/realme/realmeui-safe-debloat.txt) |
-| **iQOO** | Funtouch OS / OriginOS | BBK Vivo | [`lists/iqoo/iqoo-safe-debloat.txt`](lists/iqoo/iqoo-safe-debloat.txt) |
+| **Oppo** | ColorOS (5, 6, 7, 11, 12, 13, 14, 15) | OPLUS / HeyTap / NearMe | [`lists/oppo/coloros-safe-debloat.txt`](lists/oppo/coloros-safe-debloat.txt) |
+| **vivo** | Funtouch OS (3, 4, 9, 10, 11–15) / OriginOS | BBK Vivo | [`lists/vivo/funtouchos-safe-debloat.txt`](lists/vivo/funtouchos-safe-debloat.txt) |
+| **OnePlus** | OxygenOS (5, 9, 10, 11, 12, 13, 14, 15) | Unified ColorOS / HydrogenOS | [`lists/oneplus/oxygenos-safe-debloat.txt`](lists/oneplus/oxygenos-safe-debloat.txt) |
+| **Realme** | Realme UI (1.0, 2.0, 3.0, 4.0, 5.0, 6.0) | Unified ColorOS | [`lists/realme/realmeui-safe-debloat.txt`](lists/realme/realmeui-safe-debloat.txt) |
+| **iQOO** | Funtouch OS / OriginOS / Monster UI | BBK Vivo | [`lists/iqoo/iqoo-safe-debloat.txt`](lists/iqoo/iqoo-safe-debloat.txt) |
+
+> [!NOTE]
+> **Universal Legacy & Modern Compatibility:**
+> The debloat scripts automatically detect your Android SDK and OS generation. Older phones running **ColorOS 5/6**, **Funtouch OS 3/4**, or **OxygenOS 5** use an adaptive multi-tier fallback engine (`pm disable-user` → `pm disable` → `pm hide`), and the Liquid Glass Launcher is backward-compatible down to **Android 5.0 (minSdk 21)**.
 
 ---
 

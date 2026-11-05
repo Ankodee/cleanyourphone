@@ -27,17 +27,21 @@ com.coloros.quicksearchbox
 com.oplus.quicksearchbox
 
 # --- BRAND CLOUD APPS & ACCOUNTS ---
-# HeyTap Cloud Sync & Account
+# HeyTap Cloud Sync & Account (ColorOS 7, 11, 12, 13, 14, 15)
 com.heytap.cloud
 com.heytap.usercenter
 com.oppo.usercenter
 com.oplus.usercenter
+# Legacy ColorOS 5 & 6 Cloud Sync
+com.coloros.cloud
 # HeyTap Push / Ad messaging service
 com.heytap.mcs
 # HeyTap OpenID tracking identifier daemon
 com.heytap.openid
 # Atlas / Location marketing provider
 com.nearme.atlas
+# Legacy Oppo Community
+com.oppo.community
 
 # --- GAME CENTERS & GAME LAUNCHERS ---
 # HeyTap Game Center / Promotions
@@ -56,16 +60,22 @@ com.coloros.speechassist.engine
 com.oplus.pantanal.ums
 
 # --- CHINESE-MARKET & REGIONAL SERVICES ---
-# FinShell Pay / Wallet
+# FinShell Pay / Wallet (ColorOS 7–15)
 com.finshell.wallet
 com.coloros.wallet
 com.heytap.wallet
 com.oplus.pay
 com.oplus.wallet
+# Legacy ColorOS 5 & 6 Secure Pay
+com.coloros.securepay
 # Redtea Mobile Roaming stub
 com.redteamobile.roaming
-# HeyTap O-Roaming
+# HeyTap / Oppo Roaming (Legacy ColorOS 5/6 & modern)
 com.heytap.roaming
+com.oppo.roaming
+# Legacy ColorOS 5/6 Smart Drive & Kids Space
+com.coloros.smartdrive
+com.coloros.childrenspace
 
 # --- LOGGING, DIAGNOSTICS & TELEMETRY ---
 # ColorOS / Oplus LogKit (Telemetry and debug logs)

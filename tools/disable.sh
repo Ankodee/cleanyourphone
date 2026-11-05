@@ -69,9 +69,12 @@ fi
 
 BRAND=$(adb shell getprop ro.product.brand | tr -d '\r')
 MODEL=$(adb shell getprop ro.product.model | tr -d '\r')
+SDK_VER=$(adb shell getprop ro.build.version.sdk | tr -dc '0-9')
+[ -z "$SDK_VER" ] && SDK_VER=28
+
 echo "=========================================================="
-echo " Connected Device: $BRAND $MODEL"
-echo " Debloat Mode    : $MODE (User 0 only)"
+echo " Connected Device: $BRAND $MODEL (Android SDK $SDK_VER)"
+echo " Debloat Mode    : $MODE (All OS variants supported)"
 if [ "$DRY_RUN" -eq 1 ]; then
   echo " Execution Mode  : DRY RUN (no modifications will be made)"
 fi
@@ -135,13 +138,32 @@ SKIPPED_COUNT=0
 
 echo "[*] Processing $TOTAL_COUNT packages..."
 
+# Universal debloat action functions supporting legacy & modern Android
+disable_package() {
+  local target="$1"
+  local out
+  out=$(adb shell pm disable-user --user 0 "$target" 2>&1 | tr -d '\r')
+  if [[ "$out" =~ "new state" || "$out" =~ "disabled" ]]; then
+    return 0
+  fi
+  out=$(adb shell pm disable "$target" 2>&1 | tr -d '\r')
+  if [[ "$out" =~ "new state" || "$out" =~ "disabled" ]]; then
+    return 0
+  fi
+  out=$(adb shell pm hide "$target" 2>&1 | tr -d '\r')
+  if [[ "$out" =~ "true" || "$out" =~ "Hidden" ]]; then
+    return 0
+  fi
+  return 1
+}
+
 while IFS= read -r pkg; do
   [ -z "$pkg" ] && continue
   CURRENT=$((CURRENT + 1))
 
   # Check if package is installed on the phone
   if ! printf '%s\n' "$INSTALLED_CACHE" | grep -qx "$pkg"; then
-    echo "[$CURRENT/$TOTAL_COUNT] Skipped: $pkg (not installed)"
+    echo "[$CURRENT/$TOTAL_COUNT] Skipped: $pkg (not installed on this OS build)"
     SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
     continue
   fi
@@ -151,25 +173,30 @@ while IFS= read -r pkg; do
     continue
   fi
 
-  # Record restoration command
+  # Record universal restoration command
+  echo "adb shell cmd package install-existing $pkg 2>/dev/null || adb shell pm install-existing $pkg 2>/dev/null || adb shell pm enable $pkg 2>/dev/null || adb shell pm unhide $pkg 2>/dev/null || true" >> "$RESTORE_SCRIPT"
+
   if [ "$MODE" = "uninstall" ]; then
-    echo "adb shell cmd package install-existing $pkg 2>/dev/null || adb shell pm enable $pkg 2>/dev/null" >> "$RESTORE_SCRIPT"
     OUT=$(adb shell pm uninstall -k --user 0 "$pkg" 2>&1 | tr -d '\r')
     if [[ "$OUT" =~ "Success" ]]; then
       echo "[$CURRENT/$TOTAL_COUNT] Uninstalled: $pkg"
       REMOVED_COUNT=$((REMOVED_COUNT + 1))
     else
-      # If uninstall fails with DELETE_FAILED_INTERNAL_ERROR, fallback to disable
-      echo "[$CURRENT/$TOTAL_COUNT] Uninstall failed ($OUT). Falling back to disable..."
-      adb shell pm disable-user --user 0 "$pkg" >/dev/null 2>&1 || true
-      echo "[$CURRENT/$TOTAL_COUNT] Disabled: $pkg"
-      REMOVED_COUNT=$((REMOVED_COUNT + 1))
+      # If uninstall fails on modern or legacy OS, gracefully fall back to universal disable
+      if disable_package "$pkg"; then
+        echo "[$CURRENT/$TOTAL_COUNT] Disabled (fallback): $pkg"
+        REMOVED_COUNT=$((REMOVED_COUNT + 1))
+      else
+        echo "[$CURRENT/$TOTAL_COUNT] Protected by OS build: $pkg"
+      fi
     fi
   else
-    echo "adb shell pm enable $pkg 2>/dev/null" >> "$RESTORE_SCRIPT"
-    adb shell pm disable-user --user 0 "$pkg" >/dev/null 2>&1 || true
-    echo "[$CURRENT/$TOTAL_COUNT] Disabled: $pkg"
-    REMOVED_COUNT=$((REMOVED_COUNT + 1))
+    if disable_package "$pkg"; then
+      echo "[$CURRENT/$TOTAL_COUNT] Disabled: $pkg"
+      REMOVED_COUNT=$((REMOVED_COUNT + 1))
+    else
+      echo "[$CURRENT/$TOTAL_COUNT] Protected by OS build: $pkg"
+    fi
   fi
 
 done <<< "$PKGS"

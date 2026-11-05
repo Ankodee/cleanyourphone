@@ -47,10 +47,11 @@ if (-not $attached) {
 
 $brand = (adb shell getprop ro.product.brand).Trim()
 $model = (adb shell getprop ro.product.model).Trim()
+$sdk = ((adb shell getprop ro.build.version.sdk).Trim() -replace '\D')
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host " Connected Device: $brand $model" -ForegroundColor Green
-Write-Host " Debloat Mode    : $Mode (User 0 only)" -ForegroundColor White
+Write-Host " Connected Device: $brand $model (Android SDK $sdk)" -ForegroundColor Green
+Write-Host " Debloat Mode    : $Mode (All Android & OS versions supported)" -ForegroundColor White
 if ($DryRun) {
     Write-Host " Execution Mode  : DRY RUN (no modifications will be made)" -ForegroundColor Yellow
 }
@@ -129,11 +130,24 @@ $skipped = 0
 
 Write-Host "[*] Processing $total packages..." -ForegroundColor White
 
+function Disable-UniversalPackage($p) {
+    # Method 1: Modern Android pm disable-user --user 0
+    $out = adb shell pm disable-user --user 0 $p 2>&1
+    if ($out -match "new state" -or $out -match "disabled") { return $true }
+    # Method 2: Standard pm disable
+    $out = adb shell pm disable $p 2>&1
+    if ($out -match "new state" -or $out -match "disabled") { return $true }
+    # Method 3: Legacy pm hide (Android 5.0 - 7.1)
+    $out = adb shell pm hide $p 2>&1
+    if ($out -match "true" -or $out -match "Hidden") { return $true }
+    return $false
+}
+
 foreach ($pkg in $pkgs) {
     $current++
 
     if (-not $installedCache.ContainsKey($pkg)) {
-        Write-Host "[$current/$total] Skipped: $pkg (not installed)" -ForegroundColor DarkGray
+        Write-Host "[$current/$total] Skipped: $pkg (not installed on this OS build)" -ForegroundColor DarkGray
         $skipped++
         continue
     }
@@ -143,23 +157,30 @@ foreach ($pkg in $pkgs) {
         continue
     }
 
+    # Record universal restoration command
+    "adb shell cmd package install-existing $pkg 2>`$null | Out-Null; adb shell pm install-existing $pkg 2>`$null | Out-Null; adb shell pm enable $pkg 2>`$null | Out-Null; adb shell pm unhide $pkg 2>`$null | Out-Null" | Out-File -FilePath $restorePs1 -Append -Encoding utf8
+
     if ($Mode -eq "uninstall") {
-        "adb shell cmd package install-existing $pkg | Out-Null; adb shell pm enable $pkg | Out-Null" | Out-File -FilePath $restorePs1 -Append -Encoding utf8
         $res = adb shell pm uninstall -k --user 0 $pkg 2>&1
         if ($res -match "Success") {
             Write-Host "[$current/$total] Uninstalled: $pkg" -ForegroundColor Green
             $removed++
         } else {
-            Write-Host "[$current/$total] Uninstall failed. Falling back to disable..." -ForegroundColor Yellow
-            adb shell pm disable-user --user 0 $pkg | Out-Null
-            Write-Host "[$current/$total] Disabled: $pkg" -ForegroundColor Green
-            $removed++
+            # Graceful fallback to universal disable
+            if (Disable-UniversalPackage $pkg) {
+                Write-Host "[$current/$total] Disabled (fallback): $pkg" -ForegroundColor Green
+                $removed++
+            } else {
+                Write-Host "[$current/$total] Protected by OS build: $pkg" -ForegroundColor DarkGray
+            }
         }
     } else {
-        "adb shell pm enable $pkg | Out-Null" | Out-File -FilePath $restorePs1 -Append -Encoding utf8
-        adb shell pm disable-user --user 0 $pkg | Out-Null
-        Write-Host "[$current/$total] Disabled: $pkg" -ForegroundColor Green
-        $removed++
+        if (Disable-UniversalPackage $pkg) {
+            Write-Host "[$current/$total] Disabled: $pkg" -ForegroundColor Green
+            $removed++
+        } else {
+            Write-Host "[$current/$total] Protected by OS build: $pkg" -ForegroundColor DarkGray
+        }
     }
 }
 

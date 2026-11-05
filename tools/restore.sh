@@ -37,11 +37,12 @@ while IFS= read -r pkg; do
   [ -z "$pkg" ] && continue
   CURRENT=$((CURRENT + 1))
 
-  # Re-enable if disabled
+  # Universal restoration across Android 5.0 through Android 15
   adb shell pm enable "$pkg" >/dev/null 2>&1 || true
+  adb shell pm unhide "$pkg" >/dev/null 2>&1 || true
 
-  # Re-install for user 0 if uninstalled
-  OUT=$(adb shell cmd package install-existing "$pkg" 2>&1 | tr -d '\r')
+  # Re-install for user 0 if uninstalled (try modern cmd, then legacy pm)
+  OUT=$(adb shell cmd package install-existing "$pkg" 2>&1 || adb shell pm install-existing "$pkg" 2>&1 || true)
   if [[ "$OUT" =~ "installed for user" ]] || [[ "$OUT" =~ "Package" ]]; then
     echo "[$CURRENT/$TOTAL] Restored: $pkg"
     RESTORED=$((RESTORED + 1))

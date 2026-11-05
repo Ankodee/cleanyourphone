@@ -47,8 +47,16 @@ Write-Host "[*] Restoring $total packages from $Target..." -ForegroundColor Cyan
 
 foreach ($pkg in $pkgs) {
     $current++
-    adb shell pm enable $pkg | Out-Null
+    # Universal re-enable (modern enable & legacy unhide)
+    adb shell pm enable $pkg 2>$null | Out-Null
+    adb shell pm unhide $pkg 2>$null | Out-Null
+
+    # Reinstall for user 0 (try modern cmd, fallback to legacy pm)
     $out = adb shell cmd package install-existing $pkg 2>&1
+    if ($out -notmatch "installed for user" -and $out -notmatch "Package") {
+        $out = adb shell pm install-existing $pkg 2>&1
+    }
+
     if ($out -match "installed for user" -or $out -match "Package") {
         Write-Host "[$current/$total] Restored: $pkg" -ForegroundColor Green
     } else {
