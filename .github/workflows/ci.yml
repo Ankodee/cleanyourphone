@@ -1,0 +1,40 @@
+name: CI Package List & Script Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-lists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f tools/requirements.txt ]; then pip install -r tools/requirements.txt; fi
+
+      - name: Validate All Package Lists
+        run: |
+          python tools/check.py $(find lists -type f -name "*.txt")
+
+      - name: Verify Core Safety Guards
+        run: |
+          # Ensure critical packages regex triggers refusal on a dummy bad file
+          echo "com.android.systemui" > test_bad_list.txt
+          if python tools/check.py test_bad_list.txt; then
+            echo "Error: Safety check failed to catch forbidden package!"
+            exit 1
+          else
+            echo "Safety check correctly blocked com.android.systemui."
+            rm test_bad_list.txt
+          fi
