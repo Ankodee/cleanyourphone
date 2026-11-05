@@ -7,6 +7,14 @@
     android:background="@android:color/transparent"
     tools:context=".MainActivity">
 
+    <!-- 0. Optical Glass Unlock Transition Layer (Minimizes blur into clear transparent home) -->
+    <ImageView
+        android:id="@+id/unlock_blur_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+
     <!-- 1. Horizontal SpringBoard Pager (Swipes left-to-right across pages) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/horizontal_pager"

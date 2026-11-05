@@ -1,6 +1,7 @@
 package com.cleanphone.glasshome;
 
 import android.app.Dialog;
+import android.app.KeyguardManager;
 import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -29,6 +30,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -95,6 +97,10 @@ public class MainActivity extends AppCompatActivity implements
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
     private BroadcastReceiver packageReceiver;
+    private BroadcastReceiver screenStateReceiver;
+    private ImageView unlockBlurOverlay;
+    private volatile Bitmap blurredWallpaperBitmap;
+    private boolean isLockScreenActive = false;
     private int currentPageIndex = 0;
 
     @Override
@@ -125,10 +131,12 @@ public class MainActivity extends AppCompatActivity implements
         setupSpotlightSearch();
         setupWallpaperGlassBlur();
         setupPackageReceiver();
+        setupScreenStateReceiver();
         loadInstalledApps();
     }
 
     private void initViews() {
+        unlockBlurOverlay = findViewById(R.id.unlock_blur_overlay);
         horizontalPager = findViewById(R.id.horizontal_pager);
         dotsContainer = findViewById(R.id.dots_container);
         btnSearchPill = findViewById(R.id.btn_search_pill);
@@ -291,6 +299,8 @@ public class MainActivity extends AppCompatActivity implements
                         Bitmap downscaled = Bitmap.createScaledBitmap(srcBitmap, scaledW, scaledH, true);
                         Bitmap blurred = FastBlur.blur(downscaled, 18, true);
 
+                        blurredWallpaperBitmap = blurred;
+
                         mainHandler.post(() -> {
                             if (blurred != null) {
                                 LiquidGlassDrawable glassDrawable = new LiquidGlassDrawable(
@@ -298,6 +308,10 @@ public class MainActivity extends AppCompatActivity implements
                                 );
                                 glassDrawable.setBlurredWallpaper(blurred);
                                 glassDock.setBackground(glassDrawable);
+
+                                if (isLockScreenActive && unlockBlurOverlay != null) {
+                                    unlockBlurOverlay.setImageBitmap(blurred);
+                                }
                             }
                         });
                     }
@@ -339,6 +353,69 @@ public class MainActivity extends AppCompatActivity implements
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         filter.addDataScheme("package");
         registerReceiver(packageReceiver, filter);
+    }
+
+    private void setupScreenStateReceiver() {
+        screenStateReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent == null || intent.getAction() == null) return;
+                String action = intent.getAction();
+                if (Intent.ACTION_SCREEN_OFF.equals(action)) {
+                    prepareGlassLockOverlay();
+                } else if (Intent.ACTION_SCREEN_ON.equals(action)) {
+                    KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+                    if (km != null && km.isKeyguardLocked()) {
+                        prepareGlassLockOverlay();
+                    }
+                } else if (Intent.ACTION_USER_PRESENT.equals(action)) {
+                    triggerGlassUnlockTransition();
+                }
+            }
+        };
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_USER_PRESENT);
+        registerReceiver(screenStateReceiver, filter);
+    }
+
+    private void prepareGlassLockOverlay() {
+        isLockScreenActive = true;
+        mainHandler.post(() -> {
+            if (unlockBlurOverlay != null) {
+                if (blurredWallpaperBitmap != null) {
+                    unlockBlurOverlay.setImageBitmap(blurredWallpaperBitmap);
+                }
+                unlockBlurOverlay.setAlpha(1.0f);
+                unlockBlurOverlay.setScaleX(1.06f);
+                unlockBlurOverlay.setScaleY(1.06f);
+                unlockBlurOverlay.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    private void triggerGlassUnlockTransition() {
+        if (unlockBlurOverlay == null) return;
+        mainHandler.post(() -> {
+            if (!isLockScreenActive && unlockBlurOverlay.getVisibility() != View.VISIBLE) {
+                return;
+            }
+            isLockScreenActive = false;
+            if (blurredWallpaperBitmap != null && unlockBlurOverlay.getDrawable() == null) {
+                unlockBlurOverlay.setImageBitmap(blurredWallpaperBitmap);
+            }
+            unlockBlurOverlay.setVisibility(View.VISIBLE);
+            unlockBlurOverlay.animate().cancel();
+            unlockBlurOverlay.animate()
+                    .alpha(0f)
+                    .scaleX(1.0f)
+                    .scaleY(1.0f)
+                    .setDuration(450)
+                    .setInterpolator(new DecelerateInterpolator(1.8f))
+                    .withEndAction(() -> unlockBlurOverlay.setVisibility(View.GONE))
+                    .start();
+        });
     }
 
     private void loadInstalledApps() {
@@ -523,10 +600,52 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+        if (km != null && !km.isKeyguardLocked()) {
+            if (isLockScreenActive) {
+                triggerGlassUnlockTransition();
+            }
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+            if (km != null && !km.isKeyguardLocked()) {
+                if (isLockScreenActive) {
+                    triggerGlassUnlockTransition();
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+        if (km != null && km.isKeyguardLocked()) {
+            prepareGlassLockOverlay();
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (packageReceiver != null) {
-            unregisterReceiver(packageReceiver);
+            try {
+                unregisterReceiver(packageReceiver);
+            } catch (Exception ignored) {}
+            packageReceiver = null;
+        }
+        if (screenStateReceiver != null) {
+            try {
+                unregisterReceiver(screenStateReceiver);
+            } catch (Exception ignored) {}
+            screenStateReceiver = null;
         }
         executor.shutdown();
     }

@@ -36,12 +36,13 @@
                 android:format24Hour="HH:mm"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/clock_text_size"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="sans-serif-black"
+                android:textStyle="bold"
                 android:includeFontPadding="false"
                 android:shadowColor="@color/shadow_color"
                 android:shadowDx="0"
-                android:shadowDy="2"
-                android:shadowRadius="4" />
+                android:shadowDy="3"
+                android:shadowRadius="6" />
 
             <TextClock
                 android:id="@+id/widget_date"

@@ -14,7 +14,7 @@
 
     <!-- Settings Theme -->
     <style name="Theme.LiquidGlassHome.Settings" parent="Theme.AppCompat.DayNight">
-        <item name="colorPrimary">@color/accent_blue</item>
+        <item name="colorPrimary">@color/ios_blue</item>
         <item name="android:windowBackground">#1C1C1E</item>
     </style>
 </resources>
