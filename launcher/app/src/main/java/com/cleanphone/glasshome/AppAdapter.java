@@ -66,15 +66,25 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         holder.icon.setImageDrawable(app.getIcon());
         holder.label.setText(app.getLabel());
 
-        // Fluid spring touch response
+        // 0.5x Ultra-snappy lag-free touch response (50ms down, 80ms rebound)
         holder.itemView.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    v.animate().scaleX(0.90f).scaleY(0.90f).setDuration(120).start();
+                    v.animate()
+                            .scaleX(0.92f)
+                            .scaleY(0.92f)
+                            .setDuration(50)
+                            .setInterpolator(new android.view.animation.DecelerateInterpolator(2.0f))
+                            .start();
                     break;
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL:
-                    v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(180).start();
+                    v.animate()
+                            .scaleX(1.0f)
+                            .scaleY(1.0f)
+                            .setDuration(80)
+                            .setInterpolator(new android.view.animation.OvershootInterpolator(1.2f))
+                            .start();
                     break;
             }
             return false;

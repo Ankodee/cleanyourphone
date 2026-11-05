@@ -15,35 +15,39 @@ import androidx.annotation.Nullable;
 public class LiquidGlassDrawable extends Drawable {
     private final Paint fillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint strokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint highlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final RectF boundsF = new RectF();
-    private float cornerRadius = 60f;
+    private float cornerRadius = 48f;
 
     public LiquidGlassDrawable(float cornerRadius) {
         this.cornerRadius = cornerRadius;
         strokePaint.setStyle(Paint.Style.STROKE);
-        strokePaint.setStrokeWidth(2.5f);
-        strokePaint.setColor(0x66FFFFFF); // 40% translucent specular white
+        strokePaint.setStrokeWidth(1.8f);
+
+        highlightPaint.setStyle(Paint.Style.STROKE);
+        highlightPaint.setStrokeWidth(1.0f);
+        highlightPaint.setColor(0x55FFFFFF);
     }
 
     @Override
     protected void onBoundsChange(@NonNull Rect bounds) {
         super.onBoundsChange(bounds);
         boundsF.set(bounds);
-        if (bounds.height() > 0) {
-            // Liquid frosted glass vertical gradient
+        if (bounds.height() > 0 && bounds.width() > 0) {
+            // Refined Liquid Glass Refraction Gradient (Translucent, deep ambient frost)
             Shader fillShader = new LinearGradient(
                     0, bounds.top, 0, bounds.bottom,
-                    new int[]{0x45FFFFFF, 0x22FFFFFF, 0x30FFFFFF},
-                    new float[]{0f, 0.5f, 1f},
+                    new int[]{0x38FFFFFF, 0x1AFFFFFF, 0x28FFFFFF},
+                    new float[]{0f, 0.45f, 1f},
                     Shader.TileMode.CLAMP
             );
             fillPaint.setShader(fillShader);
 
-            // Specular border gradient (lighter at top edge like light hitting glass)
+            // Specular border reflection (gleaming top edge, soft bottom dispersion)
             Shader strokeShader = new LinearGradient(
-                    0, bounds.top, 0, bounds.bottom,
-                    new int[]{0x80FFFFFF, 0x33FFFFFF},
-                    null,
+                    0, bounds.top, bounds.width() * 0.3f, bounds.bottom,
+                    new int[]{0x99FFFFFF, 0x33FFFFFF, 0x44FFFFFF},
+                    new float[]{0f, 0.6f, 1f},
                     Shader.TileMode.CLAMP
             );
             strokePaint.setShader(strokeShader);

@@ -7,53 +7,88 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <!-- Top Header: Minimalist Apple-style Clock & Date -->
+    <!-- Top Container: Liquid Glass Glance Header Card & Search Pill -->
     <LinearLayout
         android:id="@+id/header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:paddingTop="28dp"
-        android:paddingBottom="12dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="8dp">
 
-        <TextClock
-            android:id="@+id/clock_view"
-            android:layout_width="wrap_content"
+        <!-- Modern Android Liquid Glass Glance Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:format12Hour="h:mm"
-            android:format24Hour="HH:mm"
-            android:textColor="@color/text_primary"
-            android:textSize="58sp"
-            android:fontFamily="sans-serif-thin"
-            android:shadowColor="@color/shadow_color"
-            android:shadowDx="0"
-            android:shadowDy="3"
-            android:shadowRadius="8" />
+            android:background="@drawable/glass_header_bg"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
 
-        <TextClock
-            android:id="@+id/date_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:format12Hour="EEEE, MMMM d"
-            android:format24Hour="EEEE, d MMMM"
-            android:textColor="@color/text_secondary"
-            android:textSize="16sp"
-            android:fontFamily="sans-serif-medium"
-            android:shadowColor="@color/shadow_color"
-            android:shadowDx="0"
-            android:shadowDy="2"
-            android:shadowRadius="6"
-            android:layout_marginTop="-4dp" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <!-- Frosted Glass Search Pill -->
+                <TextClock
+                    android:id="@+id/clock_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:format12Hour="h:mm"
+                    android:format24Hour="HH:mm"
+                    android:textColor="@color/text_primary"
+                    android:textSize="36sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false"
+                    android:shadowColor="@color/shadow_color"
+                    android:shadowDx="0"
+                    android:shadowDy="2"
+                    android:shadowRadius="4" />
+
+                <TextClock
+                    android:id="@+id/date_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:format12Hour="EEEE, MMM d"
+                    android:format24Hour="EEEE, d MMM"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
+                    android:layout_marginTop="2dp"
+                    android:shadowColor="@color/shadow_color"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
+            </LinearLayout>
+
+            <!-- Minimalist Status Chip -->
+            <TextView
+                android:id="@+id/status_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/glass_chip_bg"
+                android:text="Clean • Fast"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp" />
+        </LinearLayout>
+
+        <!-- Frosted Glass Search Capsule -->
         <LinearLayout
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/search_height"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/glass_search_bg"
             android:orientation="horizontal"
             android:gravity="center_vertical"
@@ -61,8 +96,8 @@
             android:paddingEnd="16dp">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:src="@drawable/ic_search"
                 android:contentDescription="Search Icon" />
 
@@ -76,36 +111,36 @@
                 android:hint="@string/search_hint"
                 android:textColorHint="@color/text_muted"
                 android:textColor="@color/text_primary"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:inputType="text"
                 android:maxLines="1"
                 android:imeOptions="actionSearch" />
 
             <ImageView
                 android:id="@+id/btn_settings"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_settings"
                 android:contentDescription="Settings"
                 android:background="?android:attr/selectableItemBackgroundBorderless" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- App Library Grid (Scrollable) -->
+    <!-- App Library Grid (Hardware accelerated & optimized cache for 120Hz smooth scrolling) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_apps"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/header_container"
         android:layout_above="@id/dock_container"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="10dp"
         android:clipToPadding="false"
         android:overScrollMode="never" />
 
-    <!-- Bottom Liquid Glass Dock (Apple-style frosted pill) -->
+    <!-- Bottom Liquid Glass Island (Floating dock with rounded specular refraction) -->
     <FrameLayout
         android:id="@+id/dock_container"
         android:layout_width="match_parent"
@@ -113,7 +148,7 @@
         android:layout_alignParentBottom="true"
         android:paddingStart="@dimen/dock_margin"
         android:paddingEnd="@dimen/dock_margin"
-        android:paddingBottom="20dp">
+        android:paddingBottom="16dp">
 
         <LinearLayout
             android:id="@+id/glass_dock"

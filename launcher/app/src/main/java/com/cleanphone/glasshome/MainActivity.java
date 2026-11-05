@@ -81,14 +81,17 @@ public class MainActivity extends AppCompatActivity implements AppAdapter.OnAppC
         searchInput = findViewById(R.id.search_input);
         btnSettings = findViewById(R.id.btn_settings);
 
-        // App library: 4-column fluid grid
+        // App library: 4-column fluid grid optimized for 120Hz lag-free performance
         recyclerApps.setLayoutManager(new GridLayoutManager(this, 4));
+        recyclerApps.setHasFixedSize(true);
+        recyclerApps.setItemViewCacheSize(40);
         appAdapter = new AppAdapter(this, this);
         recyclerApps.setAdapter(appAdapter);
 
         // Liquid Glass Dock: horizontal 4-5 apps
         LinearLayoutManager dockLayout = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerDock.setLayoutManager(dockLayout);
+        recyclerDock.setHasFixedSize(true);
         dockAdapter = new DockAdapter(this, this);
         recyclerDock.setAdapter(dockAdapter);
 
@@ -219,8 +222,9 @@ public class MainActivity extends AppCompatActivity implements AppAdapter.OnAppC
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             intent.setComponent(new ComponentName(app.getPackageName(), app.getActivityName()));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+            // Snappy 0.5x instant launch transition
             startActivity(intent);
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            overridePendingTransition(android.R.anim.fade_in, 0);
         } catch (Exception e) {
             Toast.makeText(this, "Could not launch " + app.getLabel(), Toast.LENGTH_SHORT).show();
         }

@@ -188,7 +188,7 @@ python tools/audit_packages.py
 
 ---
 
-## Stage 2: Liquid Glass Home (Minimalist Apple-Style Launcher)
+## Stage 2: Liquid Glass Home (Minimalist Frosted Glass Launcher)
 
 Once debloating is complete, CleanYourPhone gives the user the choice:
 **Keep your existing OEM home screen**, or upgrade to **Liquid Glass Home**.
@@ -197,8 +197,8 @@ Once debloating is complete, CleanYourPhone gives the user the choice:
 ==========================================================
  Stage 2: Minimalist Home Screen Upgrade
 ==========================================================
-CleanYourPhone includes a minimal Apple-like Liquid Glass Launcher
-(ultra-lightweight, frosted dock, zero ads, <15MB RAM).
+CleanYourPhone includes a minimal Liquid Glass Launcher
+(ultra-lightweight, frosted dock, 0.5x snappy animations, zero ads, <15MB RAM).
 
 Would you like to install the Liquid Glass Launcher? [y/N]:
 ```
@@ -208,10 +208,11 @@ Would you like to install the Liquid Glass Launcher? [y/N]:
   <img src="docs/liquid-glass-home.jpg" alt="Liquid Glass Home Screen UI" width="450">
 </p>
 
-* **Floating Frosted Glass Dock:** Rounded Apple-style translucent pill at the bottom holding your 4–5 favorite apps.
-* **Minimalist Clock & Date:** Thin typography with dynamic system wallpaper pass-through.
-* **Instant Frosted Search:** Fast, offline, real-time app search with zero analytics or internet permissions.
-* **Fluid Spring Animations:** Scale-bounce touch feedback and fluid launch transitions.
+* **Android-First Liquid Glass Design:** Distinctly tailored for Android phones (not an iOS clone) featuring layered glass refraction, live wallpaper light dispersion, and specular edge highlights.
+* **0.5x Snappy Lag-Free Speed:** Animations and touch responses tuned to 0.5x duration (50ms touch, 80ms rebound) with hardware acceleration for instantaneous 120Hz scrolling.
+* **Liquid Glass Glance Card:** Frosted translucent card at the top displaying time, date, and clean status chips without intrusive widgets.
+* **Frosted Search Capsule:** Real-time offline app search with zero analytics or internet permissions.
+* **Floating Liquid Glass Dock:** Translucent glass island holding your 4–5 favorite apps with dynamic wallpaper pass-through.
 * **Extreme Resource Efficiency:** Runs on under 15 MB of RAM (compared to 300MB–600MB on ColorOS/Funtouch launchers).
 
 <p align="center">
