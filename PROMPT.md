@@ -72,9 +72,13 @@ Follow these strict operating procedures:
   (or `.\tools\disable.ps1` on Windows).
 - If uninstallation throws `DELETE_FAILED_INTERNAL_ERROR` or `SecurityException`, gracefully fall back to `pm disable-user --user 0`.
 
-6. Post-Debloat Verification
+6. Post-Debloat Verification & Stage 2: Minimalist Launcher Selection
 - Verify that cellular signal, Wi-Fi, SMS, camera, biometrics, and phone settings function properly.
 - Show me how many packages were disabled and verify that the restore script is ready.
+- Offer me the choice for Stage 2:
+  "CleanYourPhone includes a custom minimal Apple-like Liquid Glass Launcher (frosted dock, thin typography, zero ads, <15MB RAM). Would you like to install the Liquid Glass Launcher, or keep your existing home screen?"
+- If I choose yes, run `launcher/build-and-install.sh` (or `build-and-install.ps1`), set it as home, and ask if I wish to disable the OEM launcher or keep it as backup.
+- If I choose no, keep my current launcher untouched.
 - Offer recommendations from `themes/PRIVATE-DNS.md` for zero-app system-level ad blocking.
 - Remind me to toggle OFF USB Debugging / Wireless Debugging for security.
 ```

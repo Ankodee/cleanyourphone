@@ -57,6 +57,12 @@ foreach ($pkg in $pkgs) {
     $restored++
 }
 
+# Ensure stock OEM launchers are re-enabled if disabled
+$stockList = @("com.oppo.launcher", "com.coloros.home", "com.oneplus.launcher", "com.realme.launcher", "com.bbk.launcher2", "com.vivo.launcher")
+foreach ($stock in $stockList) {
+    adb shell pm enable $stock | Out-Null
+}
+
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host " Restoration complete. Total packages processed: $restored" -ForegroundColor Green
 Write-Host "==========================================================" -ForegroundColor Cyan

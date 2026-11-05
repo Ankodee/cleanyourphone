@@ -3,11 +3,17 @@
 Default OEM launchers (ColorOS Launcher, vivo Launcher) often come bundled with global search ads,
 sponsored recommendation feeds, and non-removable discovery pages.
 
-Here are the best privacy-friendly, open-source replacements.
+---
+
+## 1. Liquid Glass Home (Built-in CleanYourPhone Launcher)
+- **Best for:** Apple-inspired minimalist aesthetic with liquid frosted glass dock and zero telemetry.
+- **Features:** Floating frosted bottom dock, minimalist thin typography, real-time offline search, fluid scale-spring touch physics, <15MB RAM usage.
+- **Location:** In this repository under [`launcher/`](../launcher/README.md).
+- **Install:** Run `./launcher/build-and-install.sh` or `.\launcher\build-and-install.ps1`.
 
 ---
 
-## 1. Lawnchair 14
+## 2. Lawnchair 14
 - **Best for:** Stock Pixel / Clean Android experience.
 - **Features:** Material You dynamic theming, fluid gestures, custom icon packs, no telemetry.
 - **Link:** [lawnchair.app](https://lawnchair.app) or [GitHub](https://github.com/LawnchairLauncher/lawnchair)

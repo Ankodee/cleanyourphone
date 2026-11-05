@@ -13,6 +13,8 @@ set -euo pipefail
 
 MODE="disable"
 DRY_RUN=0
+INSTALL_LAUNCHER=0
+KEEP_LAUNCHER=0
 LIST=""
 
 # Parse arguments
@@ -24,6 +26,14 @@ while [[ $# -gt 0 ]]; do
       ;;
     --dry-run)
       DRY_RUN=1
+      shift
+      ;;
+    --install-launcher)
+      INSTALL_LAUNCHER=1
+      shift
+      ;;
+    --keep-launcher)
+      KEEP_LAUNCHER=1
       shift
       ;;
     *)
@@ -178,3 +188,27 @@ echo " Already absent : $SKIPPED_COUNT"
 echo " Restore script : ./restore_last_session.sh"
 echo " Backup snapshot: $BACKUP_DIR/"
 echo "=========================================================="
+
+# Stage 2: Minimalist Home Screen Selection
+if [ "$DRY_RUN" -eq 0 ]; then
+  echo ""
+  echo "=========================================================="
+  echo " Stage 2: Minimalist Home Screen Upgrade"
+  echo "=========================================================="
+  echo "CleanYourPhone includes a minimal Apple-like Liquid Glass Launcher"
+  echo "(ultra-lightweight, frosted dock, zero ads, <15MB RAM)."
+  echo ""
+
+  if [ "$INSTALL_LAUNCHER" -eq 1 ]; then
+    bash launcher/build-and-install.sh
+  elif [ "$KEEP_LAUNCHER" -eq 0 ] && [ -t 0 ]; then
+    read -rp "Would you like to install the Liquid Glass Launcher? [y/N]: " CHOICE
+    if [[ "$CHOICE" =~ ^[Yy]$ ]]; then
+      bash launcher/build-and-install.sh
+    else
+      echo "[*] Keeping your existing home screen."
+    fi
+  else
+    echo "[*] Keeping your existing home screen."
+  fi
+fi

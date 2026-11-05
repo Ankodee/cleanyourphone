@@ -52,6 +52,11 @@ while IFS= read -r pkg; do
 
 done <<< "$PKGS"
 
+# Ensure stock OEM launchers are re-enabled if disabled
+for stock in com.oppo.launcher com.coloros.home com.oneplus.launcher com.realme.launcher com.bbk.launcher2 com.vivo.launcher; do
+  adb shell pm enable "$stock" >/dev/null 2>&1 || true
+done
+
 echo "=========================================================="
 echo " Restoration complete. Total packages processed: $RESTORED"
 echo "=========================================================="

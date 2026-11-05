@@ -184,12 +184,46 @@ python tools/audit_packages.py
 
 ---
 
+## Stage 2: Liquid Glass Home (Minimalist Apple-Style Launcher)
+
+Once debloating is complete, CleanYourPhone gives the user the choice:
+**Keep your existing OEM home screen**, or upgrade to **Liquid Glass Home**.
+
+```text
+==========================================================
+ Stage 2: Minimalist Home Screen Upgrade
+==========================================================
+CleanYourPhone includes a minimal Apple-like Liquid Glass Launcher
+(ultra-lightweight, frosted dock, zero ads, <15MB RAM).
+
+Would you like to install the Liquid Glass Launcher? [y/N]:
+```
+
+### What You Get:
+* **Floating Frosted Glass Dock:** Rounded Apple-style translucent pill at the bottom holding your 4–5 favorite apps.
+* **Minimalist Clock & Date:** Thin typography with dynamic system wallpaper pass-through.
+* **Instant Frosted Search:** Fast, offline, real-time app search with zero analytics or internet permissions.
+* **Fluid Spring Animations:** Scale-bounce touch feedback and fluid launch transitions.
+* **Extreme Resource Efficiency:** Runs on under 15 MB of RAM (compared to 300MB–600MB on ColorOS/Funtouch launchers).
+
+To build and install the launcher directly at any time:
+```bash
+# Linux / macOS
+./launcher/build-and-install.sh
+
+# Windows (PowerShell)
+.\launcher\build-and-install.ps1
+```
+
+---
+
 ## Themes, Launchers & Ad-Blocking
 
 Complete the transformation into a distraction-free smartphone:
 
+* **[Liquid Glass Home](launcher/README.md):** CleanYourPhone's built-in native frosted glass launcher.
 * **[Private DNS Zero-App Ad Blocker](themes/PRIVATE-DNS.md):** Block 100% of in-app ads and background trackers system-wide by setting `dns.adguard-dns.com` or `nextdns.io` in Android Settings (no battery-draining VPN apps!).
-* **[Clean Open-Source Launchers](themes/LAUNCHERS.md):** Replace heavy OEM launchers with **Lawnchair 14**, **Niagara Launcher**, or **Neo Launcher**.
+* **[Alternative Open-Source Launchers](themes/LAUNCHERS.md):** Explore third-party minimal launchers like **Lawnchair 14**, **Niagara**, or **Neo Launcher**.
 * **[The Fossify Suite](themes/FOSSIFY-SUITE.md):** Clean open-source offline replacements for stock Dialer, Gallery, Messages, Calendar, and Calculator.
 
 ---
@@ -231,6 +265,11 @@ cleanyourphone/
 │   ├── WIRELESS-ADB.md   # Android 11+ wireless setup guide
 │   ├── privacy.md        # OEM telemetry & tracker analysis
 │   └── restore.md        # Complete restoration guide
+├── launcher/             # Minimal Liquid Glass Launcher (Java & AndroidX)
+│   ├── app/              # Native Android launcher source
+│   ├── build-and-install.sh  # Linux/macOS build & install script
+│   ├── build-and-install.ps1 # Windows build & install script
+│   └── README.md         # Launcher docs & customization guide
 ├── lists/
 │   ├── oppo/             # ColorOS safe & optional lists
 │   ├── oneplus/          # OxygenOS safe & optional lists

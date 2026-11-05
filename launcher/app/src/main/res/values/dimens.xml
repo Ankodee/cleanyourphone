@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dock_height">86dp</dimen>
+    <dimen name="dock_radius">36dp</dimen>
+    <dimen name="dock_margin">16dp</dimen>
+    <dimen name="dock_padding">10dp</dimen>
+
+    <dimen name="search_height">46dp</dimen>
+    <dimen name="search_radius">23dp</dimen>
+
+    <dimen name="app_icon_size">56dp</dimen>
+    <dimen name="dock_icon_size">52dp</dimen>
+
+    <dimen name="clock_text_size">52sp</dimen>
+    <dimen name="date_text_size">16sp</dimen>
+    <dimen name="app_label_size">12sp</dimen>
+</resources>
