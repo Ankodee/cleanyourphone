@@ -441,7 +441,8 @@ public class MainActivity extends AppCompatActivity implements
             intent.setComponent(new ComponentName(app.getPackageName(), app.getActivityName()));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
             startActivity(intent);
-            overridePendingTransition(android.R.anim.fade_in, 0);
+            // 0.5x Snappy iOS Launch Transition (150ms half-duration zoom & fade)
+            overridePendingTransition(R.anim.app_launch_enter, R.anim.app_launch_exit);
         } catch (Exception e) {
             Toast.makeText(this, "Could not launch " + app.getLabel(), Toast.LENGTH_SHORT).show();
         }

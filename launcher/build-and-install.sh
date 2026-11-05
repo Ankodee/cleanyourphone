@@ -67,6 +67,12 @@ echo "[*] Setting Liquid Glass Launcher as default home screen..."
 adb shell cmd package set-home-activity --user 0 com.cleanphone.glasshome/.MainActivity 2>/dev/null || \
 adb shell pm set-home-activity com.cleanphone.glasshome/.MainActivity 2>/dev/null || true
 
+# Configure 0.5x transition speed for lag-free, ultra-responsive experience
+echo "[*] Setting transition speed to 0.5x for snappy, lag-free experience..."
+adb shell settings put global window_animation_scale 0.5 2>/dev/null || true
+adb shell settings put global transition_animation_scale 0.5 2>/dev/null || true
+adb shell settings put global animator_duration_scale 0.5 2>/dev/null || true
+
 # Start the new homescreen
 echo "[*] Starting Liquid Glass Home..."
 adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.HOME -n com.cleanphone.glasshome/.MainActivity

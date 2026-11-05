@@ -230,6 +230,7 @@ Would you like to install the Liquid Glass Launcher? [y/N]:
 * **Floating Liquid Glass Dock:** Translucent glass island at the bottom holding your 4 primary apps (Phone, Messages, Browser, Camera) that stays anchored across page swipes.
 * **iOS Spotlight Search Pill:** Floating frosted glass `🔍 Search` capsule above the dock with instant real-time offline app filtering.
 * **iOS App Library (Last Page):** Automatic 2x2 frosted glass category folders (Suggestions, Utilities, Communication, Media) for quick access.
+* **0.5x Ultra-Fast Transition Speed:** In-launcher app opening transitions (150ms half-duration animators), touch feedback (80ms–120ms), and system window scales (`window_animation_scale`, `transition_animation_scale`, `animator_duration_scale`) are configured to **0.5x** speed for a zero-lag, instant response.
 
 <p align="center">
   <img src="docs/feature-search-library.jpg" alt="Liquid Glass App Library & Real-time Search" width="550">

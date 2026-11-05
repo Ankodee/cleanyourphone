@@ -70,6 +70,14 @@ try {
     adb shell pm set-home-activity com.cleanphone.glasshome/.MainActivity 2>&1 | Out-Null
 } catch {}
 
+# Configure 0.5x transition speed for lag-free, ultra-responsive experience
+Write-Host "[*] Setting transition speed to 0.5x for snappy, lag-free experience..." -ForegroundColor Cyan
+try {
+    adb shell settings put global window_animation_scale 0.5 2>&1 | Out-Null
+    adb shell settings put global transition_animation_scale 0.5 2>&1 | Out-Null
+    adb shell settings put global animator_duration_scale 0.5 2>&1 | Out-Null
+} catch {}
+
 # Start the home screen
 Write-Host "[*] Starting Liquid Glass Home..." -ForegroundColor Cyan
 adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.HOME -n com.cleanphone.glasshome/.MainActivity | Out-Null
