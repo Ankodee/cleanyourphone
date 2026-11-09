@@ -1,0 +1,7 @@
+# ==============================================================================
+# CleanYourPhone - Sony Xperia Optional Debloat List
+# ==============================================================================
+# Target: Optional Sony tools and stock launcher.
+# ==============================================================================
+
+com.sonymobile.home                         # Stock Sony Xperia Home Launcher (disable after installing Lawnchair)

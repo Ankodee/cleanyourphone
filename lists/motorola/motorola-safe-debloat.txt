@@ -1,0 +1,18 @@
+# ==============================================================================
+# CleanYourPhone - Motorola (My UX / Hello UI) Safe Debloat List
+# ==============================================================================
+# Target: Motorola Moto G, Edge, Razr, and Defy series (Android 8 - 15+)
+# Safety Guarantee: 100% Non-destructive. Preserves Moto Gestures and camera actions.
+# ==============================================================================
+
+# --- Motorola Adverts, Marketing Notifications & Lock Screen Junk ---
+com.motorola.ccc.notification               # Motorola Survey & Marketing Notifications
+com.motorola.glance                         # Glance on Moto Lockscreen (sponsored stories & ads)
+com.motorola.mobileservices                 # Motorola Mobile Services (silent partner app installer)
+com.motorola.brapps                         # Preloaded partner app provisioning agent
+com.motorola.genie                          # Moto Suggestions / Genie persistent hints
+com.motorola.demomode                       # Retail store demo mode service
+
+# --- Diagnostic & Promotional Services ---
+com.motorola.help                           # Device Help diagnostic uploader
+com.motorola.gamemode                       # Moto Gametime promotional overlays

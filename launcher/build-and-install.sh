@@ -61,10 +61,10 @@ elif [ "$SDK" -ge 29 ]; then
   DOWNLOAD_URL="https://github.com/LawnchairLauncher/lawnchair/releases/download/v14.0.0-beta3/Lawnchair.14.0.0.Beta.3.apk"
 else
   # Legacy Android 5 through 9 (ColorOS 5, older Oppo/Vivo/Xiaomi)
-  VERSION_LABEL="Lawnchair 2.0 (Legacy)"
-  DOWNLOAD_URL="https://github.com/LawnchairLauncher/lawnchair/releases/download/2.0.2589/Lawnchair.2.0.2589.apk"
-  PKG_NAME="ch.deletescape.lawnchair.plah"
-  LAUNCHER_ACTIVITY="ch.deletescape.lawnchair.plah/ch.deletescape.lawnchair.plah.Launcher"
+  VERSION_LABEL="Lawnchair 12.1 (Alpha 4)"
+  DOWNLOAD_URL="https://github.com/LawnchairLauncher/lawnchair/releases/download/v12.1.0-alpha.4/Lawnchair.12.1.0.Alpha.4.apk"
+  PKG_NAME="app.lawnchair"
+  LAUNCHER_ACTIVITY="app.lawnchair/app.lawnchair.LawnchairLauncher"
 fi
 
 echo "[*] Target launcher release: $VERSION_LABEL"
@@ -120,11 +120,14 @@ adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.H
 if [ "$DISABLE_STOCK" -eq 1 ]; then
   echo "[*] Disabling OEM stock launcher..."
   for stock in \
+    com.sec.android.app.launcher \
+    com.miui.home com.mi.android.globallauncher \
     com.oppo.launcher com.coloros.home \
     com.oneplus.launcher com.realme.launcher \
     com.bbk.launcher2 com.vivo.launcher \
-    com.miui.home com.sec.android.app.launcher \
-    com.transsion.hilauncher com.transsion.XOSLauncher; do
+    com.transsion.XOSLauncher com.transsion.hilauncher com.transsion.itellauncher \
+    com.motorola.launcher3 com.sonymobile.home \
+    com.lava.launcher com.indus.launcher; do
     if adb shell pm list packages | grep -qx "package:$stock"; then
       echo "[*] Disabling $stock..."
       adb shell pm disable-user --user 0 "$stock" 2>/dev/null || true

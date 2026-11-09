@@ -1,0 +1,9 @@
+# ==============================================================================
+# CleanYourPhone - Lava Smartphones Optional Debloat List
+# ==============================================================================
+# Target: Optional Lava utilities and stock launcher.
+# ==============================================================================
+
+com.lava.appstore                           # Lava App Store
+com.lava.fmradio                            # Lava FM Radio
+com.lava.launcher                           # Stock Lava Launcher (disable after installing Lawnchair)

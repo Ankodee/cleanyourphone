@@ -1,14 +1,15 @@
 # CleanYourPhone
 
 <p align="center">
-  <b>Your phone, minus the bloatware, tracking, and ads.</b><br>
-  Strip system bloatware, preloaded ads, diagnostic loggers, and background telemetry from <b>Oppo</b>, <b>vivo</b>, <b>OnePlus</b>, <b>Realme</b>, and <b>iQOO</b> devices over USB or Wi-Fi.<br>
-  <b>No root required · Nothing permanently deleted · One-command restore.</b>
+  <b>The Universal One-Stop Solution to Debloat Any Android Smartphone.</b><br>
+  Strip system bloatware, preloaded ads, diagnostic loggers, and background telemetry from <b>Samsung</b>, <b>POCO</b>, <b>Infinix</b>, <b>Tecno</b>, <b>itel</b>, <b>Motorola</b>, <b>Sony</b>, <b>Lava</b>, <b>Karbonn</b>, <b>Philips</b>, <b>Oppo</b>, <b>vivo</b>, <b>OnePlus</b>, <b>Realme</b>, and <b>iQOO</b> devices over USB or Wi-Fi.<br>
+  <b>No root required · Nothing permanently deleted · One-command restore · Universal legacy & modern OS support.</b>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Root-Not%20Required-brightgreen?style=flat-square" alt="No Root">
   <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="MIT License">
+  <img src="https://img.shields.io/badge/Brands-15%20Supported-purple?style=flat-square" alt="15 Brands Supported">
   <img src="https://img.shields.io/badge/Safety-Dual--List%20Consensus-success?style=flat-square" alt="Dual List Consensus">
   <img src="https://img.shields.io/badge/Reversible-100%25%20User%200-orange?style=flat-square" alt="100% Reversible">
   <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey?style=flat-square" alt="Platform Support">
@@ -24,8 +25,14 @@
 
 | You have | Go to |
 |---|---|
-| **Oppo or OnePlus or Realme** | [ColorOS, OxygenOS & Realme UI Guide](docs/brands/oppo-coloros.md) — Debloat HeyTap Market, Lock Screen Magazine, Theme Store, and OPLUS telemetry. |
-| **vivo or iQOO** | [Funtouch OS & OriginOS Guide](docs/brands/vivo-funtouchos-originos.md) — Remove V-Appstore, Lockscreen Poster, Jovi Assistant, and Vivo Daemons. |
+| **Samsung** | [Samsung One UI Guide](docs/brands/samsung-oneui.md) — Strip Bixby, GOS throttlers, Samsung Free ads, and telemetry. |
+| **POCO / Xiaomi** | [POCO MIUI & HyperOS Guide](docs/brands/poco-miui-hyperos.md) — Eliminate MSA ads, Joyose throttling, GetApps, and App Vault. |
+| **Infinix / Tecno / itel** | [Transsion XOS, HiOS & itelOS Guide](docs/brands/transsion-infinix-tecno-itel.md) — Eradicate Phoenix Browser, AHA Games, PalmPay, and Phone Master. |
+| **Motorola** | [Motorola Hello UI & My UX Guide](docs/brands/motorola-myux-helloui.md) — Remove Glance lockscreen ads, Moto Mobile Services, and marketing surveys. |
+| **Sony** | [Sony Xperia UI Guide](docs/brands/sony-xperia.md) — Debloat Xperia Lounge, News Suite, and obsolete transfer services. |
+| **Lava / Karbonn / Philips** | [Budget Android Guide](docs/brands/lava-karbonn-philips.md) — Remove Glance lockscreen stories, Indian preloads, and tracking SDKs. |
+| **Oppo / OnePlus / Realme** | [ColorOS, OxygenOS & Realme UI Guide](docs/brands/oppo-coloros.md) — Debloat HeyTap Market, Lock Screen Magazine, Theme Store, and OPLUS telemetry. |
+| **vivo / iQOO** | [Funtouch OS & OriginOS Guide](docs/brands/vivo-funtouchos-originos.md) — Remove V-Appstore, Lockscreen Poster, Jovi Assistant, and Vivo Daemons. |
 | **A computer + AI Assistant** | [Quick Start with AI Assistant](#quick-start-with-an-ai-coding-assistant) — Paste [`PROMPT.md`](PROMPT.md) into Claude Code, Antigravity, or Gemini CLI. |
 | **Doing it by hand in terminal** | [Doing It By Hand](#doing-it-by-hand) — Run `./tools/disable.sh` or `.\tools\disable.ps1`. |
 | **Want to undo or restore** | [Restoring Your Phone](#restoring-your-phone) — Instant one-command rollback to bring back any app. |
@@ -105,13 +112,23 @@ Every package undergoes the **Dual-List Consensus Matrix**:
   <img src="docs/brands-lineup.jpg" alt="Supported Android Brands Running Liquid Glass UI" width="850">
 </p>
 
-| Brand | Operating System | Shared Base Architecture | Safe Profile |
-|---|---|---|---|
-| **Oppo** | ColorOS (5, 6, 7, 11, 12, 13, 14, 15) | OPLUS / HeyTap / NearMe | [`lists/oppo/coloros-safe-debloat.txt`](lists/oppo/coloros-safe-debloat.txt) |
-| **vivo** | Funtouch OS (3, 4, 9, 10, 11–15) / OriginOS | BBK Vivo | [`lists/vivo/funtouchos-safe-debloat.txt`](lists/vivo/funtouchos-safe-debloat.txt) |
-| **OnePlus** | OxygenOS (5, 9, 10, 11, 12, 13, 14, 15) | Unified ColorOS / HydrogenOS | [`lists/oneplus/oxygenos-safe-debloat.txt`](lists/oneplus/oxygenos-safe-debloat.txt) |
-| **Realme** | Realme UI (1.0, 2.0, 3.0, 4.0, 5.0, 6.0) | Unified ColorOS | [`lists/realme/realmeui-safe-debloat.txt`](lists/realme/realmeui-safe-debloat.txt) |
-| **iQOO** | Funtouch OS / OriginOS / Monster UI | BBK Vivo | [`lists/iqoo/iqoo-safe-debloat.txt`](lists/iqoo/iqoo-safe-debloat.txt) |
+| Brand | Operating System | Shared Base Architecture | Safe Profile | Documentation |
+|---|---|---|---|---|
+| **Samsung** | One UI (1.0 – 7.0+) / TouchWiz | Samsung Galaxy Platform | [`lists/samsung/samsung-safe-debloat.txt`](lists/samsung/samsung-safe-debloat.txt) | [Guide](docs/brands/samsung-oneui.md) |
+| **POCO** | MIUI for POCO / HyperOS for POCO | Xiaomi POCO Platform | [`lists/poco/poco-safe-debloat.txt`](lists/poco/poco-safe-debloat.txt) | [Guide](docs/brands/poco-miui-hyperos.md) |
+| **Infinix** | XOS (v3 – v14+) | Transsion XOS Stack | [`lists/infinix/xos-safe-debloat.txt`](lists/infinix/xos-safe-debloat.txt) | [Guide](docs/brands/transsion-infinix-tecno-itel.md) |
+| **Tecno** | HiOS (v3 – v14+) | Transsion HiOS Stack | [`lists/tecno/hios-safe-debloat.txt`](lists/tecno/hios-safe-debloat.txt) | [Guide](docs/brands/transsion-infinix-tecno-itel.md) |
+| **itel** | itelOS (Android Go & Full) | Transsion itel Stack | [`lists/itel/itelos-safe-debloat.txt`](lists/itel/itelos-safe-debloat.txt) | [Guide](docs/brands/transsion-infinix-tecno-itel.md) |
+| **Motorola** | Hello UI / My UX (Android 8–15+) | Moto / Near-Stock AOSP | [`lists/motorola/motorola-safe-debloat.txt`](lists/motorola/motorola-safe-debloat.txt) | [Guide](docs/brands/motorola-myux-helloui.md) |
+| **Sony** | Xperia UI (Android 9–15+) | Sony Mobile Communications | [`lists/sony/sony-safe-debloat.txt`](lists/sony/sony-safe-debloat.txt) | [Guide](docs/brands/sony-xperia.md) |
+| **Lava** | Star OS / Stock Android (Agni, Blaze) | Lava International | [`lists/lava/lava-safe-debloat.txt`](lists/lava/lava-safe-debloat.txt) | [Guide](docs/brands/lava-karbonn-philips.md) |
+| **Karbonn** | Karbonn Mobiles OS | Budget Indian Android | [`lists/karbonn/karbonn-safe-debloat.txt`](lists/karbonn/karbonn-safe-debloat.txt) | [Guide](docs/brands/lava-karbonn-philips.md) |
+| **Philips** | Philips Android Mobile | Regional Android Platform | [`lists/philips/philips-safe-debloat.txt`](lists/philips/philips-safe-debloat.txt) | [Guide](docs/brands/lava-karbonn-philips.md) |
+| **Oppo** | ColorOS (5, 6, 7, 11, 12, 13, 14, 15) | OPLUS / HeyTap / NearMe | [`lists/oppo/coloros-safe-debloat.txt`](lists/oppo/coloros-safe-debloat.txt) | [Guide](docs/brands/oppo-coloros.md) |
+| **vivo** | Funtouch OS (3, 4, 9, 10, 11–15) / OriginOS | BBK Vivo Platform | [`lists/vivo/funtouchos-safe-debloat.txt`](lists/vivo/funtouchos-safe-debloat.txt) | [Guide](docs/brands/vivo-funtouchos-originos.md) |
+| **OnePlus** | OxygenOS (5, 9, 10, 11, 12, 13, 14, 15) | Unified ColorOS / HydrogenOS | [`lists/oneplus/oxygenos-safe-debloat.txt`](lists/oneplus/oxygenos-safe-debloat.txt) | [Guide](docs/brands/oneplus-oxygenos.md) |
+| **Realme** | Realme UI (1.0, 2.0, 3.0, 4.0, 5.0, 6.0) | Unified ColorOS | [`lists/realme/realmeui-safe-debloat.txt`](lists/realme/realmeui-safe-debloat.txt) | [Guide](docs/brands/realme-realmeui.md) |
+| **iQOO** | Funtouch OS / OriginOS / Monster UI | BBK Vivo Platform | [`lists/iqoo/iqoo-safe-debloat.txt`](lists/iqoo/iqoo-safe-debloat.txt) | [Guide](docs/brands/iqoo-funtouchos-originos.md) |
 
 > [!NOTE]
 > **Universal Legacy & Modern Compatibility:**
@@ -179,10 +196,24 @@ python tools/audit_packages.py
 #### On Linux / macOS:
 ```bash
 # Test in Dry-Run mode first (simulates without changing anything)
-./tools/disable.sh --dry-run lists/oppo/coloros-safe-debloat.txt
+./tools/disable.sh --dry-run lists/samsung/samsung-safe-debloat.txt
 
-# Run safe debloat
-./tools/disable.sh lists/oppo/coloros-safe-debloat.txt
+# Run safe debloat for your brand:
+# Samsung:  ./tools/disable.sh lists/samsung/samsung-safe-debloat.txt
+# POCO:     ./tools/disable.sh lists/poco/poco-safe-debloat.txt
+# Infinix:  ./tools/disable.sh lists/infinix/xos-safe-debloat.txt
+# Tecno:    ./tools/disable.sh lists/tecno/hios-safe-debloat.txt
+# itel:     ./tools/disable.sh lists/itel/itelos-safe-debloat.txt
+# Motorola: ./tools/disable.sh lists/motorola/motorola-safe-debloat.txt
+# Sony:     ./tools/disable.sh lists/sony/sony-safe-debloat.txt
+# Lava:     ./tools/disable.sh lists/lava/lava-safe-debloat.txt
+# Karbonn:  ./tools/disable.sh lists/karbonn/karbonn-safe-debloat.txt
+# Philips:  ./tools/disable.sh lists/philips/philips-safe-debloat.txt
+# Oppo:     ./tools/disable.sh lists/oppo/coloros-safe-debloat.txt
+# vivo:     ./tools/disable.sh lists/vivo/funtouchos-safe-debloat.txt
+# OnePlus:  ./tools/disable.sh lists/oneplus/oxygenos-safe-debloat.txt
+# Realme:   ./tools/disable.sh lists/realme/realmeui-safe-debloat.txt
+# iQOO:     ./tools/disable.sh lists/iqoo/iqoo-safe-debloat.txt
 
 # Strip preinstalled Facebook & commercial junk
 ./tools/disable.sh lists/common/facebook-bloat.txt
@@ -192,10 +223,24 @@ python tools/audit_packages.py
 #### On Windows (PowerShell):
 ```powershell
 # Test in Dry-Run mode first
-.\tools\disable.ps1 -List "lists\oppo\coloros-safe-debloat.txt" -DryRun
+.\tools\disable.ps1 -List "lists\samsung\samsung-safe-debloat.txt" -DryRun
 
-# Run safe debloat
-.\tools\disable.ps1 -List "lists\oppo\coloros-safe-debloat.txt"
+# Run safe debloat for your brand:
+# Samsung:  .\tools\disable.ps1 -List "lists\samsung\samsung-safe-debloat.txt"
+# POCO:     .\tools\disable.ps1 -List "lists\poco\poco-safe-debloat.txt"
+# Infinix:  .\tools\disable.ps1 -List "lists\infinix\xos-safe-debloat.txt"
+# Tecno:    .\tools\disable.ps1 -List "lists\tecno\hios-safe-debloat.txt"
+# itel:     .\tools\disable.ps1 -List "lists\itel\itelos-safe-debloat.txt"
+# Motorola: .\tools\disable.ps1 -List "lists\motorola\motorola-safe-debloat.txt"
+# Sony:     .\tools\disable.ps1 -List "lists\sony\sony-safe-debloat.txt"
+# Lava:     .\tools\disable.ps1 -List "lists\lava\lava-safe-debloat.txt"
+# Karbonn:  .\tools\disable.ps1 -List "lists\karbonn\karbonn-safe-debloat.txt"
+# Philips:  .\tools\disable.ps1 -List "lists\philips\philips-safe-debloat.txt"
+# Oppo:     .\tools\disable.ps1 -List "lists\oppo\coloros-safe-debloat.txt"
+# vivo:     .\tools\disable.ps1 -List "lists\vivo\funtouchos-safe-debloat.txt"
+# OnePlus:  .\tools\disable.ps1 -List "lists\oneplus\oxygenos-safe-debloat.txt"
+# Realme:   .\tools\disable.ps1 -List "lists\realme\realmeui-safe-debloat.txt"
+# iQOO:     .\tools\disable.ps1 -List "lists\iqoo\iqoo-safe-debloat.txt"
 
 # Strip preinstalled Facebook & commercial junk
 .\tools\disable.ps1 -List "lists\common\facebook-bloat.txt"
@@ -298,6 +343,16 @@ cleanyourphone/
 │   ├── build-and-install.ps1 # Automated Windows installer & 0.5x optimizer
 │   └── README.md         # Lawnchair setup & customization guide
 ├── lists/
+│   ├── samsung/          # Samsung One UI safe & optional lists
+│   ├── poco/             # POCO MIUI & HyperOS safe & optional lists
+│   ├── infinix/          # Infinix XOS safe & optional lists
+│   ├── tecno/            # Tecno HiOS safe & optional lists
+│   ├── itel/             # itel itelOS safe & optional lists
+│   ├── motorola/         # Motorola Hello UI & My UX safe lists
+│   ├── sony/             # Sony Xperia UI safe & optional lists
+│   ├── lava/             # Lava Star OS safe & optional lists
+│   ├── karbonn/          # Karbonn Mobiles safe lists
+│   ├── philips/          # Philips Android safe lists
 │   ├── oppo/             # ColorOS safe & optional lists
 │   ├── oneplus/          # OxygenOS safe & optional lists
 │   ├── realme/           # Realme UI safe & optional lists

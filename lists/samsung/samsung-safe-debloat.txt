@@ -1,0 +1,46 @@
+# ==============================================================================
+# CleanYourPhone - Samsung One UI Safe Debloat List
+# ==============================================================================
+# Target: Samsung Galaxy Smartphones & Tablets running One UI (1.0 - 7.0+)
+# Android Versions: Android 9 (Pie) through Android 15+
+# Safety Guarantee: 100% Non-destructive. No bootloops, no system instability.
+# ==============================================================================
+
+# --- Bixby Virtual Assistant & Voice Wakeup ---
+com.samsung.android.bixby.agent             # Bixby Voice background service & listener
+com.samsung.android.bixby.service           # Bixby System Framework & trigger router
+com.samsung.android.bixby.wakeup            # Bixby "Hi Bixby" hotword listening daemon
+com.samsung.android.bixbyvision.framework   # Bixby Vision object & shopping recognizer
+com.samsung.android.app.settings.bixby      # Bixby Settings provider
+com.samsung.systemui.bixby2                 # Bixby SystemUI integration overlay
+
+# --- Samsung Ads, Promos & Feed Junk ---
+com.samsung.android.app.spage               # Samsung Free / Samsung O / Bixby Home sponsored cards
+com.samsung.android.service.peoplestripe    # People Edge promotional panel
+com.samsung.android.dynamiclock             # Glance on Samsung / Dynamic Lock Screen sponsored wallpapers
+com.samsung.android.app.tips                # Samsung Tips persistent banner popups
+com.samsung.android.voc                     # Samsung Members diagnostics & promotional push alerts
+
+# --- Samsung Telemetry, Analytics & Throttling ---
+com.sec.android.diagmonagent                # Samsung Diagnostic & Usage Telemetry Monitor
+com.samsung.android.rubin.app               # Rubin Runestone personalization & user tracking engine
+com.samsung.android.ipsgeofence             # Geofence location telemetry tracking
+com.samsung.android.uds                     # Ultra Data Saving Opera Max background telemetry
+com.samsung.android.game.gos                # Game Optimizing Service (GOS performance throttler)
+com.samsung.android.game.gametools          # Game Booster floating ads and overlays
+com.samsung.android.game.gamehome           # Samsung Gaming Hub / Game Launcher promotional feed
+
+# --- AR Zone, Stickers & Decals ---
+com.samsung.android.arzone                  # AR Zone app menu
+com.samsung.android.aremoji                 # AR Emoji avatar creator
+com.samsung.android.aremojieditor           # AR Emoji Editor studio
+com.sec.android.mimage.avatarstickers       # Samsung Avatar emoji sticker packs
+com.samsung.android.livestickers            # Live camera face stickers & filters
+
+# --- Kids Mode Preloaders ---
+com.samsung.android.kidsinstaller           # Samsung Kids stub preloader
+com.sec.android.app.kidshome                # Samsung Kids environment launcher
+
+# --- Microsoft Preloaded Bloatware ---
+com.microsoft.skydrive                      # Microsoft OneDrive auto-backup preinstall
+com.microsoft.appmanager                    # Link to Windows companion service (Link to PC)

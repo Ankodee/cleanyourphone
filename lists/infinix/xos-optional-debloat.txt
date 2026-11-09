@@ -1,0 +1,15 @@
+# ==============================================================================
+# CleanYourPhone - Infinix XOS Optional Debloat List
+# ==============================================================================
+# Target: Optional Infinix utilities and tools.
+# Warning: Remove only if you use third-party alternatives.
+# ==============================================================================
+
+# --- Preloaded Transsion Utilities ---
+# Safe to disable if you prefer open-source tools (Fossify suite)
+com.transsion.calculator                    # XOS Calculator
+com.transsion.soundrecorder                 # XOS Sound Recorder
+com.transsion.scanning                      # Transsion QR / Document Scanner
+com.transsion.healthlife                    # Welife / HealthLife health tracking daemon
+com.transsion.compass                       # XOS Compass
+com.transsion.XOSLauncher                   # Stock XOS Launcher (disable after installing Lawnchair)

@@ -1,0 +1,29 @@
+# ==============================================================================
+# CleanYourPhone - Infinix XOS Safe Debloat List
+# ==============================================================================
+# Target: Infinix Note, Hot, Zero, and Smart series running XOS (Android 8 - 15+)
+# Safety Guarantee: 100% Non-destructive. Completely removes push ads & trackers.
+# ==============================================================================
+
+# --- Transsion Ad Engines, Push Feeds & Sponsored News ---
+com.transsion.phoenix                       # Phoenix Browser (aggressive lockscreen news & push ads)
+com.transsion.scooper                       # Scooper News ad aggregator
+com.transsion.magazineservice               # Lock Screen Magazine (sponsored wallpaper ads)
+com.transsion.vskit                         # Vskit short video social feed bloat
+com.transsion.mol                           # Microintelligence user behavior tracker
+
+# --- App Stores, Game Hubs & Commercial Preloads ---
+com.transsion.ahagames                      # AHA Games store with persistent game banners
+com.transsion.palmpay                       # PalmPay commercial financial app
+com.afmobi.boomplayer                       # Boomplay music player (heavy push notification spam)
+com.transsion.xtheme                        # XTheme store (paid wallpapers and promotional popups)
+com.transsion.xshare                        # XShare file transfer app (loaded with display ads)
+com.transsion.infinixspot                   # Infinix Community forum and promotional hub
+com.transsion.carlcare                      # Carlcare customer portal & warranty promos
+
+# --- System Overlays & Questionable Optimizers ---
+com.transsion.phonemanager                  # Phone Master (aggressive RAM cleaner with interstitial ads)
+com.transsion.freezer                       # Transsion Freezer background service
+com.transsion.magicshow                     # Magic Show caller effect promotional downloads
+com.transsion.wezone                        # WeZone gaming social lounge
+com.transsion.smartpanel                    # Smart Panel floating shortcut promotional overlays

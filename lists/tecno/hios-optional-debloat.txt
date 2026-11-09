@@ -1,0 +1,15 @@
+# ==============================================================================
+# CleanYourPhone - Tecno HiOS Optional Debloat List
+# ==============================================================================
+# Target: Optional Tecno utilities and tools.
+# Warning: Remove only if you use third-party alternatives.
+# ==============================================================================
+
+# --- Preloaded Transsion Utilities ---
+# Safe to disable if you prefer open-source tools (Fossify suite)
+com.transsion.calculator                    # HiOS Calculator
+com.transsion.soundrecorder                 # HiOS Sound Recorder
+com.transsion.scanning                      # Transsion QR / Document Scanner
+com.transsion.welife                        # Welife smart device companion
+com.transsion.compass                       # HiOS Compass
+com.transsion.hilauncher                    # Stock HiOS Launcher (disable after installing Lawnchair)

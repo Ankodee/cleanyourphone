@@ -1,0 +1,18 @@
+# ==============================================================================
+# CleanYourPhone - Philips Android Safe Debloat List
+# ==============================================================================
+# Target: Philips Android smartphones
+# Safety Guarantee: 100% Non-destructive.
+# ==============================================================================
+
+# --- Philips Preloaded Apps & Stores ---
+com.philips.appstore                        # Philips App Store
+com.philips.care                            # Philips Care diagnostic app
+com.philips.service                         # Philips background service
+com.philips.health                          # Philips Health app preinstall
+
+# --- Preloaded Adware & Cleaner SDKs ---
+com.qihoo.cleansdk                          # Qihoo 360 cleaner & tracking SDK
+com.inmobi.service                          # InMobi ad network SDK
+com.mobvista.android                        # Mobvista tracking framework
+com.ucmobile.intl                           # UC Browser preinstall

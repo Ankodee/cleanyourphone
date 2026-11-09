@@ -1,0 +1,20 @@
+# ==============================================================================
+# CleanYourPhone - Sony Xperia Safe Debloat List
+# ==============================================================================
+# Target: Sony Xperia 1, 5, 10, Pro, and XZ series
+# Safety Guarantee: 100% Non-destructive. Preserves Bravia engine & Pro camera apps.
+# ==============================================================================
+
+# --- Sony Promotional Feeds & Ad Services ---
+com.sonymobile.xperialounge.services        # Xperia Lounge VIP promotional push notices
+com.sonyericsson.xhs                        # News Suite by Sony (sponsored news feed)
+com.sonymobile.entrance                     # Sony Entrance promotional showcase
+com.sonymobile.advancedwidget.entrance      # Sony Entrance home widget promo
+
+# --- Legacy & Auxiliary Media Bloat ---
+com.sonymobile.scan3d                       # 3D Creator facial scanner
+com.sonymobile.areffect                     # AR Effect camera sticker generator
+com.sonymobile.support                      # Sony Xperia Support portal
+com.sonymobile.xperiatransfermobile         # Xperia Transfer Mobile legacy migrator
+com.sony.dtv.smartconnect                   # Smart Connect legacy automation service
+com.sonymobile.sidesense.app                # Side Sense tutorial & hint popups

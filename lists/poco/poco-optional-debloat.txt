@@ -1,0 +1,19 @@
+# ==============================================================================
+# CleanYourPhone - POCO (MIUI / HyperOS for POCO) Optional Debloat List
+# ==============================================================================
+# Target: Optional POCO utilities, cloud backups, and companion applications.
+# Warning: Remove only if you use third-party alternatives.
+# ==============================================================================
+
+# --- Xiaomi Cloud Sync Suite ---
+# Keep if you sync gallery or contacts with your Mi Account
+com.miui.cloudservice                       # Xiaomi Cloud Sync service
+com.miui.cloudbackup                        # Xiaomi Cloud device backup agent
+
+# --- Auxiliary Preloaded Tools ---
+# Safe to disable if you prefer open-source alternatives (Fossify suite)
+com.miui.compass                            # MIUI Compass
+com.miui.notes                              # MIUI Notes
+com.miui.weather2                           # MIUI Weather app (contains ad banners)
+com.miui.calculator                         # MIUI Calculator
+com.miui.screenrecorder                     # MIUI Screen Recorder

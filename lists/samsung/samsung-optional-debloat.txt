@@ -1,0 +1,28 @@
+# ==============================================================================
+# CleanYourPhone - Samsung One UI Optional Debloat List
+# ==============================================================================
+# Target: Optional Samsung utilities, payment services, and companion apps.
+# Warning: Only remove if you use third-party alternatives (Google Pay, Chrome, etc.)
+# ==============================================================================
+
+# --- Samsung Payment & Autofill Suite ---
+# Keep if you actively tap-to-pay with Samsung Wallet
+com.samsung.android.spay                    # Samsung Wallet / Samsung Pay application
+com.samsung.android.spayfw                  # Samsung Pay core payment framework
+com.samsung.android.samsungpass             # Samsung Pass biometric credential manager
+com.samsung.android.samsungpassautofill     # Samsung Pass credential autofill service
+
+# --- Samsung Web Browser & Cloud ---
+# Safe to remove if you use Google Chrome, Brave, Firefox, or DuckDuckGo
+com.sec.android.app.sbrowser                # Samsung Internet Browser
+com.samsung.android.scloud                  # Samsung Cloud sync daemon
+
+# --- Samsung Notes & Voice Recorder ---
+# Keep if you store Samsung Notes or record voice memos
+com.samsung.android.app.notes               # Samsung Notes
+com.sec.android.app.voicenote               # Samsung Voice Recorder
+
+# --- Samsung Health & Wearables ---
+# Keep if you wear a Galaxy Watch, Galaxy Ring, or track steps with Samsung Health
+com.sec.android.app.shealth                 # Samsung Health activity tracker
+com.samsung.android.app.watchmanager        # Galaxy Wearable manager daemon

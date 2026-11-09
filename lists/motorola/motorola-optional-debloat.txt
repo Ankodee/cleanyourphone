@@ -1,0 +1,9 @@
+# ==============================================================================
+# CleanYourPhone - Motorola (My UX / Hello UI) Optional Debloat List
+# ==============================================================================
+# Target: Optional Motorola companion apps and stock launcher.
+# Warning: Remove only if you have replacements installed.
+# ==============================================================================
+
+com.motorola.fmplayer                       # Moto FM Radio
+com.motorola.launcher3                      # Stock Moto Launcher (disable after installing Lawnchair)

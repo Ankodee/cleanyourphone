@@ -9,7 +9,7 @@ When acting as an agent running debloating operations for a user, follow the str
 
 ## 1. Prime Directive: Do No Harm
 
-Debloating modern Android phones (ColorOS, OxygenOS, Realme UI, Funtouch OS, OriginOS)
+Debloating modern Android phones (Samsung One UI, POCO HyperOS/MIUI, Transsion XOS/HiOS/itelOS, Motorola Hello UI, Sony Xperia UI, Lava, Karbonn, Philips, ColorOS, OxygenOS, Realme UI, Funtouch OS, OriginOS)
 differs from Android TV: phones manage cellular modems, biometric authentication (fingerprint/face),
 emergency dialing (eCall/SOS), camera post-processing pipelines, and secure keystores.
 

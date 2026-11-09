@@ -2,7 +2,8 @@
 """
 CleanYourPhone - Phone ADB Manager & Inspector
 Supports USB ADB and Android 11+ Wireless Debugging.
-Works across Oppo, OnePlus, Realme, vivo, and iQOO devices.
+Works across Samsung, POCO, Infinix, Tecno, itel, Lava, Karbonn,
+Motorola, Sony, Philips, Oppo, OnePlus, Realme, vivo, and iQOO devices.
 """
 
 import sys
@@ -58,22 +59,90 @@ def get_device_info():
     sdk_ver = run_adb(["shell", "getprop", "ro.build.version.sdk"]).strip()
     security_patch = run_adb(["shell", "getprop", "ro.build.version.security_patch"]).strip()
     
-    # Universal multi-OS detection (ColorOS 5+, Funtouch 3+, OxygenOS 5+, Realme UI 1+)
-    os_flavor = run_adb(["shell", "getprop", "ro.build.version.opporom"]).strip()
-    if os_flavor:
-        os_flavor = f"ColorOS {os_flavor}"
+    # Universal multi-brand OS detection:
+    # Supports Samsung One UI, Xiaomi/POCO HyperOS/MIUI, Transsion (Infinix XOS, Tecno HiOS, itelOS),
+    # Oppo ColorOS, vivo Funtouch/OriginOS, OnePlus OxygenOS, Realme UI, Motorola Hello/My UX, Sony Xperia UI, Lava, Karbonn, Philips
+    os_flavor = ""
+
+    # Samsung One UI
+    samsung_oneui = run_adb(["shell", "getprop", "ro.build.version.oneui"]).strip()
+    if not samsung_oneui:
+        samsung_sep = run_adb(["shell", "getprop", "ro.build.version.sep"]).strip()
+        if samsung_sep:
+            samsung_oneui = samsung_sep
+    if samsung_oneui:
+        os_flavor = f"Samsung One UI ({samsung_oneui})"
+    elif brand.lower() == "samsung":
+        os_flavor = "Samsung One UI / TouchWiz"
+
+    # Xiaomi / POCO (HyperOS / MIUI)
+    if not os_flavor:
+        hyperos_ver = run_adb(["shell", "getprop", "ro.mi.os.version.name"]).strip()
+        miui_ver = run_adb(["shell", "getprop", "ro.miui.ui.version.name"]).strip()
+        if hyperos_ver:
+            os_flavor = f"{'POCO ' if brand.lower() == 'poco' else ''}Xiaomi HyperOS {hyperos_ver}"
+        elif miui_ver:
+            os_flavor = f"{'POCO ' if brand.lower() == 'poco' else ''}MIUI {miui_ver}"
+
+    # Transsion (Infinix XOS, Tecno HiOS, itelOS)
+    if not os_flavor:
+        tr_os = run_adb(["shell", "getprop", "ro.tr_os.version"]).strip()
+        if not tr_os:
+            tr_os = run_adb(["shell", "getprop", "ro.os_product.version"]).strip()
+        if tr_os:
+            os_flavor = f"Transsion {tr_os}"
+        elif brand.lower() == "infinix":
+            os_flavor = "Infinix XOS"
+        elif brand.lower() in ("tecno", "techno"):
+            os_flavor = "Tecno HiOS"
+        elif brand.lower() == "itel":
+            os_flavor = "itelOS"
+
+    # Oppo ColorOS (5 through 15)
+    if not os_flavor:
+        oppo_ver = run_adb(["shell", "getprop", "ro.build.version.opporom"]).strip()
+        if oppo_ver:
+            os_flavor = f"ColorOS {oppo_ver}"
+
+    # vivo / iQOO Funtouch OS / OriginOS
     if not os_flavor:
         v_ver = run_adb(["shell", "getprop", "ro.vivo.os.version"]).strip()
         if v_ver:
             os_flavor = f"Funtouch/OriginOS {v_ver}"
+
+    # OnePlus OxygenOS
     if not os_flavor:
         o_ver = run_adb(["shell", "getprop", "ro.oxygen.version"]).strip()
         if o_ver:
             os_flavor = f"OxygenOS {o_ver}"
+
+    # Realme UI
     if not os_flavor:
         r_ver = run_adb(["shell", "getprop", "ro.build.version.realmeui"]).strip()
         if r_ver:
             os_flavor = f"Realme UI {r_ver}"
+
+    # Motorola (Hello UI / My UX)
+    if not os_flavor and brand.lower() in ("motorola", "moto"):
+        os_flavor = "Motorola Hello UI / My UX"
+
+    # Sony Xperia UI
+    if not os_flavor and brand.lower() == "sony":
+        os_flavor = "Sony Xperia UI"
+
+    # Lava (Star OS / Agni)
+    if not os_flavor and brand.lower() == "lava":
+        os_flavor = "Lava Star OS / Stock Android"
+
+    # Karbonn
+    if not os_flavor and brand.lower() == "karbonn":
+        os_flavor = "Karbonn Android OS"
+
+    # Philips
+    if not os_flavor and brand.lower() == "philips":
+        os_flavor = "Philips Android OS"
+
+    # Generic fallback
     if not os_flavor:
         os_flavor = run_adb(["shell", "getprop", "ro.rom.version"]).strip()
 

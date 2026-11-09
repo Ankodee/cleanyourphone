@@ -1,0 +1,30 @@
+# ==============================================================================
+# CleanYourPhone - Tecno HiOS Safe Debloat List
+# ==============================================================================
+# Target: Tecno Camon, Spark, Pova, and Phantom series running HiOS (Android 8 - 15+)
+# Safety Guarantee: 100% Non-destructive. Eradicates push spam and background bloat.
+# ==============================================================================
+
+# --- Transsion Ad Engines, Push Feeds & Sponsored News ---
+com.transsion.phoenix                       # Phoenix Browser (lockscreen ads and news push spam)
+com.transsion.scooper                       # Scooper News ad aggregator
+com.transsion.magazineservice               # HiOS Lock Screen Magazine (wallpaper ads)
+com.transsion.vskit                         # Vskit short video stream bloat
+com.transsion.mol                           # Microintelligence user behavior telemetry
+
+# --- App Stores, Game Hubs & Commercial Preloads ---
+com.transsion.ahagames                      # AHA Games store with constant game alerts
+com.transsion.palmpay                       # PalmPay financial preinstall
+com.afmobi.boomplayer                       # Boomplay music player (heavy notification spam)
+com.transsion.xtheme                        # HiOS Theme store (paid themes and ad banners)
+com.transsion.xshare                        # XShare file transfer (ad-supported)
+com.transsion.tecnospot                     # Tecno Spot Community forum and ads
+com.transsion.carlcare                      # Carlcare customer service portal
+
+# --- System Overlays & Questionable Optimizers ---
+com.transsion.phonemanager                  # Phone Master (intrusive cleaner with ads)
+com.transsion.freezer                       # Transsion Freezer background service
+com.transsion.magicshow                     # Magic Show caller effects
+com.transsion.wezone                        # WeZone social hub
+com.transsion.smartpanel                    # Smart Panel floating shortcut overlay
+com.transsion.ella                          # Ella Voice Assistant service

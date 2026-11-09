@@ -1,0 +1,12 @@
+# ==============================================================================
+# CleanYourPhone - itel (itelOS) Optional Debloat List
+# ==============================================================================
+# Target: Optional itel utilities.
+# Warning: Remove only if you have replacements installed.
+# ==============================================================================
+
+com.transsion.calculator                    # itel Calculator
+com.transsion.soundrecorder                 # itel Sound Recorder
+com.transsion.scanning                      # itel QR / Barcode Scanner
+com.transsion.compass                       # itel Compass
+com.transsion.itellauncher                  # Stock itel Launcher (disable after installing Lawnchair)

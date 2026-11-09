@@ -1,0 +1,33 @@
+# ==============================================================================
+# CleanYourPhone - POCO (MIUI / HyperOS for POCO) Safe Debloat List
+# ==============================================================================
+# Target: POCO F, X, M, and C series running MIUI for POCO & HyperOS
+# Android Versions: Android 8 (Oreo) through Android 15+
+# Safety Guarantee: 100% Non-destructive. SystemUI and core stability protected.
+# ==============================================================================
+
+# --- Xiaomi & MIUI Ad Networks (MSA) ---
+com.miui.msa.global                         # MIUI System Ads (MSA) background ad daemon
+com.miui.analytics                          # Xiaomi system-wide usage & analytics collector
+com.xiaomi.joyose                           # Joyose background telemetry & game throttling service
+com.miui.hybrid                             # Quick Apps / Hybrid web app ad-serving engine
+com.miui.hybrid.accessory                   # Quick Apps accessory loader
+
+# --- App Store & Promotional Feed Spam ---
+com.xiaomi.mipicks                          # GetApps (Xiaomi app store with notification spam)
+com.mi.android.globalminusscreen            # App Vault / Discover screen left-side ad cards
+com.miui.personalassistant                  # App Vault personalization tracker
+com.xiaomi.glgm                             # Xiaomi Games Center
+
+# --- Financial, Payment & Credit Services ---
+com.xiaomi.payment                          # Mi Pay payment service
+com.mipay.wallet.in                         # Mi Wallet (India / Global)
+com.miui.yellowpage                         # Yellow Pages caller identification & ad scraper
+
+# --- Ad-Laden Media & Utilities ---
+com.miui.videoplayer                        # Mi Video (sponsored popups and video recommendations)
+com.miui.player                             # Mi Music (Hungama music ads and persistent push notifications)
+com.miui.cleanmaster                        # MIUI Cleaner (Cheetah Mobile telemetry & ad banners)
+com.miui.bugreport                          # MIUI automated crash & log uploader
+com.miui.miservice                          # Services & Feedback uploader
+com.android.browser                         # Mi Browser (safe to disable if using Chrome/Brave)

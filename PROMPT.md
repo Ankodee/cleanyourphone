@@ -2,7 +2,7 @@
 
 Paste this prompt into Claude Code, Antigravity CLI, Gemini CLI, Cursor, or any AI assistant with terminal/shell access on your computer.
 
-Works for **Oppo (ColorOS)**, **vivo (Funtouch OS / OriginOS)**, **OnePlus (OxygenOS)**, **Realme (Realme UI)**, and **iQOO** smartphones.
+Works for **Samsung (One UI)**, **POCO / Xiaomi (MIUI & HyperOS)**, **Infinix (XOS)**, **Tecno (HiOS)**, **itel (itelOS)**, **Motorola (Hello UI / My UX)**, **Sony (Xperia UI)**, **Lava**, **Karbonn**, **Philips**, **Oppo (ColorOS)**, **vivo (Funtouch OS / OriginOS)**, **OnePlus (OxygenOS)**, **Realme (Realme UI)**, and **iQOO** smartphones.
 
 ---
 
@@ -22,7 +22,7 @@ Works for **Oppo (ColorOS)**, **vivo (Funtouch OS / OriginOS)**, **OnePlus (Oxyg
 
 ```text
 I want to debloat my Android smartphone, remove background trackers and ads, and optimize battery life.
-My phone model and OS are: <ENTER PHONE MODEL & BRAND HERE, e.g., OnePlus 12 / Oppo Reno 10 / vivo V29 / Realme GT / iQOO Neo 9>.
+My phone model and OS are: <ENTER PHONE MODEL & BRAND HERE, e.g., Samsung Galaxy S24, POCO X6, Infinix Note 40, Tecno Camon 30, itel S24, Moto G84, Sony Xperia 1, Lava Agni 2, OnePlus 12, Oppo Reno 10, vivo V30>.
 Work on the real device step-by-step using ADB. Verify everything you do and ask me before touching anything that depends on my preferences.
 
 Follow these strict operating procedures:

@@ -60,11 +60,11 @@ if ($sdk -ge 34) {
     $versionLabel = "Lawnchair 14 (Beta 3)"
     $downloadUrl = "https://github.com/LawnchairLauncher/lawnchair/releases/download/v14.0.0-beta3/Lawnchair.14.0.0.Beta.3.apk"
 } else {
-    # Legacy Android 5 through 9 (ColorOS 5, older Oppo/Vivo/Xiaomi)
-    $versionLabel = "Lawnchair 2.0 (Legacy)"
-    $downloadUrl = "https://github.com/LawnchairLauncher/lawnchair/releases/download/2.0.2589/Lawnchair.2.0.2589.apk"
-    $pkgName = "ch.deletescape.lawnchair.plah"
-    $launcherActivity = "ch.deletescape.lawnchair.plah/ch.deletescape.lawnchair.plah.Launcher"
+    # Legacy Android 8 & 9 (ColorOS 5/6, Oreo/Pie - SDK 26-28)
+    $versionLabel = "Lawnchair 12.1 (Alpha 4)"
+    $downloadUrl = "https://github.com/LawnchairLauncher/lawnchair/releases/download/v12.1.0-alpha.4/Lawnchair.12.1.0.Alpha.4.apk"
+    $pkgName = "app.lawnchair"
+    $launcherActivity = "app.lawnchair/app.lawnchair.LawnchairLauncher"
 }
 
 Write-Host "[*] Target launcher release: $versionLabel" -ForegroundColor White
@@ -127,11 +127,22 @@ adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.H
 if ($DisableStock) {
     Write-Host "[*] Disabling OEM stock launcher..." -ForegroundColor Yellow
     $stockList = @(
-        "com.oppo.launcher", "com.coloros.home",
-        "com.oneplus.launcher", "com.realme.launcher",
-        "com.bbk.launcher2", "com.vivo.launcher",
-        "com.miui.home", "com.sec.android.app.launcher",
-        "com.transsion.hilauncher", "com.transsion.XOSLauncher"
+        "com.sec.android.app.launcher",      # Samsung One UI Home
+        "com.miui.home",                      # Xiaomi MIUI / HyperOS Home
+        "com.mi.android.globallauncher",      # POCO Launcher
+        "com.oppo.launcher",                  # Oppo ColorOS Launcher
+        "com.coloros.home",                   # ColorOS Home
+        "com.oneplus.launcher",               # OnePlus OxygenOS Launcher
+        "com.realme.launcher",                # Realme UI Launcher
+        "com.bbk.launcher2",                  # vivo Funtouch Launcher
+        "com.vivo.launcher",                  # vivo OriginOS Launcher
+        "com.transsion.XOSLauncher",          # Infinix XOS Launcher
+        "com.transsion.hilauncher",           # Tecno HiOS Launcher
+        "com.transsion.itellauncher",         # itel itelOS Launcher
+        "com.motorola.launcher3",             # Motorola Moto Launcher
+        "com.sonymobile.home",                # Sony Xperia Home
+        "com.lava.launcher",                  # Lava Launcher
+        "com.indus.launcher"                  # Karbonn / Indus OS Launcher
     )
     $installed = (adb shell pm list packages) -join "`n"
     foreach ($stock in $stockList) {

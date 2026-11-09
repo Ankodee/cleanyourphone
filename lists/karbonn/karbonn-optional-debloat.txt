@@ -1,0 +1,8 @@
+# ==============================================================================
+# CleanYourPhone - Karbonn Mobiles Optional Debloat List
+# ==============================================================================
+# Target: Optional Karbonn tools.
+# ==============================================================================
+
+com.karbonn.fmradio                         # Karbonn FM Radio
+com.indus.launcher                          # Indus / Karbonn stock launcher (disable after installing Lawnchair)

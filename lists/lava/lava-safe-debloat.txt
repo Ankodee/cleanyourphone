@@ -1,0 +1,22 @@
+# ==============================================================================
+# CleanYourPhone - Lava Smartphones Safe Debloat List
+# ==============================================================================
+# Target: Lava Agni, Blaze, Yuva, and Storm series
+# Safety Guarantee: 100% Non-destructive. Restores clean stock Android feel.
+# ==============================================================================
+
+# --- Sponsored Lock Screen & Ad Services ---
+com.glance.internet                         # Glance Lockscreen stories & sponsored wallpaper ads
+com.inmobi.service                          # InMobi background advertising telemetry
+com.mobvista.android                        # Mobvista ad network SDK
+
+# --- Lava System Bloat & Telemetry ---
+com.lava.mycleaner                          # Lava RAM Cleaner (unnecessary background service)
+com.lava.game                               # Lava Games / GameSpace promotional store
+com.lava.care                               # Lava Care diagnostic & support app
+com.lava.customization                      # Lava partner apps installer & telemetry
+com.lava.service                            # Lava background analytics daemon
+
+# --- Third-Party Preloads ---
+com.dailyhunt.tv                            # Dailyhunt news app with notification spam
+com.altbalaji.alt                           # ALTBalaji streaming preinstall

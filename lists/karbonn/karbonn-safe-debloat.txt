@@ -1,0 +1,18 @@
+# ==============================================================================
+# CleanYourPhone - Karbonn Mobiles Safe Debloat List
+# ==============================================================================
+# Target: Karbonn Android smartphones
+# Safety Guarantee: 100% Non-destructive. Removes preloaded adware & trackers.
+# ==============================================================================
+
+# --- Karbonn Promotional Preloads & Stores ---
+com.karbonn.appzone                         # Karbonn AppZone promoted apps installer
+com.karbonn.games                           # Karbonn Games promotional portal
+com.karbonn.kstore                          # Karbonn K-Store marketplace
+com.karbonn.service                         # Karbonn background diagnostics daemon
+
+# --- Third-Party Adware & Trackers ---
+com.inmobi.service                          # InMobi background ad SDK
+com.mobvista.android                        # Mobvista tracking framework
+com.dailyhunt.tv                            # Dailyhunt news app
+com.ucmobile.intl                           # UC Browser (heavy push notifications)
