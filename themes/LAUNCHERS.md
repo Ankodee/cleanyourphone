@@ -5,18 +5,13 @@ sponsored recommendation feeds, and non-removable discovery pages.
 
 ---
 
-## 1. Liquid Glass Home (Built-in CleanYourPhone Launcher)
-- **Best for:** Apple-inspired minimalist aesthetic with liquid frosted glass dock and zero telemetry.
-- **Features:** Floating frosted bottom dock, minimalist thin typography, real-time offline search, fluid scale-spring touch physics, <15MB RAM usage.
-- **Location:** In this repository under [`launcher/`](../launcher/README.md).
+## 1. Lawnchair Launcher (CleanYourPhone Integrated)
+- **Best for:** Stock Pixel / Clean Android experience based on AOSP Launcher3.
+- **Features:** Material You dynamic theming, fluid gestures, At a Glance widget, custom icon packs, 0.5x snappy speed, zero telemetry.
+- **Location:** In this repository under [`launcher/`](../launcher/README.md) (Git submodule [`launcher/lawnchair`](https://github.com/LawnchairLauncher/lawnchair)).
 - **Install:** Run `./launcher/build-and-install.sh` or `.\launcher\build-and-install.ps1`.
 
 ---
-
-## 2. Lawnchair 14
-- **Best for:** Stock Pixel / Clean Android experience.
-- **Features:** Material You dynamic theming, fluid gestures, custom icon packs, no telemetry.
-- **Link:** [lawnchair.app](https://lawnchair.app) or [GitHub](https://github.com/LawnchairLauncher/lawnchair)
 
 ## 2. Niagara Launcher
 - **Best for:** One-handed ergonomic flow and minimal distraction.

@@ -115,7 +115,7 @@ Every package undergoes the **Dual-List Consensus Matrix**:
 
 > [!NOTE]
 > **Universal Legacy & Modern Compatibility:**
-> The debloat scripts automatically detect your Android SDK and OS generation. Older phones running **ColorOS 5/6**, **Funtouch OS 3/4**, or **OxygenOS 5** use an adaptive multi-tier fallback engine (`pm disable-user` → `pm disable` → `pm hide`), and the Liquid Glass Launcher is backward-compatible down to **Android 5.0 (minSdk 21)**.
+> The debloat scripts automatically detect your Android SDK and OS generation. Older phones running **ColorOS 5/6**, **Funtouch OS 3/4**, or **OxygenOS 5** use an adaptive multi-tier fallback engine (`pm disable-user` → `pm disable` → `pm hide`), and Lawnchair Launcher automatically matches your generation (Lawnchair 15 for Android 14/15, Lawnchair 14 for Android 10–13, and Lawnchair 2 for legacy Android 5–9).
 
 ---
 
@@ -204,45 +204,36 @@ python tools/audit_packages.py
 
 ---
 
-## Stage 2: Liquid Glass Home (Minimalist Frosted Glass Launcher)
+## Stage 2: Lawnchair Launcher (Pixel-Style AOSP Launcher)
 
 Once debloating is complete, CleanYourPhone gives the user the choice:
-**Keep your existing OEM home screen**, or upgrade to **Liquid Glass Home**.
+**Keep your existing OEM home screen**, or upgrade to **[Lawnchair Launcher](https://github.com/LawnchairLauncher/lawnchair)**.
 
 ```text
 ==========================================================
  Stage 2: Minimalist Home Screen Upgrade
 ==========================================================
-CleanYourPhone includes an ultra-clean iOS-style Liquid Glass Launcher
-(left-to-right pages, frosted wallpaper dock, 0.5x snappy animations, zero ads, <15MB RAM).
+CleanYourPhone integrates Lawnchair Launcher (legendary open-source
+Pixel-style launcher based on AOSP Launcher3 with Material You theming,
+customizable grid, 0.5x speed, zero telemetry, and zero ads).
+GitHub: https://github.com/LawnchairLauncher/lawnchair
 
-Would you like to install the Liquid Glass Launcher? [y/N]:
+Would you like to install Lawnchair Launcher? [y/N]:
 ```
 
 ### What You Get:
-<p align="center">
-  <img src="docs/liquid-glass-home.jpg" alt="Liquid Glass Home Screen UI" width="450">
-</p>
+* **100% Upstream AOSP Launcher3 Base:** Direct integration with the official [Lawnchair repository](https://github.com/LawnchairLauncher/lawnchair) via Git submodule ([`launcher/lawnchair`](launcher/README.md)).
+* **Pixel Launcher Experience:** Clean Google Pixel home screen look and feel with "At a Glance" widget, fast offline app search, and fluid gesture navigation.
+* **Material You Dynamic Theming:** Full Android 12+ Monet color extraction dynamically matching your active wallpaper.
+* **Granular Customization:** Custom grid sizing (4x4, 4x5, 5x5, 6x6), custom icon pack support, dock adjustments, and app drawer categorization.
+* **0.5x Ultra-Fast Transition Speed:** Automatically configures Android animation scales (`window_animation_scale`, `transition_animation_scale`, `animator_duration_scale`) to **0.5x** for an instantaneous, lag-free experience without stutters on older devices.
+* **Universal Android Support:**
+  * **Android 14 & 15:** Lawnchair 15 (Beta 3.0)
+  * **Android 10 – 13:** Lawnchair 14 (Beta 3)
+  * **Android 5 – 9:** Lawnchair 2 (Legacy for ColorOS 5, older Oppo/Vivo/Xiaomi)
+* **Zero Telemetry & Extreme Resource Efficiency:** 100% open-source, zero ads, zero background tracking, and consumes a fraction of the RAM of stock OEM launchers.
 
-* **iOS-Style Left-to-Right Paging:** Horizontal SpringBoard app pages that swipe smoothly left to right with responsive snap physics and animated iOS page indicator dots (`• • •`).
-* **Live Wallpaper Liquid Glass Effect:** Frosted glass refraction over your active background wallpaper with specular edge highlights and dynamic wallpaper blur pass-through.
-* **iOS Smart Widget (Page 1):** Frosted glass header card displaying Apple-style live clock, day, date, and battery status.
-* **Floating Liquid Glass Dock:** Translucent glass island at the bottom holding your 4 primary apps (Phone, Messages, Browser, Camera) that stays anchored across page swipes.
-* **iOS Spotlight Search Pill:** Floating frosted glass `🔍 Search` capsule above the dock with instant real-time offline app filtering.
-* **iOS App Library (Last Page):** Automatic 2x2 frosted glass category folders (Suggestions, Utilities, Communication, Media) for quick access.
-* **0.5x Ultra-Fast Transition Speed:** In-launcher app opening transitions (150ms half-duration animators), touch feedback (80ms–120ms), and system window scales (`window_animation_scale`, `transition_animation_scale`, `animator_duration_scale`) are configured to **0.5x** speed for a zero-lag, instant response.
-
-<p align="center">
-  <img src="docs/feature-search-library.jpg" alt="Liquid Glass App Library & Real-time Search" width="550">
-</p>
-
-* **Extreme Resource Efficiency:** Runs on under 15 MB of RAM (compared to 350MB–600MB on stock ColorOS/Funtouch launchers).
-
-<p align="center">
-  <img src="docs/glass-dock-detail.jpg" alt="Liquid Glass Dock & Menu Detail" width="650">
-</p>
-
-To build and install the launcher directly at any time:
+To install or upgrade Lawnchair directly at any time:
 ```bash
 # Linux / macOS
 ./launcher/build-and-install.sh
@@ -257,9 +248,9 @@ To build and install the launcher directly at any time:
 
 Complete the transformation into a distraction-free smartphone:
 
-* **[Liquid Glass Home](launcher/README.md):** CleanYourPhone's built-in native frosted glass launcher.
+* **[Lawnchair Launcher](launcher/README.md):** CleanYourPhone's integrated Pixel-style launcher based on AOSP Launcher3.
 * **[Private DNS Zero-App Ad Blocker](themes/PRIVATE-DNS.md):** Block 100% of in-app ads and background trackers system-wide by setting `dns.adguard-dns.com` or `nextdns.io` in Android Settings (no battery-draining VPN apps!).
-* **[Alternative Open-Source Launchers](themes/LAUNCHERS.md):** Explore third-party minimal launchers like **Lawnchair 14**, **Niagara**, or **Neo Launcher**.
+* **[Alternative Open-Source Launchers](themes/LAUNCHERS.md):** Explore other minimal launchers like **Niagara**, **KISS**, or **Neo Launcher**.
 * **[The Fossify Suite](themes/FOSSIFY-SUITE.md):** Clean open-source offline replacements for stock Dialer, Gallery, Messages, Calendar, and Calculator.
 
 ---
@@ -301,11 +292,11 @@ cleanyourphone/
 │   ├── WIRELESS-ADB.md   # Android 11+ wireless setup guide
 │   ├── privacy.md        # OEM telemetry & tracker analysis
 │   └── restore.md        # Complete restoration guide
-├── launcher/             # Minimal Liquid Glass Launcher (Java & AndroidX)
-│   ├── app/              # Native Android launcher source
-│   ├── build-and-install.sh  # Linux/macOS build & install script
-│   ├── build-and-install.ps1 # Windows build & install script
-│   └── README.md         # Launcher docs & customization guide
+├── launcher/             # Lawnchair Launcher (AOSP Launcher3 integration)
+│   ├── lawnchair/        # Upstream Git submodule (LawnchairLauncher/lawnchair)
+│   ├── build-and-install.sh  # Automated Linux/macOS installer & 0.5x optimizer
+│   ├── build-and-install.ps1 # Automated Windows installer & 0.5x optimizer
+│   └── README.md         # Lawnchair setup & customization guide
 ├── lists/
 │   ├── oppo/             # ColorOS safe & optional lists
 │   ├── oneplus/          # OxygenOS safe & optional lists

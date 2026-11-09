@@ -1,0 +1,4 @@
+[submodule "launcher/lawnchair"]
+	path = launcher/lawnchair
+	url = https://github.com/LawnchairLauncher/lawnchair.git
+	branch = 15-beta
