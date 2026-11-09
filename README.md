@@ -267,11 +267,21 @@ Would you like to install Lawnchair Launcher? [y/N]:
 ```
 
 ### What You Get:
+
+<p align="center">
+  <img src="docs/lawnchair-ui-showcase.jpg" alt="Lawnchair Launcher Clean UI Overview" width="850">
+</p>
+
 * **100% Upstream AOSP Launcher3 Base:** Direct integration with the official [Lawnchair repository](https://github.com/LawnchairLauncher/lawnchair) via Git submodule ([`launcher/lawnchair`](launcher/README.md)).
 * **Pixel Launcher Experience:** Clean Google Pixel home screen look and feel with "At a Glance" widget, fast offline app search, and fluid gesture navigation.
 * **Material You Dynamic Theming:** Full Android 12+ Monet color extraction dynamically matching your active wallpaper.
 * **Granular Customization:** Custom grid sizing (4x4, 4x5, 5x5, 6x6), custom icon pack support, dock adjustments, and app drawer categorization.
 * **0.5x Ultra-Fast Transition Speed:** Automatically configures Android animation scales (`window_animation_scale`, `transition_animation_scale`, `animator_duration_scale`) to **0.5x** for an instantaneous, lag-free experience without stutters on older devices.
+
+<p align="center">
+  <img src="docs/lawnchair-features.jpg" alt="Lawnchair Launcher Features & 3-Screen Progression" width="850">
+</p>
+
 * **Universal Android Support:**
   * **Android 14 & 15:** Lawnchair 15 (Beta 3.0)
   * **Android 10 – 13:** Lawnchair 14 (Beta 3)
