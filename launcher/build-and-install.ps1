@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-    Lawnchair Launcher - Installer & Setup Script for Windows PowerShell
+    Google Stock Launcher - Installer & Setup Script for Windows PowerShell
 .DESCRIPTION
-    Installs Lawnchair Launcher (the modern open-source Pixel-style launcher
-    based on AOSP Launcher3) as the default home screen via ADB.
+    Installs Google Stock Launcher (pure open-source Pixel-style launcher
+    based on AOSP Launcher3 / Lawnchair base) as default home screen via ADB.
     Upstream repository: https://github.com/LawnchairLauncher/lawnchair
 .EXAMPLE
     .\launcher\build-and-install.ps1
@@ -18,8 +18,8 @@ param (
 $ErrorActionPreference = "Stop"
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host " Lawnchair Launcher Installer (CleanYourPhone)" -ForegroundColor Green
-Write-Host " Upstream: https://github.com/LawnchairLauncher/lawnchair" -ForegroundColor DarkGray
+Write-Host " Google Stock Launcher Installer (CleanYourPhone)" -ForegroundColor Green
+Write-Host " Powered by AOSP Launcher3 / Lawnchair Base" -ForegroundColor DarkGray
 Write-Host "==========================================================" -ForegroundColor Cyan
 
 Set-Location $PSScriptRoot
@@ -45,7 +45,7 @@ $sdk = [int]$sdkRaw
 
 Write-Host "[*] Connected device: $brand $model (Android SDK $sdk)" -ForegroundColor Cyan
 
-# 2. Select matching Lawnchair version and component
+# 2. Select matching launcher version and component
 $pkgName = "app.lawnchair"
 $launcherActivity = "app.lawnchair/app.lawnchair.LawnchairLauncher"
 $downloadUrl = ""
@@ -53,15 +53,15 @@ $versionLabel = ""
 
 if ($sdk -ge 34) {
     # Android 14 & 15
-    $versionLabel = "Lawnchair 15 (Beta 3.0)"
+    $versionLabel = "Google Stock Launcher 15 (v15 Beta 3.0)"
     $downloadUrl = "https://github.com/LawnchairLauncher/lawnchair/releases/download/v15.0.0-beta3.0/Lawnchair.15.0.0.Beta.3.0.apk"
 } elseif ($sdk -ge 29) {
     # Android 10, 11, 12, 13
-    $versionLabel = "Lawnchair 14 (Beta 3)"
+    $versionLabel = "Google Stock Launcher 14 (v14 Beta 3)"
     $downloadUrl = "https://github.com/LawnchairLauncher/lawnchair/releases/download/v14.0.0-beta3/Lawnchair.14.0.0.Beta.3.apk"
 } else {
-    # Legacy Android 8 & 9 (ColorOS 5/6, Oreo/Pie - SDK 26-28)
-    $versionLabel = "Lawnchair 12.1 (Alpha 4)"
+    # Legacy Android 5-9 (ColorOS 5/6, Oreo/Pie - SDK 21-28)
+    $versionLabel = "Stock Launcher Legacy (v12.1 Alpha 4)"
     $downloadUrl = "https://github.com/LawnchairLauncher/lawnchair/releases/download/v12.1.0-alpha.4/Lawnchair.12.1.0.Alpha.4.apk"
     $pkgName = "app.lawnchair"
     $launcherActivity = "app.lawnchair/app.lawnchair.LawnchairLauncher"
@@ -84,7 +84,7 @@ if ($ApkPath -and (Test-Path $ApkPath)) {
 }
 
 if (-not $targetApk -or -not (Test-Path $targetApk)) {
-    Write-Host "[*] Fetching official release from Lawnchair GitHub..." -ForegroundColor Cyan
+    Write-Host "[*] Fetching official release from upstream GitHub..." -ForegroundColor Cyan
     Write-Host "    Source: $downloadUrl" -ForegroundColor DarkGray
     $targetApk = ".\Lawnchair.apk"
     try {
@@ -92,18 +92,18 @@ if (-not $targetApk -or -not (Test-Path $targetApk)) {
         Invoke-WebRequest -Uri $downloadUrl -OutFile $targetApk -UseBasicParsing
         Write-Host "[*] Download completed successfully." -ForegroundColor Green
     } catch {
-        Write-Error "Failed to download Lawnchair APK: $_"
+        Write-Error "Failed to download Launcher APK: $_"
         exit 1
     }
 }
 
-# 4. Install Lawnchair APK via ADB
+# 4. Install Launcher APK via ADB
 Write-Host "[*] Installing $versionLabel on $brand $model..." -ForegroundColor White
 $installOut = adb install -r -d $targetApk 2>&1
 Write-Host "ADB install status: $installOut" -ForegroundColor Green
 
 # 5. Set as default home activity
-Write-Host "[*] Setting Lawnchair as default home screen..." -ForegroundColor Cyan
+Write-Host "[*] Setting Google Stock Launcher as default home screen..." -ForegroundColor Cyan
 try {
     adb shell cmd package set-home-activity --user 0 $launcherActivity 2>&1 | Out-Null
 } catch {}
@@ -119,8 +119,8 @@ try {
     adb shell settings put global animator_duration_scale 0.5 2>&1 | Out-Null
 } catch {}
 
-# 7. Start Lawnchair home screen
-Write-Host "[*] Starting Lawnchair Launcher..." -ForegroundColor Cyan
+# 7. Start Google Stock Launcher home screen
+Write-Host "[*] Starting Google Stock Launcher..." -ForegroundColor Cyan
 adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.HOME -n $launcherActivity | Out-Null
 
 # 8. Optionally disable OEM bloatware launcher
@@ -154,6 +154,6 @@ if ($DisableStock) {
 }
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host " Lawnchair Launcher successfully installed and running!" -ForegroundColor Green
+Write-Host " Google Stock Launcher successfully installed and running!" -ForegroundColor Green
 Write-Host " Experience: Pixel-style AOSP launcher, Material You, 0.5x speed" -ForegroundColor White
 Write-Host "==========================================================" -ForegroundColor Cyan

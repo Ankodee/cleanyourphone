@@ -203,23 +203,23 @@ Write-Host "==========================================================" -Foregro
 if (-not $DryRun) {
     Write-Host ""
     Write-Host "==========================================================" -ForegroundColor Cyan
-    Write-Host " Stage 2: Minimalist Home Screen Upgrade" -ForegroundColor Green
+    Write-Host " Stage 2: Google Stock Launcher Installation" -ForegroundColor Green
     Write-Host "==========================================================" -ForegroundColor Cyan
-    Write-Host "CleanYourPhone integrates Lawnchair Launcher (legendary open-source"
+    Write-Host "CleanYourPhone integrates Google Stock Launcher (pure open-source"
     Write-Host "Pixel-style launcher based on AOSP Launcher3 with Material You theming,"
     Write-Host "customizable grid, 0.5x speed, zero telemetry, and zero ads)."
-    Write-Host "GitHub: https://github.com/LawnchairLauncher/lawnchair" -ForegroundColor DarkGray
+    Write-Host "Base: Lawnchair / AOSP Launcher3 (https://github.com/LawnchairLauncher/lawnchair)" -ForegroundColor DarkGray
     Write-Host ""
 
     if (-not $InstallLauncher -and -not $KeepLauncher) {
-        $choice = Read-Host "Would you like to install Lawnchair Launcher? [y/N]"
+        $choice = Read-Host "Would you like to install Google Stock Launcher? [y/N]"
         if ($choice -match "^[Yy]$") {
             $InstallLauncher = $true
         }
     }
 
     if ($InstallLauncher) {
-        Write-Host "[*] Launching Lawnchair installer..." -ForegroundColor Cyan
+        Write-Host "[*] Launching Google Stock Launcher installer..." -ForegroundColor Cyan
         & ".\launcher\build-and-install.ps1"
     } else {
         Write-Host "[*] Keeping your existing home screen." -ForegroundColor White

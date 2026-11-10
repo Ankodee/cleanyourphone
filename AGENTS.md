@@ -82,13 +82,30 @@ When a user invokes you using [`PROMPT.md`](PROMPT.md), execute in this exact se
 
 ## 5. Brand Archetypes
 
-- **Oppo, OnePlus, Realme (Oplus / Heytap ecosystem):**
+- **Samsung (One UI Platform):**
+  - Clusters around `com.samsung.android.*` and `com.sec.android.*`.
+  - Common pain points: Bixby suite, Samsung Free ad feeds, Game Optimizing Service (GOS), Samsung Push Service, Samsung Checkout, Galaxy Store monetization.
+- **POCO & Xiaomi (MIUI & HyperOS Platform):**
+  - Clusters around `com.miui.*` and `com.xiaomi.*`.
+  - Common pain points: MSA (MIUI System Ads), Joyose background throttler, GetApps store, App Vault, Mi Pay, Cleaner recommendations.
+- **Transsion (Infinix XOS, Tecno HiOS, itel itelOS):**
+  - Clusters around `com.transsion.*` and `com.afmobi.*`.
+  - Common pain points: Phoenix Browser, AHA Games, Palm Store, PalmPay, HiOS/XOS Lock Screen Magazine, Phone Master ad engine.
+- **Motorola (Hello UI & My UX):**
+  - Clusters around `com.motorola.*`.
+  - Common pain points: Glance lock screen stories, Moto Mobile Services marketing surveys, Motorola Notifications.
+- **Sony (Xperia UI):**
+  - Clusters around `com.sonymobile.*` and `com.sony.tvsideview.*`.
+  - Common pain points: Xperia Lounge, Sony News Suite, redundant PC Companion / transfer stubs.
+- **Budget Android (Lava, Karbonn, Philips):**
+  - Clusters around carrier preloads, Glance lockscreen feeds, regional news aggregators, and Indian commercial preloads.
+- **Oppo, OnePlus, Realme (OPLUS / HeyTap Ecosystem):**
   - Share the ColorOS underlying codebase.
-  - Bloat clusters around `com.heytap.*`, `com.nearme.*`, `com.coloros.*`, and `com.oplus.*`.
+  - Clusters around `com.heytap.*`, `com.nearme.*`, `com.coloros.*`, and `com.oplus.*`.
   - Common pain points: HeyTap App Market, Lock screen magazine (Pictorial), Global Search swipe-down, FinShell Pay, Breeno Voice.
-- **vivo & iQOO (BBK Vivo ecosystem):**
+- **vivo & iQOO (BBK Vivo Ecosystem):**
   - Share the Funtouch OS / OriginOS underlying codebase.
-  - Bloat clusters around `com.vivo.*`, `com.bbk.*`, and `com.iqoo.*`.
+  - Clusters around `com.vivo.*`, `com.bbk.*`, and `com.iqoo.*`.
   - Common pain points: V-Appstore, Jovi Assistant, Lockscreen Poster, i Theme store, vivo Cloud, vivo Browser.
 
 ---

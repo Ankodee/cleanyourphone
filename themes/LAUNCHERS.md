@@ -1,12 +1,12 @@
 # Clean & Open-Source Android Launchers
 
-Default OEM launchers (ColorOS Launcher, vivo Launcher) often come bundled with global search ads,
+Default OEM launchers (Samsung One UI Home, Xiaomi MIUI/POCO Home, ColorOS Launcher, vivo Launcher, Transsion HiOS/XOS Launcher, Motorola Launcher) often come bundled with global search ads,
 sponsored recommendation feeds, and non-removable discovery pages.
 
 ---
 
-## 1. Lawnchair Launcher (CleanYourPhone Integrated)
-- **Best for:** Stock Pixel / Clean Android experience based on AOSP Launcher3.
+## 1. Google Stock Launcher (CleanYourPhone Integrated)
+- **Best for:** Pure Google Pixel / Clean Android experience based on upstream AOSP Launcher3 / Lawnchair base.
 - **Features:** Material You dynamic theming, fluid gestures, At a Glance widget, custom icon packs, 0.5x snappy speed, zero telemetry.
 - **Location:** In this repository under [`launcher/`](../launcher/README.md) (Git submodule [`launcher/lawnchair`](https://github.com/LawnchairLauncher/lawnchair)).
 - **Install:** Run `./launcher/build-and-install.sh` or `.\launcher\build-and-install.ps1`.

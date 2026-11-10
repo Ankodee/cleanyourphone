@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-# CleanYourPhone - Lawnchair Launcher Installer & Setup
+# CleanYourPhone - Google Stock Launcher Installer & Setup
+# Powered by AOSP Launcher3 / Lawnchair Base
 # Upstream repository: https://github.com/LawnchairLauncher/lawnchair
 #
 
@@ -24,8 +25,8 @@ for arg in "$@"; do
 done
 
 echo "=========================================================="
-echo " Lawnchair Launcher Installer (CleanYourPhone)"
-echo " Upstream: https://github.com/LawnchairLauncher/lawnchair"
+echo " Google Stock Launcher Installer (CleanYourPhone)"
+echo " Powered by AOSP Launcher3 / Lawnchair Base"
 echo "=========================================================="
 
 if ! command -v adb >/dev/null 2>&1; then
@@ -45,7 +46,7 @@ SDK=${SDK_RAW:-30}
 
 echo "[*] Connected device: $BRAND $MODEL (Android SDK $SDK)"
 
-# Select matching Lawnchair version and component
+# Select matching launcher version and component
 PKG_NAME="app.lawnchair"
 LAUNCHER_ACTIVITY="app.lawnchair/app.lawnchair.LawnchairLauncher"
 DOWNLOAD_URL=""
@@ -53,15 +54,15 @@ VERSION_LABEL=""
 
 if [ "$SDK" -ge 34 ]; then
   # Android 14 & 15
-  VERSION_LABEL="Lawnchair 15 (Beta 3.0)"
+  VERSION_LABEL="Google Stock Launcher 15 (v15 Beta 3.0)"
   DOWNLOAD_URL="https://github.com/LawnchairLauncher/lawnchair/releases/download/v15.0.0-beta3.0/Lawnchair.15.0.0.Beta.3.0.apk"
 elif [ "$SDK" -ge 29 ]; then
   # Android 10, 11, 12, 13
-  VERSION_LABEL="Lawnchair 14 (Beta 3)"
+  VERSION_LABEL="Google Stock Launcher 14 (v14 Beta 3)"
   DOWNLOAD_URL="https://github.com/LawnchairLauncher/lawnchair/releases/download/v14.0.0-beta3/Lawnchair.14.0.0.Beta.3.apk"
 else
-  # Legacy Android 5 through 9 (ColorOS 5, older Oppo/Vivo/Xiaomi)
-  VERSION_LABEL="Lawnchair 12.1 (Alpha 4)"
+  # Legacy Android 5 through 9 (ColorOS 5, older Samsung/Oppo/Vivo/Xiaomi)
+  VERSION_LABEL="Stock Launcher Legacy (v12.1 Alpha 4)"
   DOWNLOAD_URL="https://github.com/LawnchairLauncher/lawnchair/releases/download/v12.1.0-alpha.4/Lawnchair.12.1.0.Alpha.4.apk"
   PKG_NAME="app.lawnchair"
   LAUNCHER_ACTIVITY="app.lawnchair/app.lawnchair.LawnchairLauncher"
@@ -83,7 +84,7 @@ else
 fi
 
 if [ -z "$TARGET_APK" ] || [ ! -f "$TARGET_APK" ]; then
-  echo "[*] Fetching official release from Lawnchair GitHub..."
+  echo "[*] Fetching official release from upstream GitHub..."
   echo "    Source: $DOWNLOAD_URL"
   TARGET_APK="Lawnchair.apk"
   if command -v curl >/dev/null 2>&1; then
@@ -97,12 +98,12 @@ if [ -z "$TARGET_APK" ] || [ ! -f "$TARGET_APK" ]; then
   echo "[*] Download completed successfully."
 fi
 
-# Install Lawnchair via ADB
+# Install Launcher via ADB
 echo "[*] Installing $VERSION_LABEL on $BRAND $MODEL..."
 adb install -r -d "$TARGET_APK"
 
 # Set as default home activity
-echo "[*] Setting Lawnchair as default home screen..."
+echo "[*] Setting Google Stock Launcher as default home screen..."
 adb shell cmd package set-home-activity --user 0 "$LAUNCHER_ACTIVITY" 2>/dev/null || \
 adb shell pm set-home-activity "$LAUNCHER_ACTIVITY" 2>/dev/null || true
 
@@ -112,8 +113,8 @@ adb shell settings put global window_animation_scale 0.5 2>/dev/null || true
 adb shell settings put global transition_animation_scale 0.5 2>/dev/null || true
 adb shell settings put global animator_duration_scale 0.5 2>/dev/null || true
 
-# Start Lawnchair
-echo "[*] Starting Lawnchair Launcher..."
+# Start Google Stock Launcher
+echo "[*] Starting Google Stock Launcher..."
 adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.HOME -n "$LAUNCHER_ACTIVITY"
 
 # Optionally disable OEM stock launcher
@@ -136,6 +137,6 @@ if [ "$DISABLE_STOCK" -eq 1 ]; then
 fi
 
 echo "=========================================================="
-echo " Lawnchair Launcher successfully installed and running!"
+echo " Google Stock Launcher successfully installed and running!"
 echo " Experience: Pixel-style AOSP launcher, Material You, 0.5x speed"
 echo "=========================================================="

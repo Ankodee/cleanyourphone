@@ -57,11 +57,11 @@ Follow these strict operating procedures:
 
 4. Interactive Checklist (Ask My Preferences)
 - Before executing, present a grouped summary of discovered bloatware on my phone:
-  - Brand App Stores & Theme Stores (HeyTap Market, V-Appstore, Theme Stores)
+  - Brand App Stores & Theme Stores (Galaxy Store, HeyTap Market, V-Appstore, Xiaomi GetApps, Palm Store, Theme Stores)
   - Lock Screen Magazine / Glance / Global Search
-  - Brand Cloud & Push Services (HeyTap Cloud, vivo Cloud, Push Service)
+  - Brand Cloud & Push Services (Samsung Cloud, HeyTap Cloud, vivo Cloud, Xiaomi Cloud, Push Services)
   - Game Centers & Game Boosters
-  - Voice Assistant (Breeno / Jovi / Google Assistant)
+  - Voice Assistant (Bixby / Breeno / Jovi / Google Assistant)
   - Duplicate Media Apps (Stock browser, music player, video player)
   - Preinstalled Commercial Bloat (Facebook daemons, Netflix stubs, Amazon)
 - Ask me if there are any specific stock apps I wish to keep.
@@ -76,7 +76,7 @@ Follow these strict operating procedures:
 - Verify that cellular signal, Wi-Fi, SMS, camera, biometrics, and phone settings function properly.
 - Show me how many packages were disabled and verify that the restore script is ready.
 - Offer me the choice for Stage 2:
-  "CleanYourPhone includes a custom minimal Apple-like Liquid Glass Launcher (frosted dock, thin typography, zero ads, <15MB RAM). Would you like to install the Liquid Glass Launcher, or keep your existing home screen?"
+  "CleanYourPhone includes Google Stock Launcher (pure open-source AOSP Launcher3 base with Material You dynamic theming, 0.5x transition speed, zero ads, <20MB RAM). Would you like to install Google Stock Launcher, or keep your existing home screen?"
 - If I choose yes, run `launcher/build-and-install.sh` (or `build-and-install.ps1`), set it as home, and ask if I wish to disable the OEM launcher or keep it as backup.
 - If I choose no, keep my current launcher untouched.
 - Offer recommendations from `themes/PRIVATE-DNS.md` for zero-app system-level ad blocking.

@@ -543,7 +543,7 @@ def render_customization_detail():
         bx = START_X + p["col"] * (PW + GAP_X)
         by = START_Y + p["row"] * (PH + GAP_Y)
 
-        # Frosted glass card
+        # Semi-transparent card
         draw.rounded_rectangle([bx, by, bx + PW, by + PH], radius=20, fill=(255, 255, 255, 12), outline=(255, 255, 255, 35), width=1)
         # Left accent stripe
         draw.rounded_rectangle([bx, by + 20, bx + 5, by + PH - 20], radius=3, fill=(*p["color"], 255))

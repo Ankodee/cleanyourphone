@@ -26,8 +26,8 @@ Follow these golden rules to avoid bricking your phone, losing contacts, or brea
 - **DON'T debloat while driving or needing emergency services.**
   - Always debloat in a relaxed environment with access to a computer in case a restore is needed.
 - **DON'T disable both your stock launcher and custom launcher at the same time.**
-  - If you disable the stock OEM launcher (`com.oppo.launcher`, `com.vivo.launcher`), make sure you have installed a third-party launcher (like Lawnchair or Niagara) and tested it first!
+  - If you disable the stock OEM launcher (`com.sec.android.app.launcher`, `com.miui.home`, `com.mi.android.globallauncher`, `com.oppo.launcher`, `com.vivo.launcher`, `com.transsion.hilauncher`, `com.transsion.XOSLauncher`, `com.motorola.launcher3`), make sure you have installed a replacement home screen (like Google Stock Launcher or Niagara) and tested it first!
 - **DON'T remove stock camera apps if you care about photo quality.**
-  - Oppo and vivo use proprietary ISP camera tuning pipelines inside their stock camera apps. Third-party cameras won't produce the same image quality.
+  - Samsung, Oppo, vivo, POCO/Xiaomi, and Sony use proprietary ISP camera tuning pipelines inside their stock camera apps. Third-party cameras won't produce the same image quality.
 - **DON'T panic if an app won't uninstall.**
   - Android 14/15 firmware prevents certain OEM packages from being uninstalled. CleanYourPhone automatically falls back to disabling them.

@@ -220,18 +220,18 @@ echo "=========================================================="
 if [ "$DRY_RUN" -eq 0 ]; then
   echo ""
   echo "=========================================================="
-  echo " Stage 2: Minimalist Home Screen Upgrade"
+  echo " Stage 2: Google Stock Launcher Installation"
   echo "=========================================================="
-  echo "CleanYourPhone integrates Lawnchair Launcher (legendary open-source"
+  echo "CleanYourPhone integrates Google Stock Launcher (pure open-source"
   echo "Pixel-style launcher based on AOSP Launcher3 with Material You theming,"
   echo "customizable grid, 0.5x speed, zero telemetry, and zero ads)."
-  echo "GitHub: https://github.com/LawnchairLauncher/lawnchair"
+  echo "Base: Lawnchair / AOSP Launcher3 (https://github.com/LawnchairLauncher/lawnchair)"
   echo ""
 
   if [ "$INSTALL_LAUNCHER" -eq 1 ]; then
     bash launcher/build-and-install.sh
   elif [ "$KEEP_LAUNCHER" -eq 0 ] && [ -t 0 ]; then
-    read -rp "Would you like to install Lawnchair Launcher? [y/N]: " CHOICE
+    read -rp "Would you like to install Google Stock Launcher? [y/N]: " CHOICE
     if [[ "$CHOICE" =~ ^[Yy]$ ]]; then
       bash launcher/build-and-install.sh
     else

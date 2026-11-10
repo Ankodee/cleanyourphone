@@ -132,7 +132,7 @@ Every package undergoes the **Dual-List Consensus Matrix**:
 
 > [!NOTE]
 > **Universal Legacy & Modern Compatibility:**
-> The debloat scripts automatically detect your Android SDK and OS generation. Older phones running **ColorOS 5/6**, **Funtouch OS 3/4**, or **OxygenOS 5** use an adaptive multi-tier fallback engine (`pm disable-user` → `pm disable` → `pm hide`), and Lawnchair Launcher automatically matches your generation (Lawnchair 15 for Android 14/15, Lawnchair 14 for Android 10–13, and Lawnchair 2 for legacy Android 5–9).
+> The debloat scripts automatically detect your Android SDK and OS generation. Older phones running **ColorOS 5/6**, **Funtouch OS 3/4**, or **OxygenOS 5** use an adaptive multi-tier fallback engine (`pm disable-user` → `pm disable` → `pm hide`), and Google Stock Launcher automatically matches your generation (Google Stock Launcher 15 for Android 14/15, Google Stock Launcher 14 for Android 10–13, and Stock Launcher Legacy for Android 5–9).
 
 ---
 
@@ -249,46 +249,46 @@ python tools/audit_packages.py
 
 ---
 
-## Stage 2: Lawnchair Launcher (Pixel-Style AOSP Launcher)
+## Stage 2: Google Stock Launcher (Pixel-Style AOSP Launcher)
 
 Once debloating is complete, CleanYourPhone gives the user the choice:
-**Keep your existing OEM home screen**, or upgrade to **[Lawnchair Launcher](https://github.com/LawnchairLauncher/lawnchair)**.
+**Keep your existing OEM home screen**, or upgrade to **[Google Stock Launcher](launcher/README.md)** (powered by the upstream Lawnchair / AOSP Launcher3 base).
 
 ```text
 ==========================================================
- Stage 2: Minimalist Home Screen Upgrade
+ Stage 2: Google Stock Launcher Installation
 ==========================================================
-CleanYourPhone integrates Lawnchair Launcher (legendary open-source
+CleanYourPhone integrates Google Stock Launcher (pure open-source
 Pixel-style launcher based on AOSP Launcher3 with Material You theming,
 customizable grid, 0.5x speed, zero telemetry, and zero ads).
-GitHub: https://github.com/LawnchairLauncher/lawnchair
+Base: Lawnchair / AOSP Launcher3 (https://github.com/LawnchairLauncher/lawnchair)
 
-Would you like to install Lawnchair Launcher? [y/N]:
+Would you like to install Google Stock Launcher? [y/N]:
 ```
 
 ### What You Get:
 
 <p align="center">
-  <img src="docs/lawnchair-ui-showcase.jpg" alt="Lawnchair Launcher Clean UI Overview" width="850">
+  <img src="docs/lawnchair-ui-showcase.jpg" alt="Google Stock Launcher Clean UI Overview" width="850">
 </p>
 
-* **100% Upstream AOSP Launcher3 Base:** Direct integration with the official [Lawnchair repository](https://github.com/LawnchairLauncher/lawnchair) via Git submodule ([`launcher/lawnchair`](launcher/README.md)).
+* **100% Upstream AOSP Launcher3 Base:** Direct integration with the official upstream repository via Git submodule ([`launcher/lawnchair`](launcher/README.md)).
 * **Pixel Launcher Experience:** Clean Google Pixel home screen look and feel with "At a Glance" widget, fast offline app search, and fluid gesture navigation.
 * **Material You Dynamic Theming:** Full Android 12+ Monet color extraction dynamically matching your active wallpaper.
-* **Granular Customization:** Custom grid sizing (4x4, 4x5, 5x5, 6x6), custom icon pack support, dock adjustments, and app drawer categorization.
+* **Granular Customization:** Custom grid sizing (4x4, 4x5, 5x5, 6x6, 7x7), custom icon pack support, dock adjustments, and app drawer categorization.
 * **0.5x Ultra-Fast Transition Speed:** Automatically configures Android animation scales (`window_animation_scale`, `transition_animation_scale`, `animator_duration_scale`) to **0.5x** for an instantaneous, lag-free experience without stutters on older devices.
 
 <p align="center">
-  <img src="docs/lawnchair-features.jpg" alt="Lawnchair Launcher Features & 3-Screen Progression" width="850">
+  <img src="docs/lawnchair-features.jpg" alt="Google Stock Launcher Features & 3-Screen Progression" width="850">
 </p>
 
 * **Universal Android Support:**
-  * **Android 14 & 15:** Lawnchair 15 (Beta 3.0)
-  * **Android 10 – 13:** Lawnchair 14 (Beta 3)
-  * **Android 5 – 9:** Lawnchair 2 (Legacy for ColorOS 5, older Oppo/Vivo/Xiaomi)
-* **Zero Telemetry & Extreme Resource Efficiency:** 100% open-source, zero ads, zero background tracking, and consumes a fraction of the RAM of stock OEM launchers.
+  * **Android 14 & 15:** Google Stock Launcher 15 (v15 Beta 3.0)
+  * **Android 10 – 13:** Google Stock Launcher 14 (v14 Beta 3)
+  * **Android 5 – 9:** Stock Launcher Legacy (for ColorOS 5, older Samsung/Oppo/Vivo/Xiaomi)
+* **Zero Telemetry & Extreme Resource Efficiency:** 100% open-source, zero ads, zero background tracking, and consumes a fraction (<18MB) of the RAM of stock OEM launchers.
 
-To install or upgrade Lawnchair directly at any time:
+To install or upgrade Google Stock Launcher directly at any time:
 ```bash
 # Linux / macOS
 ./launcher/build-and-install.sh
@@ -303,7 +303,7 @@ To install or upgrade Lawnchair directly at any time:
 
 Complete the transformation into a distraction-free smartphone:
 
-* **[Lawnchair Launcher](launcher/README.md):** CleanYourPhone's integrated Pixel-style launcher based on AOSP Launcher3.
+* **[Google Stock Launcher](launcher/README.md):** CleanYourPhone's integrated Pixel-style launcher based on AOSP Launcher3.
 * **[Private DNS Zero-App Ad Blocker](themes/PRIVATE-DNS.md):** Block 100% of in-app ads and background trackers system-wide by setting `dns.adguard-dns.com` or `nextdns.io` in Android Settings (no battery-draining VPN apps!).
 * **[Alternative Open-Source Launchers](themes/LAUNCHERS.md):** Explore other minimal launchers like **Niagara**, **KISS**, or **Neo Launcher**.
 * **[The Fossify Suite](themes/FOSSIFY-SUITE.md):** Clean open-source offline replacements for stock Dialer, Gallery, Messages, Calendar, and Calculator.
@@ -347,11 +347,11 @@ cleanyourphone/
 │   ├── WIRELESS-ADB.md   # Android 11+ wireless setup guide
 │   ├── privacy.md        # OEM telemetry & tracker analysis
 │   └── restore.md        # Complete restoration guide
-├── launcher/             # Lawnchair Launcher (AOSP Launcher3 integration)
+├── launcher/             # Google Stock Launcher (AOSP Launcher3 integration)
 │   ├── lawnchair/        # Upstream Git submodule (LawnchairLauncher/lawnchair)
 │   ├── build-and-install.sh  # Automated Linux/macOS installer & 0.5x optimizer
 │   ├── build-and-install.ps1 # Automated Windows installer & 0.5x optimizer
-│   └── README.md         # Lawnchair setup & customization guide
+│   └── README.md         # Google Stock Launcher setup & customization guide
 ├── lists/
 │   ├── samsung/          # Samsung One UI safe & optional lists
 │   ├── poco/             # POCO MIUI & HyperOS safe & optional lists

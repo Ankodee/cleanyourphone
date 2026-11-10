@@ -1,22 +1,22 @@
-# Lawnchair Launcher (CleanYourPhone Integration)
+# Google Stock Launcher (CleanYourPhone Integration)
 
-[![Lawnchair Upstream](https://img.shields.io/badge/Upstream-LawnchairLauncher%2Flawnchair-blue?logo=github)](https://github.com/LawnchairLauncher/lawnchair)
+[![Google Stock Launcher Base](https://img.shields.io/badge/Base-AOSP%20Launcher3%20%2F%20Lawnchair-blue?logo=android)](https://github.com/LawnchairLauncher/lawnchair)
 [![License: GPL-3.0 / Apache-2.0](https://img.shields.io/badge/License-GPL--3.0%20%2F%20Apache--2.0-green.svg)](https://github.com/LawnchairLauncher/lawnchair/blob/15-beta/LICENSE.txt)
 [![Android Compatibility](https://img.shields.io/badge/Android-5.0%20to%2015.0+-brightgreen.svg)](#supported-android-versions)
 
-**CleanYourPhone** integrates **[Lawnchair Launcher](https://github.com/LawnchairLauncher/lawnchair)**—the legendary free and open-source Android home screen replacement based on AOSP Launcher3. It brings the pure Google Pixel launcher experience to any device, enriched with deep customization, dynamic Material You theming, and an uncompromising commitment to privacy and zero bloat.
+**CleanYourPhone** integrates **Google Stock Launcher** (powered by the Lawnchair / AOSP Launcher3 upstream base)—the legendary free and open-source Android home screen replacement based on AOSP Launcher3. It brings the pure Google Pixel launcher experience to any device, enriched with deep customization, dynamic Material You theming, and an uncompromising commitment to privacy and zero bloat.
 
-The upstream Lawnchair source tree is integrated directly as a Git submodule at [`launcher/lawnchair`](https://github.com/LawnchairLauncher/lawnchair) pinned to official releases.
+The upstream source tree is integrated directly as a Git submodule at [`launcher/lawnchair`](https://github.com/LawnchairLauncher/lawnchair) pinned to official releases.
 
 <p align="center">
-  <img src="../docs/lawnchair-ui-showcase.jpg" alt="Lawnchair Launcher Clean UI Overview" width="850">
+  <img src="../docs/lawnchair-ui-showcase.jpg" alt="Google Stock Launcher Clean UI Overview" width="850">
 </p>
 
 ---
 
 ## What Does the UI Look Like?
 
-Lawnchair delivers an uncluttered, distraction-free interface engineered for instant ergonomics:
+Google Stock Launcher delivers an uncluttered, distraction-free interface engineered for instant ergonomics:
 
 1. **Smart "At a Glance" Card:**
    - Prominently displays the current day, date, and live local weather (`Sunny 24°C`) alongside calendar alerts and alarms.
@@ -26,18 +26,18 @@ Lawnchair delivers an uncluttered, distraction-free interface engineered for ins
 3. **Themed Material You App Grid:**
    - Symmetrical 4x4, 4x5, or 5x5 app grid featuring adaptive squircles tinted dynamically with colors extracted from your active wallpaper.
 4. **Anchored Floating Dock:**
-   - Translucent glass island at the bottom holding your 4 or 5 primary communication and utility apps (Phone, Messages, Browser, Camera).
+   - Streamlined floating dock pill at the bottom holding your 4 or 5 primary communication and utility apps (Phone, Messages, Browser, Camera).
 
 ---
 
-## Special Features of Lawnchair Launcher
+## Special Features of Google Stock Launcher
 
 <p align="center">
-  <img src="../docs/lawnchair-features.jpg" alt="Lawnchair Launcher 3-Screen Feature Progression" width="850">
+  <img src="../docs/lawnchair-features.jpg" alt="Google Stock Launcher 3-Screen Feature Progression" width="850">
 </p>
 
 ### 1. Dynamic Monet Wallpaper Palette Theming
-Lawnchair incorporates Android 12+ Material 3 Expressive theming. When you change your wallpaper, Lawnchair automatically recalculates five tonal palettes (Primary, Secondary, Tertiary, Neutral, Neutral Variant) and applies harmonious color accents across app icons, search capsules, dialogs, and folders.
+Google Stock Launcher incorporates Android 12+ Material 3 Expressive theming. When you change your wallpaper, it automatically recalculates five tonal palettes (Primary, Secondary, Tertiary, Neutral, Neutral Variant) and applies harmonious color accents across app icons, search capsules, dialogs, and folders.
 
 ### 2. Smart App Drawer & Real-Time Fuzzy Search
 - **Instant Filtering:** Swipe up anywhere on the home screen to open the app drawer. Typing immediately filters installed applications with sub-millisecond response.
@@ -57,24 +57,24 @@ CleanYourPhone automatically clocks animation scales to **0.5x** over ADB during
 - **Zero Lag on Any Hardware:** Silky 60Hz, 90Hz, and 120Hz refresh rates without frame drops, even on older or budget devices.
 
 <p align="center">
-  <img src="../docs/lawnchair-customization-detail.jpg" alt="Lawnchair Launcher Customization & RAM Benchmarks" width="850">
+  <img src="../docs/lawnchair-customization-detail.jpg" alt="Google Stock Launcher Customization & RAM Benchmarks" width="850">
 </p>
 
 ### 5. Extreme Resource Efficiency & Zero Bloat
-- **<20 MB RAM Consumption:** Compared to OEM launchers (ColorOS Home, One UI Home, Funtouch Launcher) that constantly run 350MB–600MB recommendation daemons in the background.
+- **<20 MB RAM Consumption:** Compared to heavy OEM launchers (Samsung One UI Home, Xiaomi MIUI Home, ColorOS Home, Funtouch Launcher, Transsion HiOS Launcher) that constantly run 350MB–600MB recommendation daemons in the background.
 - **100% Offline & Private:** Zero ads, zero commercial recommendations, zero tracking SDKs, and zero network analytics uploaders.
 
 ---
 
 ## Supported Android Versions
 
-The CleanYourPhone installer automatically inspects the connected device via ADB and delivers the optimal Lawnchair edition for your Android build:
+The CleanYourPhone installer automatically inspects the connected device via ADB and delivers the optimal edition for your Android build:
 
-| Android Version | SDK Level | Lawnchair Release | Upstream Branch |
+| Android Version | SDK Level | Release Edition | Upstream Branch |
 |---|---|---|---|
-| **Android 14 & 15** | SDK 34–35+ | **Lawnchair 15 (Beta 3.0)** | `15-beta` |
-| **Android 10 – 13** | SDK 29–33 | **Lawnchair 14 (Beta 3)** | `14-beta` |
-| **Android 5 – 9** (ColorOS 5, older Oppo/Vivo) | SDK 21–28 | **Lawnchair 2.0 (Legacy)** | `legacy` |
+| **Android 14 & 15** | SDK 34–35+ | **Google Stock Launcher 15 (v15 Beta)** | `15-beta` |
+| **Android 10 – 13** | SDK 29–33 | **Google Stock Launcher 14 (v14 Beta)** | `14-beta` |
+| **Android 5 – 9** (ColorOS 5, older Samsung/Oppo/Vivo) | SDK 21–28 | **Stock Launcher 2.0 (Legacy AOSP)** | `legacy` |
 
 ---
 
@@ -88,7 +88,7 @@ Connect your phone via USB or Wireless ADB with USB Debugging enabled, then run:
 ```powershell
 .\launcher\build-and-install.ps1
 ```
-*To automatically disable your OEM stock launcher (Oppo, Vivo, Xiaomi, Realme, etc.):*
+*To automatically disable your OEM stock launcher (Samsung, POCO, Transsion, Oppo, Vivo, Motorola, etc.):*
 ```powershell
 .\launcher\build-and-install.ps1 -DisableStock
 ```
@@ -104,11 +104,11 @@ Connect your phone via USB or Wireless ADB with USB Debugging enabled, then run:
 
 The script will automatically:
 1. Detect your connected device's manufacturer and Android SDK level.
-2. Provide or download the matching official signed release APK directly from Lawnchair's GitHub releases.
+2. Provide or download the matching official signed release APK directly from the upstream repository.
 3. Install the APK via `adb install -r -d`.
-4. Set Lawnchair as your primary home activity (`cmd package set-home-activity` / `pm set-home-activity`).
+4. Set Google Stock Launcher as your primary home activity (`cmd package set-home-activity` / `pm set-home-activity`).
 5. Tune animation speeds to **0.5x** for immediate, stutter-free performance.
-6. Launch Lawnchair directly onto your device.
+6. Launch Google Stock Launcher directly onto your device.
 
 ---
 
@@ -117,7 +117,7 @@ The script will automatically:
 The complete upstream repository is included as a Git submodule:
 
 ```bash
-# Initialize and fetch the upstream Lawnchair repository
+# Initialize and fetch the upstream repository
 git submodule update --init --recursive launcher/lawnchair
 
 # Build release APK using Gradle
@@ -128,6 +128,6 @@ cd launcher/lawnchair
 ---
 
 ## Credits & Upstream Repository
-- **Lawnchair Project:** [https://github.com/LawnchairLauncher/lawnchair](https://github.com/LawnchairLauncher/lawnchair)
+- **Upstream Project:** [Lawnchair Launcher](https://github.com/LawnchairLauncher/lawnchair)
 - **Website:** [https://lawnchair.app](https://lawnchair.app)
 - **License:** GNU General Public License v3.0 / Apache License 2.0
