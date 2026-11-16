@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/banner.jpg" alt="CleanYourPhone — Your phone, minus the bloat" width="100%">
+</p>
+
 # CleanYourPhone
 
 <p align="center">
