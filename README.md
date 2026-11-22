@@ -69,7 +69,7 @@ Only packages that both safety authorities rate as **100% Safe** are removed:
 ## What You'll Learn
 
 <p align="center">
-  <img src="docs/feature-battery-ram.jpg" alt="Battery Life & RAM Reclaim Benchmark" width="750">
+  <img src="docs/feature-battery-ram.jpg" alt="Battery Life, RAM Reclaim & Performance Benchmark" width="850">
 </p>
 
 * **How to remove bloatware from Android without root:** Keep your bootloader locked and preserve Google Play Integrity / SafetyNet.

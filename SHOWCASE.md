@@ -18,7 +18,7 @@ Here are real-world benchmark comparisons measured before and after applying **C
 ## 1. Battery Life & Overnight Standby Drain
 
 <p align="center">
-  <img src="docs/feature-battery-ram.jpg" alt="Battery & RAM Performance Benchmark Infographic" width="800">
+  <img src="docs/feature-battery-ram.jpg" alt="Battery & RAM Performance Benchmark Infographic" width="850">
 </p>
 
 OEM background services (Samsung Push Service, Xiaomi analytics, Transsion PalmPay/AHA Games daemons, HeyTap push, Vivo daemons, location telemetry, lock screen ad fetchers)
