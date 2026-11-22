@@ -45,6 +45,10 @@
 
 ## What Gets Removed
 
+<p align="center">
+  <img src="docs/what-gets-removed.jpg" alt="CleanYourPhone - What Gets Removed Bloatware Purged into Recycle Bin" width="850">
+</p>
+
 Only packages that both safety authorities rate as **100% Safe** are removed:
 
 * **Brand App Stores & Theme Stores:** HeyTap Market, V-Appstore, Theme Stores, and monetization services.
@@ -59,10 +63,6 @@ Only packages that both safety authorities rate as **100% Safe** are removed:
 * **Preinstalled Commercial Bloat:** Pre-installed Facebook background services, Netflix partner activation stubs, Amazon app managers, and commercial promo stubs.
 
 > *Note: The exact list of packages on your phone will differ by brand, model, and software version.*
-
-<p align="center">
-  <img src="docs/feature-privacy-telemetry.jpg" alt="CleanYourPhone Telemetry & Tracker Blocking Shield" width="750">
-</p>
 
 ---
 
