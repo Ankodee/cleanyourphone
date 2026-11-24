@@ -46,7 +46,7 @@
 ## What Gets Removed
 
 <p align="center">
-  <img src="docs/what-gets-removed.jpg" alt="CleanYourPhone - What Gets Removed Bloatware Purged into Recycle Bin" width="850">
+  <img src="docs/what-gets-removed.png" alt="CleanYourPhone - What Gets Removed Bloatware Purged into Recycle Bin" width="850">
 </p>
 
 Only packages that both safety authorities rate as **100% Safe** are removed:
