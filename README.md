@@ -113,7 +113,7 @@ Every package undergoes the **Dual-List Consensus Matrix**:
 ## Supported Brands & Operating Systems
 
 <p align="center">
-  <img src="docs/brands-lineup.jpg" alt="Supported Android Brands and Operating Systems - CleanYourPhone" width="850">
+  <img src="docs/brands-lineup.png" alt="Supported Android Brands and Operating Systems - CleanYourPhone" width="850">
 </p>
 
 | Brand | Operating System | Shared Base Architecture | Safe Profile | Documentation |
