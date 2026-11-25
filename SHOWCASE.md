@@ -8,7 +8,7 @@ What happens when you strip background analytics, preloaded bloatware, and invas
 from your Samsung, POCO, Infinix, Tecno, itel, Motorola, Sony, Lava, Karbonn, Philips, Oppo, vivo, OnePlus, Realme, or iQOO smartphone?
 
 <p align="center">
-  <img src="docs/lawnchair-ui-showcase.jpg" alt="Google Stock Launcher Clean UI Overview" width="850">
+  <img src="docs/lawnchair-ui-showcase.png" alt="Google Stock Launcher Clean UI Overview" width="850">
 </p>
 
 Here are real-world benchmark comparisons measured before and after applying **CleanYourPhone** and switching to **Google Stock Launcher**.

@@ -273,7 +273,7 @@ Would you like to install Google Stock Launcher? [y/N]:
 ### What You Get:
 
 <p align="center">
-  <img src="docs/lawnchair-ui-showcase.jpg" alt="Google Stock Launcher Clean UI Overview" width="850">
+  <img src="docs/lawnchair-ui-showcase.png" alt="Google Stock Launcher Clean UI Overview" width="850">
 </p>
 
 * **100% Upstream AOSP Launcher3 Base:** Direct integration with the official upstream repository via Git submodule ([`launcher/lawnchair`](launcher/README.md)).

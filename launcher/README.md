@@ -9,7 +9,7 @@
 The upstream source tree is integrated directly as a Git submodule at [`launcher/lawnchair`](https://github.com/LawnchairLauncher/lawnchair) pinned to official releases.
 
 <p align="center">
-  <img src="../docs/lawnchair-ui-showcase.jpg" alt="Google Stock Launcher Clean UI Overview" width="850">
+  <img src="../docs/lawnchair-ui-showcase.png" alt="Google Stock Launcher Clean UI Overview" width="850">
 </p>
 
 ---
