@@ -1,7 +1,7 @@
 # Showcase & Benchmarks
 
 <p align="center">
-  <img src="docs/before-and-after.jpg" alt="CleanYourPhone Showcase - Before and After" width="850">
+  <img src="docs/before-and-after.png" alt="CleanYourPhone Showcase - Before and After" width="850">
 </p>
 
 What happens when you strip background analytics, preloaded bloatware, and invasive ad daemons

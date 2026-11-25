@@ -20,7 +20,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/before-and-after.jpg" alt="CleanYourPhone - Before and After Debloating Comparison" width="850">
+  <img src="docs/before-and-after.png" alt="CleanYourPhone - Before and After Debloating Comparison" width="850">
 </p>
 
 ---
