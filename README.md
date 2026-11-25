@@ -283,7 +283,7 @@ Would you like to install Google Stock Launcher? [y/N]:
 * **0.5x Ultra-Fast Transition Speed:** Automatically configures Android animation scales (`window_animation_scale`, `transition_animation_scale`, `animator_duration_scale`) to **0.5x** for an instantaneous, lag-free experience without stutters on older devices.
 
 <p align="center">
-  <img src="docs/lawnchair-features.jpg" alt="Google Stock Launcher Features & 3-Screen Progression" width="850">
+  <img src="docs/lawnchair-features.png" alt="Google Stock Launcher Features & 3-Screen Progression" width="850">
 </p>
 
 * **Universal Android Support:**

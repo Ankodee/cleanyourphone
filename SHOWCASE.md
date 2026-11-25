@@ -80,7 +80,7 @@ Using network capture and DNS logging (NextDNS / Pi-hole / AdGuard Home) over a 
 ## 4. Google Stock Launcher Experience
 
 <p align="center">
-  <img src="docs/lawnchair-features.jpg" alt="Google Stock Launcher Features & 3-Screen Progression" width="850">
+  <img src="docs/lawnchair-features.png" alt="Google Stock Launcher Features & 3-Screen Progression" width="850">
 </p>
 
 In Stage 2 of CleanYourPhone, users can choose to install **Google Stock Launcher** (powered by the legendary upstream Lawnchair / AOSP Launcher3 base).

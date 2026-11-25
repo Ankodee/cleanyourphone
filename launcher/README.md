@@ -33,7 +33,7 @@ Google Stock Launcher delivers an uncluttered, distraction-free interface engine
 ## Special Features of Google Stock Launcher
 
 <p align="center">
-  <img src="../docs/lawnchair-features.jpg" alt="Google Stock Launcher 3-Screen Feature Progression" width="850">
+  <img src="../docs/lawnchair-features.png" alt="Google Stock Launcher 3-Screen Feature Progression" width="850">
 </p>
 
 ### 1. Dynamic Monet Wallpaper Palette Theming
